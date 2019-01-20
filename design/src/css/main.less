@@ -1,0 +1,56 @@
+/* Импорт стилей Bootstrap*/
+@import "../../../bower_components/bootstrap/dist/css/bootstrap.min.css";
+@import "../../../bower_components/bootstrap/dist/css/bootstrap-grid.min.css";
+@import "../../../bower_components/bootstrap/dist/css/bootstrap-reboot.min.css";
+@import "../../../bower_components/lightbox2/dist/css/lightbox.min.css";
+@import "../../../bower_components/fontawesome/css/all.min.css";
+
+/* Переменные для цветов сайта */
+@white: #ffffff;
+@darkgrey_header: #3a3a3a;
+@darkgrey_footer: #242424;
+@lightgrey: #5e5e5e;
+@orange: #ffc702;
+@lightorange: #ffd702;
+@input_bg: #f6f6f6;
+@title: #333333;
+
+/* Импорт шрифта*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&subset=cyrillic,cyrillic-ext');
+@import url('https://fonts.googleapis.com/css?family=Roboto&subset=cyrillic,cyrillic-ext');
+
+/* Общие стили */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+}
+
+.main_button {
+  background-color: @orange;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: @white;
+  border: 0;
+  cursor: pointer;
+}
+
+.main_title {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: bold;
+  padding-bottom: 35px;
+  padding-top: 35px;
+  color: @title;
+}
+
+/* Импорт собственных стилей */
+@import "partials/header.less";
+@import "partials/promoblock.less";
+@import "partials/achievments.less";
+@import "partials/services_home.less";
+@import "partials/feedback_home.less";
+@import "partials/portfolio.less";
+@import "partials/footer.less";

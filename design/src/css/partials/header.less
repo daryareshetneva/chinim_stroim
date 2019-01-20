@@ -1,0 +1,95 @@
+/* Стили для шапки сайта */
+
+/* Стили информационного блока над меню */
+#info {
+  background-color: @white;
+  color: @lightgrey;
+  font-size: 20px;
+  height: 110px;
+  padding-top: 16px;
+  & .row div {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  & #phone {
+    margin-right: 10px;
+    display: inline-block;
+    & i {
+      padding: 4px 4px 6px 4px;
+      border: 1px solid #ffc702;
+      color: #ffc702;
+      height: 30px;
+      margin-right: 8px;
+      font-size: 16px;
+    }
+  }
+  & #address {
+    display: inline-block;
+    & i {
+      padding: 3px 4px 2px 4px;
+      border: 1px solid #ffc702;
+      color: #ffc702;
+      font-size: 17px;
+      height: 28px;
+      margin-right: 8px;
+    }
+  }
+  & #callus {
+    .main_button;
+    padding: 15px 35px 15px 35px;
+  }
+  & #toggle {
+    display: none;
+  }
+}
+
+/* Стили меню */
+nav {
+  padding-top: 13px;
+  background-color: @darkgrey_header;
+  font-size: 15px;
+  text-transform: capitalize;
+  height: 50px;
+  & ul {
+    & li:first-child {
+      margin-left: 16.6777777%;
+    }
+    & li:last-child {
+      margin-right: 16.6777777%;
+    }
+    & li a {
+      padding-bottom: 8px;
+      color: @white !important;
+      &:hover, &.active {
+        color: @orange !important;
+        border-bottom: 2px solid @orange;
+        position: relative;
+        cursor: pointer;
+        text-decoration: none !important;
+        &::before {
+          content: "";
+          background-color: @darkgrey_header;
+          width: 12px;
+          height: 11px;
+          position: absolute;
+          bottom: -2px;
+          left: -12px;
+          border-bottom: 2px solid @orange;
+          border-left: 2px solid @orange;
+        }
+        &::after {
+          content: "";
+          background-color: @darkgrey_header;
+          width: 12px;
+          height: 11px;
+          position: absolute;
+          bottom: -2px;
+          right: -12px;
+          border-bottom: 2px solid @orange;
+          border-right: 2px solid @orange;
+        }
+      }
+    }
+  }
+}
+

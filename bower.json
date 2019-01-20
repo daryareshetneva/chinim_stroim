@@ -1,0 +1,23 @@
+{
+  "name": "itrocks_test",
+  "description": "Test task for frontend developer job",
+  "main": "index.js",
+  "authors": [
+    "darya"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "bootstrap": "^4.2.1",
+    "lightbox2": "lightbox#^2.10.0",
+    "fontawesome": "^5.6.3"
+  }
+}

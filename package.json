@@ -1,0 +1,26 @@
+{
+  "name": "itrocks_test",
+  "version": "1.0.0",
+  "description": "Test task for frontend developer job",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://daryaitrocks@bitbucket.org/daryaitrocks/itrocks_test.git"
+  },
+  "author": "darya",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/daryaitrocks/itrocks_test#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-less": "^4.0.1",
+    "gulp-rigger": "^0.5.8",
+    "gulp-uglify": "^3.0.1",
+    "gulp-watch": "^5.0.1"
+  }
+}
