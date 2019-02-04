@@ -1,0 +1,89 @@
+<?php 
+    $id = Zend_Controller_Front::getInstance()->getRequest()->getUserParam('id');
+    $portfolioId = Zend_Controller_Front::getInstance()->getRequest()->getUserParam('portfolioId');
+?>
+<!-- Page header -->
+<div class="page-header">
+  <div class="page-title">
+    <h5>
+        <?php echo $this->translate('portfolioCommentsList'); ?>
+        <a href="<?php echo $this->url(array(
+                'controller' => 'admin',
+                'action' => 'show-services',
+                'module' => 'portfolio',
+                'id' => $id), 'default', true); ?>">
+            <?php echo $this->portfolio->title; ?>
+        </a>
+    </h5>
+  </div>
+</div>
+<!-- /page header -->
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+  <div class="navbar">
+      <div class="navbar-inner">
+          <h6><?php echo $this->translate('portfolioCommentsList'); ?></h6>
+      </div>
+  </div>
+  <div class="table-overflow">
+    <table class="table table-striped table-bordered table-checks">
+      <thead>
+        <tr>
+          <th><?php echo $this->translate('portfolioCommentDate'); ?></th>
+          <th><?php echo $this->translate('portfolioCommentUser'); ?></th>
+          <th><?php echo $this->translate('portfolioCommentStatus'); ?></th>
+          <th class="actions-column"><?php echo $this->translate('portfolioActions');?></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($this->comments as $comment) : ?>
+        <tr>
+          <td>
+            <?php echo date('d.m.Y', strtotime($comment['date'])); ?>
+          </td>
+          <td>
+            <a href="mailto:<?php echo $comment['email']; ?>" title=""><?php echo $comment['username']; ?></a>
+          </td>
+          <td>
+            <?php echo ($comment['status'] == 0) ? 'Disabled' : 'Active'; ?>
+          </td>
+          <td>
+            <ul class="navbar-icons">
+              <li>
+                <a href="<?php echo $this->url(array(
+                    'controller' => 'admin',
+                    'action' => 'show-comment',
+                    'module' => 'portfolio',
+                    'id' => $id,
+                    'portfolioId' => $portfolioId,
+                    'commentId' => $comment['id']), 'default', false); ?>"
+                  class="tip" title="<?php echo $this->translate('edit'); ?>"><i class="icon-edit"></i>
+                </a>
+              </li>
+              <li>
+                <a href="<?php echo $this->url(array(
+                    'controller' => 'admin',
+                    'action' => 'delete-comment',
+                    'module' => 'portfolio',
+                    'id' => $id,
+                    'portfolioId' => $portfolioId,
+                    'commentId' => $comment['id']), 'default', false); ?>"
+                  class="tip remove" title="<?php echo $this->translate('remove'); ?>"><i class="icon-remove"></i>
+                </a>
+            </ul>
+          </td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- /media datatable -->
+<script type="text/javascript">
+    $('a.remove').click(function () { 
+   if (!confirm('<?php echo $this->translate("portfolioDeleteConfirm"); ?>')) {
+            return false;
+   }
+ });
+</script>

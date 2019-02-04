@@ -1,0 +1,46 @@
+<div class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="<?php echo $this->url(array(), '/static/index/home');?>">Главная</a>
+        </li>
+        <li class="breadcrumb-separator">
+            >
+        </li>
+        <li>
+            <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'index'), '/specialists');?>">
+                Специалисты
+            </a>
+        </li>
+        <li class="breadcrumb-separator">
+            >
+        </li>
+        <li>
+            <?php echo $this->specialist->fio; ?>
+        </li>
+    </ul>
+</div>
+<div class="specialists-list-page">
+    <h1>Специалист</h1>
+    <div class="specialist-item specialist-one">
+        <div>
+            <a href="#">
+                <img src="<?php echo $this->baseUrl() . '/' . $this->specialistImage($this->specialist->photo);?>" alt="<?php echo $this->specialist->fio; ?>" />
+            </a>
+        </div>
+        <div>
+            <div class="title">
+                <?php echo $this->specialist->fio; ?>
+            </div>
+            <div class="post">
+                <?php echo $this->specialist->post; ?>
+            </div>
+            <div class="desc">
+                <?php echo $this->specialist->shortDescription; ?>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="full-desc">
+        <?php echo $this->specialist->description; ?>
+    </div>
+</div>

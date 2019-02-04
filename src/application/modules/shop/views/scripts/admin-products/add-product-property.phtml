@@ -1,0 +1,75 @@
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('productPropertyAdd'); ?></h5>
+        <span></span>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Page form -->
+<div class="widget row-fluid">
+    <div class="well">
+        <?php if (!empty($this->error)): ?>
+            <div class="alert margin">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <?php echo $this->error; ?>
+            </div>
+        <?php endif; ?>
+        <form method="post" action="" class="form-horizontal">
+            <div class="control-group ">
+                <label class="control-label"><?php echo $this->translate('productPropertyFilter');?>:</label>
+                <div class="controls">
+                    <select name="filter" id="filter">
+                        <?php foreach ($this->filters as $filterId => $filterName) : ?>
+                            <?php if (!in_array($filterId, $this->usedFilters)) { ?>
+                                <option value="<?php echo $filterId;?>"><?php echo $filterName;?></option>
+                            <?php }; ?>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group ">
+                <label class="control-label"><?php echo $this->translate('productPropertyValue');?>:</label>
+                <div class="controls">
+                    <select name="filterValue" id="filterElements">
+
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <button class="btn btn-primary" type="submit"><?php echo $this->translate('save');?></button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /Page form -->
+<script type="text/javascript">
+    var existElements = JSON.parse('<?php echo $this->existFilterElements;?>');
+    var changeFilterValuesSelect = function(filterId) {
+        $.ajax({
+            url: '<?php echo $this->url(array('controller' => 'admin-filters', 'action' => 'ajax-get-filter-elements', 'module' => 'shop'), 'default', 'true');?>',
+            data: {
+                'filterId': filterId
+            },
+            type: 'GET',
+            dataType: 'text',
+            success: function (response) {
+                var elements = JSON.parse(response);
+                $('#filterElements').empty();
+                for (var i in elements) {
+                    if (typeof existElements[i] === 'undefined') {
+                        $('#filterElements').append('<option value="' + i + '">' + elements[i] + '</option>');
+                    }
+                }
+            },
+            error: function(e, msg) {
+
+            }
+        });
+    };
+
+    $('#filter').on('change', function () {
+        var val = $(this).val();
+        changeFilterValuesSelect(val);
+    })
+    changeFilterValuesSelect($('#filter').val());
+</script>

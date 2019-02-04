@@ -1,0 +1,59 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('shopProductProperties');?></h5>
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar-inner">
+        <h6><?php echo $this->translate('shopProductPropertiesList');?></h6>
+        <div class="nav pull-right">
+            <a href="<?php echo $this->url(array('controller' => 'admin-products', 'action' => 'add-product-property', 'module' => 'shop', 'id' => $this->product->id), 'default', 'true'); ?>" class="navbar-icon tip" data-original-title="<?php echo $this->translate('add'); ?>">
+                <i class="icon-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-striped table-bordered table-checks">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th><?php echo $this->translate('productPropertyFilter'); ?></th>
+                <th><?php echo $this->translate('productPropertyValue'); ?></th>
+                <th class="actions-column"><?php echo $this->translate('feature');?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->properties as $item) : ?>
+                <tr>
+                    <td>
+                        <?php echo $item['id'];?>
+                    </td>
+                    <td>
+                        <?php echo $item['filterTitle'] ;?>
+                    </td>
+                    <td>
+                        <?php echo $item['elementTitle'] ;?>
+                    </td>
+                    <td>
+                        <ul class="navbar-icons">
+                            <li><a href="<?php echo $this->url(['module' => 'shop', 'controller' => 'admin-products', 'action' => 'delete-product-property', 'id' => $this->product->id, 'propertyId' => $item['id']], 'default', true); ?>" class="tip remove" title="<?php echo $this->translate('remove');?>" ><i class="icon-remove"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- /media datatable -->
+<script type="text/javascript">
+    $('a.remove').click(function () {
+        if (!confirm('<?php echo $this->translate("removeProductPropertyHint"); ?>')) {
+            return false;
+        }
+    });
+</script>

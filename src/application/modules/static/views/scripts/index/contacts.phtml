@@ -1,0 +1,52 @@
+<div id="contacts_page" class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Контакты</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="content col-lg-4 col-12">
+            <div class="pages_title">Наши контакты</div>
+            <p>Свяжитесь с нами сегодня, чтобы узнать как мы можем помочь вам.</p>
+            <div class="row icon_content">
+                <i class="fas fa-map-marker-alt col-3"></i>
+                <div class="col-9">
+                    <b>Наш адрес</b>
+                    <p><?php echo $this->data['address'];?></p>
+                </div>
+            </div>
+            <div class="row icon_content">
+                <i class="fas fa-phone fa-flip-horizontal col-3"></i>
+                <div class="col-9">
+                    <b>Наш телефон</b>
+                    <p><?php echo $this->data['phone'];?></p>
+                </div>
+            </div>
+            <div class="row icon_content">
+                <i class="fas fa-envelope col-3"></i>
+                <div class="col-9">
+                    <b>Наша почта</b>
+                    <p><?php echo $this->data['email'];?></p>
+                </div>
+            </div>
+        </div>
+        <div id="question_form" class="offset-lg-1 col-lg-7 offset-0 col-12">
+            <div class="formheader">
+                <b>Есть вопрос? Напишите нам!</b>
+            </div>
+            <form class="row">
+                <div class="form-group col-lg-5 col-12">
+                    <input type="text" class="form-control" id="nameInput" aria-describedby="name" placeholder="Имя" required>
+                    <input type="tel" class="form-control" id="phoneInput" placeholder="Телефон" required>
+                    <button id="question_form_button" type="button" class="main_button">Отправить</button>
+                </div>
+                <div class="form-group col-lg-7 col-12 order-lg-last order-first">
+                    <textarea id="questionInput" class="form-control" rows="6" placeholder="Сообщение" required></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="map" class="d-lg-block d-none"><script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A6b84770893e9eda12ffcb91fb74920e2234a687012281650fe1b18016647864e&amp;width=100%&amp;height=375&amp;lang=ru_RU&amp;scroll=true"></script>
+    </div>
+</div>

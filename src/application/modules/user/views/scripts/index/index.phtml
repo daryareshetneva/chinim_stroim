@@ -1,0 +1,88 @@
+<h1><?php echo $this->translate('profile'); ?></h1>
+<?php //echo $this->action('profile-menu', 'index', 'user'); ?>
+<a href="<?php echo $this->url(array('action' => 'edit', 'controller' => 'index', 'module' => 'user'), 'default', true); ?>" class="action">
+    <?php echo $this->translate('doEdit'); ?>
+</a>
+<table class="table content-table user-profile">
+    <tbody>
+        <tr>
+            <td class="td-title">
+                <?php echo $this->translate('userProfileName'); ?>
+            </td>
+            <td class="td-data">
+                <?php echo $this->userData['firstName'] . ' ' . $this->userData['lastName'];?>
+            </td>
+        </tr>
+        <tr>
+            <td class="td-title">
+                <?php echo $this->translate('userProfileEmail'); ?>
+            </td>
+            <td class="td-data">
+                <?php echo $this->userData['email']; ?>
+            </td>
+        </tr>
+<!--		<tr>
+            <td class="td-title">
+                <?php //echo $this->translate( 'userProfileRealAddress' );  ?>
+            </td>
+            <td class="td-data">
+                <?php //echo $this->userData[ 'address' ];  ?>
+            </td>
+        </tr>-->
+        <tr>
+            <td class="td-title">
+                <?php echo $this->translate('userProfilePhone'); ?>
+            </td>
+            <td class="td-data">
+                <?php echo $this->userData['phone']; ?>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h1><?php echo $this->translate('userAddresses'); ?></h1>
+<a href="<?php echo $this->url(array('action' => 'add-address', 'controller' => 'index', 'module' => 'user'), 'default', true); ?>" class="action">
+    <?php echo $this->translate('userAddAddress'); ?>
+</a>
+<section class="table table-balance">
+  <div class="table-row head clearme">
+    <div class="table-col col-type"><?php echo $this->translate('userAddressCity'); ?></div>
+    <div class="table-col col-info"><?php echo $this->translate('userAddressField'); ?></div>
+    <div class="table-col col-index"><?php echo $this->translate('userAddressIndex'); ?></div>
+    <div class="table-col col-actions">&nbsp;</div>
+  </div>
+  <?php foreach($this->addresses as $address): ?>
+    <div class="table-row body clearme">
+      <div class="table-col first col-type">
+        <?php echo $address['city'];?>
+      </div>
+      <div class="table-col col-info">
+        <?php echo $address['address']; ?>
+      </div>
+      <div class="table-col  col-index">
+        <?php echo $address['INDEX'] ?>
+      </div>
+      <div class="table-col col-actions">
+	<a href="<?php echo $this->url(array('action' => 'edit-address', 'controller' => 'index', 'module' => 'user', 'id' => $address['id']), 'default', true);?>">
+	  <i class="icon-edit"></i>
+	</a>
+        <a href="<?php echo $this->url(array('action' => 'remove-address', 'controller' => 'index', 'module' => 'user', 'id' => $address['id'] ), 'default', true);?>" class="delete">
+	  <i class="icon-remove"></i>
+	</a>
+      </div>
+    </div>
+  <?php endforeach; ?>
+</section>
+<a href="<?php echo $this->url( array( 'action' => 'logout', 'controller' => 'index', 'module' => 'user' ), 'default', true ); ?>">
+    Выход
+</a>
+
+<script>
+$(document).ready(function() {
+     $('.delete').click(function() {
+	 if (!confirm('<?php echo $this->translate("userAddressDeleteConfirm");?>')) {
+	     return false;
+	 }
+     });
+ });
+</script>

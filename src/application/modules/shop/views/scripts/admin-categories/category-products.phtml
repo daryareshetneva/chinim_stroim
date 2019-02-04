@@ -1,0 +1,62 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo sprintf($this->translate('shopCategoryProducts'), $this->category->title);?></h5>
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar-inner">
+        <h6><?php echo sprintf($this->translate('shopCategoryProducts'), $this->category->title);?></h6>
+        <div class="nav pull-right">
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-striped table-bordered table-checks">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th><?php echo $this->translate('adminTitle'); ?></th>
+                <th><?php echo $this->translate('shopCategoryName'); ?></th>
+                <th><?php echo $this->translate('adminPrice'); ?></th>
+                <th class="actions-column"><?php echo $this->translate('feature');?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->paginator as $item) : ?>
+                <tr>
+                    <td>
+                        <a href="<?php echo $this->url(['module' => 'shop', 'controller' => 'admin-products', 'action' => 'edit', 'id' => $item['id']], 'default', true); ?>" title=""><?php echo $item['id']; ?></a>
+                    </td>
+                    <td>
+                        <a href="<?php echo $this->url(['module' => 'shop', 'controller' => 'admin-products', 'action' => 'edit', 'id' => $item['title']], 'default', true); ?>" title=""><?php echo $item['title']; ?></a>
+                    </td>
+                    <td>
+                        <?php echo $item['categoryTitle'] ?>
+                    </td>
+                    <td>
+                        <?php echo $item['price'] ?>
+                    </td>
+                    <td>
+                        <ul class="navbar-icons">
+                            <li><a href="<?php echo $this->url(['module' => 'shop', 'controller' => 'admin-products', 'action' => 'edit', 'id' => $item['id']], 'default', true); ?>" class="tip" title="<?php echo $this->translate('edit');?>"><i class="icon-edit"></i></a></li>
+                            <li><a href="<?php echo $this->url(['module' => 'shop', 'controller' => 'admin-products', 'action' => 'delete', 'id' => $item['id']], 'default', true); ?>" class="tip remove" title="<?php echo $this->translate('remove');?>" ><i class="icon-remove"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin-pagination.phtml', array('pattern' => array('action' => 'category-products', 'controller' => 'admin-categories', 'module' => 'shop', 'id' => $this->category->id))); ?>
+    </div>
+</div>
+<!-- /media datatable -->
+<script type="text/javascript">
+    $('a.remove').click(function () {
+        if (!confirm('<?php echo $this->translate("removeProductHint"); ?>')) {
+            return false;
+        }
+    });
+</script>

@@ -1,0 +1,18 @@
+<div class="slider-contact-form">
+    <div class="container">
+        <?php $translate = Zend_Registry::get('Root_Translate'); ?>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-7">
+                <div class="featured-boxes mt-none mb-none">
+                    <div class="featured-box featured-box-primary mt-xl">
+                        <div class="box-content">
+                            <h4 class="mb-none"><?php echo $translate->_('contactFormTitle');?></h4>
+                            <p><?php echo $translate->_('contactFormDesc');?></p>
+                            <?php echo $this->form ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

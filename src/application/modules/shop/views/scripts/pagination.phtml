@@ -1,0 +1,21 @@
+<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+    <ul>
+        <li>
+            <a href="<?php echo (isset($this->previous)) ? $this->url(['module' => 'shop', 'controller' => 'index', 'action' => 'index', 'alias' => $this->pattern['alias'], 'page' => $this->previous], 'shop/page', true) : ''; ?>" class="arrow-left"></a>
+        </li>
+        <?php foreach($this->pagesInRange as $page): ?>
+            <?php if($page != $this->current): ?>
+                <li>
+                    <a href="<?php echo $this->url(['module' => 'shop', 'controller' => 'index', 'action' => 'index', 'alias' => $this->pattern['alias'], 'page' => $page], 'shop/page', true); ?>"><?php echo $page; ?></a>
+                </li>
+            <?php else : ?>
+                <li>
+                    <a href="<?php echo $this->url(['module' => 'shop', 'controller' => 'index', 'action' => 'index','alias' => $this->pattern['alias'], 'page' => $page], 'shop/page', true); ?>" class="current"><?php echo $page; ?></a>
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <li>
+            <a href="<?php echo (isset($this->next)) ? $this->url(['module' => 'shop', 'controller' => 'index', 'action' => 'index', 'alias' => $this->pattern['alias'], 'page' => $this->next], 'shop/page', true) : ''; ?>" class="arrow-right"></a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,46 @@
+<?php $tagsTable = new News_Model_Tags;?>
+<?php foreach ($this->paginator as $key => $value) : ?>
+    <div class="timeline-date">
+        <h3 class="heading-primary"><?php $date = explode(',', $key); echo $this->translate($date[0]); echo $date[1]; ?></h3>
+    </div>
+    <?php $counter = 0 ?>
+    <?php foreach ($value as $item) : ?>
+        <?php $counter++ ?>
+        <article class="timeline-box <?php if ($counter%2) { echo 'left'; } else { echo 'right'; }?> post post-medium">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="post-content">
+                        <h4 class="heading-primary"><a href="<?php echo $this->url(['module' => 'news', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/news/show', true); ?>"><?php echo $item['title']; ?></a></h4>
+                        <p><?php echo stripslashes($item['description']); ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="post-meta">
+                        <span><i class="fa fa-calendar"></i><?php echo date('d', strtotime($item['date'])); ?> <?php echo $this->translate(date('M', strtotime($item['date']))); ?> <?php echo date('Y', strtotime($item['date'])); ?></span><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php $tags = $tagsTable->getAllTagsFromArticle($item['id'], false); ?>
+                    <?php if(!empty($tags)): ?>
+                        <div class="post-meta">
+                                <span><i class="fa fa-tag"></i>
+                                    <?php for ($i = 0; $i < count($tags); $i++) : ?>
+                                        <a href="<?php echo $this->url(array('module' => 'news', 'controller' => 'index', 'action' => 'show-by-tag', 'tag' => $tags[$i]['id']), '/news/showtag', true); ?>"> <?php echo $tags[$i]['name']; ?> </a>
+                                    <?php endfor; ?>
+                                </span>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="<?php echo $this->url(['module' => 'news', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/news/show', true); ?>" class="btn btn-xs btn-primary pull-right"><?php echo $this->translate('newsReadMore'); ?></a>
+                </div>
+            </div>
+        </article>
+    <?php endforeach; ?>
+<?php endforeach; ?>

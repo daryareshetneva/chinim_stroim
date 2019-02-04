@@ -1,0 +1,21 @@
+<?php $message = $this->translate('replyTitle'); ?>
+<?php echo sprintf($message, $this->info['userLogin'], $this->info['review']); ?>
+<?php echo $this->form; ?>
+<script type="text/javascript">
+    window.onload = function () {
+        CKEDITOR.replace('reviewsAnswer', {
+            toolbar: [
+               { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
+                { name: 'paragraph', items : [ 'NumberedList','BulletedList' ] },
+                { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+                { name: 'colors', items : [ 'TextColor','BGColor' ] },
+                { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+                    '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+                { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+                { name: 'insert', items : [ 'Image','Table','Smiley'] },
+            ],
+            width: 600,
+            resize_enabled: false
+        });
+    }
+</script>

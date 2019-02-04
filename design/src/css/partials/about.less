@@ -1,0 +1,29 @@
+#about_page {
+  margin-bottom: 70px;
+  & .content {
+    //padding-left: 0px;
+    font-size: 18px;
+  }
+  & .image_content {
+    background-color: @orange;
+    & img {
+      width: 100%;
+      position: relative;
+      top: -18px;
+      right: -22px;
+    }
+  }
+  & #about_slider {
+    margin-top: 70px;
+    & .slider_item {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      height: auto;
+      & img {
+        margin: 0 auto;
+        width: 90%;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<?php $translate = Zend_Registry::get( 'Root_Translate' ); ?>
+<aside class="sidebar">
+    <h4><?php echo $translate->_('menuServices');?></h4>
+    <div class="navigation">
+        <?php echo $this->treeRenderer->render($this->items, $this); ?>
+    </div>
+</aside>
+<br />
+<aside class="sidebar">
+    <div class="form-register-buttons">
+        <a href="<?php echo $this->url(array(), '/registraciyaOOO');?>">Регистрация ООО онлайн</a>
+    </div>
+    <div class="form-register-buttons ip">
+        <a href="<?php echo $this->url(array(), '/registraciyaIp');?>">Регистрация ИП онлайн</a>
+    </div>
+    <span style="font-size: 11px; color: #000000;">
+        Оформите онлайн заявку на регистрацию ООО или ИП и приходите в офис за готовыми документами
+    </span>
+</aside>
+
+<script>
+ var width  = $('.navigation ul li').width();
+ $('.navigation > ul ul').css("width", width + "px");
+ $('.navigation > ul ul').css("left", width + "px");
+</script>

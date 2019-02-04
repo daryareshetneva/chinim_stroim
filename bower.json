@@ -18,6 +18,7 @@
     "jquery": "^3.3.1",
     "bootstrap": "^4.2.1",
     "lightbox2": "lightbox#^2.10.0",
-    "fontawesome": "^5.6.3"
+    "fontawesome": "^5.6.3",
+    "slick-carousel": "^1.8.1"
   }
 }

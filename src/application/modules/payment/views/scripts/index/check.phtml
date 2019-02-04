@@ -1,0 +1,23 @@
+<?php echo "<?xml version='1.0' encoding='UTF-8'?>";?>
+<?php if (isset($this->resultDesc)) : ?><payment-avail-response>
+    <result>
+        <code>2</code>
+        <desc><?php echo $this->translate( $this->resultDesc ); ?></desc>
+    </result>
+</payment-avail-response><?php else : ?>
+<payment-avail-response>
+    <result>
+        <code>1</code>
+        <desc>OK</desc>
+    </result>
+    <purchase>
+        <shortDesc><?php echo " " ?></shortDesc>
+        <longDesc><?php echo $this->data[ 'longDesc' ]; ?></longDesc>
+        <account-amount>
+            <id>C411541C54DF9B9491E4743F851427F0</id>
+            <amount><?php echo intval($this->data[ 'amount' ] * 100); ?></amount>
+            <currency>643</currency>
+            <exponent>2</exponent>
+        </account-amount>
+    </purchase>
+</payment-avail-response><?php endif; ?>

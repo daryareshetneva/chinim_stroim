@@ -1,0 +1,11 @@
+<section id="portfolio_home">
+    <div class="container">
+        <div class="main_title">Портфолио</div>
+        <div class="row">
+            <?php foreach ($this->multiplator as $item) : ?>
+                <?php echo $this->action('portfolio-home-item', 'index', 'portfolio', ['currentPortfolioId' => $item['id']]);?>
+            <?php endforeach; ?>
+        </div>
+        <a href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'portfolio', 'page' => 1], 'default', true);?>" class="main_button">Все работы</a>
+    </div>
+</section>

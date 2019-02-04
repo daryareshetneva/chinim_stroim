@@ -1,0 +1,89 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5>Номера в категории <?php echo $this->category->title;?></h5>
+    </div>
+</div>
+<!-- /page header -->
+
+<h5 class="widget-name"></h5>
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6>Список номеров</h6>
+            <div class="nav pull-right">
+                <a href="<?php echo $this->url(array('controller' => 'admin-room', 'action' => 'add', 'module' => 'hotelrooms', 'categoryId' => $this->category->id), 'default', 'true'); ?>"
+                   class="navbar-icon tip" data-original-title="Добавить">
+                    <i class="icon-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="small">#</th>
+                <th class="small">Фото</th>
+                <th>Название</th>
+                <th class="actions-column medium">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->paginator as $item) : ?>
+                <tr>
+                    <td>
+                        <?php echo $item['id']; ?>
+                    </td>
+                    <td>
+                        <img src="<?php echo $this->baseUrl() .'/'.  $this->hotelRoomImage($item['photo']); ?>" />
+                    </td>
+                    <td>
+                        <a href="<?php echo $this->url(array('action' => 'edit', 'controller' => 'admin-room', 'module' => 'hotelrooms', 'id' => $item['id'], 'categoryId' => $this->category->id), 'default', true); ?>" title="">
+                            <?php echo $item['title']; ?>
+                        </a>
+                    </td>
+                    <td>
+                        <ul class="table-controls">
+                            <li>
+                                <a href="<?php echo $this->url(array('action' => 'properties', 'controller' => 'admin-room', 'module' => 'hotelrooms', 'roomId' => $item['id'], 'categoryId' => $this->category->id), 'default', true); ?>"
+                                   class="btn tip" title="" data-original-title="Свойства">
+                                    <i class="icon-beaker"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $this->url(array('action' => 'photos', 'controller' => 'admin-room', 'module' => 'hotelrooms', 'roomId' => $item['id'], 'categoryId' => $this->category->id), 'default', true); ?>"
+                                   class="btn tip" title="" data-original-title="Фотографии">
+                                    <i class="icon-picture"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $this->url(array('action' => 'edit', 'controller' => 'admin-room', 'module' => 'hotelrooms', 'id' => $item['id'], 'categoryId' => $this->category->id), 'default', true); ?>"
+                                   class="btn tip" title="" data-original-title="Редактировать">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $this->url(array('action' => 'delete', 'controller' => 'admin-room', 'module' => 'hotelrooms', 'id' => $item['id'], 'categoryId' => $this->category->id), 'default', true); ?>"
+                                   class="btn tip delete" title="" data-original-title="Удалить">
+                                    <i class="icon-trash"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin-pagination.phtml', array('pattern' => array('action' => 'index', 'controller' => 'admin-room', 'module' => 'hotelrooms'))); ?>
+    </div>
+</div>
+<!-- /media datatable -->
+
+<script type="text/javascript">
+    $('.delete').click(function () {
+        return confirm('Вы уверены, что хотите удалить запись?');
+    })
+</script>

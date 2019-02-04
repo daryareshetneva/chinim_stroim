@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<?php $translate = Zend_Registry::get('Root_Translate'); ?>
+<?php $request = Zend_Controller_Front::getInstance()->getRequest(); ?>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="<?php echo $this->baseUrl();?>/images/favicon.ico" />
+    <?php echo $this->headMeta(); ?>
+
+    <?php echo $this->headTitle(); ?>
+
+    <?php echo $this->headStyle(); ?>
+    <link href="<?php echo $this->baseUrl(); ?>/css/backend/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo $this->baseUrl(); ?>/css/admin.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 8]><link href="<?php echo $this->baseUrl(); ?>/css/backend/ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl();?>/js/backend/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl();?>/js/backend/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.cfg = {
+                baseUrl: '<?php echo $this->baseUrl(); ?>',
+                module:  '<?php echo $request->getModuleName(); ?>',
+                controller:  '<?php echo $request->getControllerName(); ?>',
+                action:  '<?php echo $request->getActionName(); ?>'
+            };
+        });
+    </script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/charts/excanvas.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/charts/jquery.flot.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/charts/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/charts/jquery.sparkline.min.js"></script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/ui/jquery.easytabs.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/ui/jquery.collapsible.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/ui/prettify.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/ui/jquery.colorpicker.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/ui/jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/ui/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/ui/jquery.fullcalendar.min.js"></script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/forms/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/forms/jquery.tagsinput.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/forms/jquery.form.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/forms/jquery.form.wizard.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/forms/jquery.listbox.js"></script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/plugins/tables/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/files/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/functions/index.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/functions/forms.js"></script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/ckeditor/ckeditor.js"></script>
+
+</head>
+<body>
+    <!-- Fixed top -->
+    <div id="top">
+        <div class="fixed">
+            <ul class="top-menu">
+                <li><a class="fullview"></a></li>
+                <li class="dropdown">
+                    <a class="user-menu" data-toggle="dropdown">
+                        <span>
+                            <?php echo $translate->_('adminGreetings'); ?> <b class="caret"></b>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), 'default', true); ?>">
+                                <i class="icon-home"></i><?php echo $translate->_('adminToSite'); ?>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->url(array('action' => 'logout', 'controller' => 'index', 'module' => 'user'), 'default', true); ?>" title="">
+                                <i class="icon-remove"></i><?php echo $translate->_('adminLogout'); ?>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /fixed top -->
+
+
+    <!-- Content container -->
+    <div id="container">
+
+        <?php echo $this->action('menu', 'index', 'admin'); ?>
+        <!-- Content -->
+        <div id="content">
+
+            <!-- Content wrapper -->
+            <div class="wrapper">
+
+                <!-- Breadcrumbs line -->
+                <div class="crumbs">
+<!--                    <ul id="breadcrumbs" class="breadcrumb">
+                        <li><a href="index-2.html">Dashboard</a></li>
+                        <li class="active"><a href="calendar.html" title="">Calendar</a></li>
+                    </ul>
+                    <ul class="alt-buttons">
+
+                    </ul>-->
+                </div>
+                <!-- /breadcrumbs line -->
+
+                <!-- messages -->
+                <?php
+                    if ($messages = $this->layout()->errorMessages) {
+                        echo $messages;
+                    }
+                    if ($messages = $this->layout()->warningMessages) {
+                        echo $messages;
+                    }
+                    if ($messages = $this->layout()->messages) {
+                        echo $messages;
+                    }
+                ?>
+                <!-- /messages -->
+
+                <!-- main content -->
+                <?php echo $this->layout()->content; ?>
+                <!-- /main content -->
+
+            </div>
+            <!-- /content wrapper -->
+
+        </div>
+        <!-- /content -->
+
+    </div>
+    <!-- /content container -->
+
+
+    <!-- Footer -->
+    <div id="footer">
+        <div class="copyrights"><?php echo $translate->_('adminCopyright'); ?></div>
+<!--        <ul class="footer-links">
+            <li>
+                <a href="#" title=""><i class="icon-screenshot"></i>Report bug</a>
+            </li>
+        </ul>-->
+    </div>
+    <!-- /footer -->
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/backend/functions/full.js"></script>
+</body>
+</html>

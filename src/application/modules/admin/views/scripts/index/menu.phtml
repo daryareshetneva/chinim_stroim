@@ -1,0 +1,267 @@
+<?php $translate = Zend_Registry::get( 'Root_Translate' ); ?>
+<?php
+$auth = Zend_Auth::getInstance();
+$authId = $auth->getStorage()->read()->id;
+
+$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+$params = Zend_Controller_Front::getInstance()->getRequest()->getParams();
+
+$isAdminHome = ($module == 'admin' && $action == 'index') || ($module == 'static' && $controller == 'admin' && $action == 'feedback');
+$isAdminTags = ($module == 'admin' && $action == 'tags');
+$isStatic = ($module == 'static' && $action == 'index') || ($module == 'static' && $action == 'add') || ($module == 'static' && $action == 'edit');
+$isSlider = ($module == 'static' && in_array($action, ['slider', 'slider-image-add', 'slider-image-edit']));
+$isUser = ($module == 'user');
+$isPortfolio = ($module == 'portfolio');
+$isNews = ($module == 'news');
+$isGallery = ($module == 'gallery');
+$isBlog = ('blog' == $module);
+$isShop = ('shop' == $module);
+$isServices = ('services' == $module);
+$isReviews = ('reviews' == $module);
+$isPartners = ('partners' == $module);
+$isSpecialists = ('specialists' == $module);
+$isHoteRooms = ('hotelrooms' == $module);
+$isCertificates = ('certificates' == $module);
+
+?>
+<!-- Sidebar -->
+<div id="sidebar">
+    <div class="sidebar-tabs">
+        <ul class="tabs-nav two-items">
+            <li><a href="#general" title=""><i class="icon-reorder"></i></a></li>
+            <li><a href="#stuff" title=""><i class="icon-cogs"></i></a></li>
+        </ul>
+
+        <div id="general">
+            <div class="general-stats widget">
+                <ul class="head">
+                    <li>
+                        <span><?php echo $translate->_('adminUsersStat'); ?></span>
+                    </li>
+                    <li>
+                        <span><?php echo $translate->_('adminFeedbacks'); ?></span>
+                    </li>
+                </ul>
+                <ul class="body">
+                    <li><strong><?php echo $this->users; ?></strong></li>
+                    <li><strong><?php echo $this->orders; ?></strong></li>
+                </ul>
+            </div>
+
+            <!-- Main navigation -->
+            <ul class="navigation widget">
+                <li class="<?php echo $isAdminHome ? 'active' : ''; ?>">
+                    <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'index', 'module' => 'admin'), 'default', true); ?>" title="">
+                        <i class="icon-home"></i><?php echo $translate->_('adminDashboard'); ?>
+                    </a>
+                </li>
+
+                <?php if ($this->modules['Blog']) :?>
+                    <li class="<?php echo $isBlog ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'blog'), 'default', true); ?>" title="">
+                            <i class="icon-list"></i><?php echo $translate->_('adminBlog'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->modules['Certificates']) :?>
+                    <li class="<?php echo $isCertificates ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'certificates'), 'default', true); ?>" title="">
+                            <i class="icon-certificate"></i><?php echo $translate->_('adminCertificates'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->modules['Specialists']) :?>
+                    <li class="<?php echo $isSpecialists ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'specialists'), 'default', true); ?>" title="">
+                            <i class="icon-beaker"></i><?php echo $translate->_('adminSpecialists'); ?>
+                        </a>
+                    </li>
+                <?php endif;?>
+
+                <?php if ($this->modules['Reviews']) :?>
+                    <li class="<?php echo $isReviews ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'reviews'), 'default', true); ?>" title="">
+                            <i class="icon-bell"></i><?php echo $translate->_('adminReviews'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->modules['Partners']) :?>
+                    <li class="<?php echo $isPartners ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'partners'), 'default', true); ?>" title="">
+                            <i class="icon-user"></i><?php echo $translate->_('adminPartners'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->modules['Gallery']) :?>
+                    <li class="<?php echo $isGallery ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'categories', 'controller' => 'admin', 'module' => 'gallery'), 'default', true); ?>" title="">
+                            <i class="icon-picture"></i><?php echo $translate->_('adminGallery'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->modules['Shop']) :?>
+                    <li class="<?php echo $isShop ? 'active' : ''; ?>">
+                        <a href="#" title="" class="expand" <?php echo $isShop ? 'id="current"' : ''; ?> >
+                            <i class="icon-shopping-cart"></i><?php echo $translate->_('adminShop'); ?>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin-categories', 'module' => 'shop'), 'default', true); ?>" title="">
+                                    <i class="icon-th"></i><?php echo $translate->_('adminCatalog'); ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" title="" class="<?php echo ($module == 'shop' && $controller == 'orders') ? 'expanded' : 'expand'; ?>">
+                                    <i class="icon-reorder"></i><?php echo $translate->_('adminOrders'); ?><?php if ($this->newOrders > 0) : ?>
+                                        <strong><?php echo $this->newOrders; ?></strong><?php endif; ?>
+                                </a>
+                                <ul>
+                                    <li class="<?php echo ($module == 'shop' && 'admin-order' == $controller ) ? 'current' : ''; ?>">
+                                        <a href="<?php echo $this->url(['status' => 0], 'admin/orders', true); ?>" title=""><?php echo $translate->_('adminOrdersNew'); ?></a>
+                                    </li>
+                                    <li class="<?php echo ($module == 'shop' && $action == 'done-orders' ) ? 'current' : ''; ?>">
+                                        <a href="<?php echo $this->url(['status' => 1], 'admin/orders', true); ?>" title=""><?php echo $translate->_('adminOrdersInReserve'); ?></a>
+                                    </li>
+                                    <li class="<?php echo ($module == 'shop' && $action == 'done-orders' ) ? 'current' : ''; ?>">
+                                        <a href="<?php echo $this->url(['status' => 2], 'admin/orders', true); ?>" title=""><?php echo $translate->_('adminOrdersPayed'); ?></a>
+                                    </li>
+                                    <li class="<?php echo ($module == 'shop' && $action == 'cancel-orders' ) ? 'current' : ''; ?>">
+                                        <a href="<?php echo $this->url(['status' => 3], 'admin/orders', true); ?>" title=""><?php echo $translate->_('adminOrdersCompleted'); ?></a>
+                                    </li>
+                                    <li class="<?php echo ($module == 'shop' && $action == 'cancel-orders' ) ? 'current' : ''; ?>">
+                                        <a href="<?php echo $this->url(['status' => 4], 'admin/orders', true); ?>" title=""><?php echo $translate->_('adminOrdersCanceled'); ?></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="<?php echo ('admin-products' == $controller && 'shop' == $module) ? 'active' : '';?>">
+                                <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin-products', 'module' => 'shop'), 'default', true); ?>" title="">
+                                    <i class="icon-list"></i><?php echo $translate->_('adminShopProducts'); ?>
+                                </a>
+                            </li>
+                            <li class="<?php echo ('admin-filters' == $controller && 'shop' == $module) ? 'active' : '';?>">
+                                <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin-filters', 'module' => 'shop'), 'default', true); ?>" title="">
+                                    <i class="icon-check"></i><?php echo $translate->_('adminShopFilters'); ?>
+                                </a>
+                            </li>
+                            <li class="<?php echo ('admin-import' == $controller && 'shop' == $module) ? 'active' : '';?>">
+                                <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin-import', 'module' => 'shop'), 'default', true); ?>" title="">
+                                    <i class="icon-print"></i><?php echo $translate->_('adminShopImport'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->modules['Static']) :?>
+                    <li class="<?php echo $isStatic ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'static'), 'default', true); ?>" title="">
+                            <i class="icon-indent-right"></i><?php echo $translate->_('adminStatic'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <li class="<?php echo $isSlider ? 'active' : ''; ?>">
+                    <a href="<?php echo $this->url(array('action' => 'slider', 'controller' => 'admin', 'module' => 'static'), 'default', true); ?>" title="">
+                        <i class="icon-github-alt"></i>Слайдер
+                    </a>
+                </li>
+
+                <?php if ($this->modules['Portfolio']) :?>
+                    <li class="<?php echo $isPortfolio ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'portfolio'), 'default', true); ?>" title="">
+                            <i class="icon-briefcase"></i><?php echo $translate->_('adminPortfolio'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->modules['News']) :?>
+                    <li class="<?php echo $isNews ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'news'), 'default', true); ?>" title="">
+                            <i class="icon-list"></i><?php echo $translate->_('adminNews'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->modules['User']) :?>
+                    <li class="<?php echo $isUser ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'user'), 'default', true); ?>" title="">
+                            <i class="icon-tasks"></i><?php echo $translate->_('adminUsers'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->modules['Services']) :?>
+                    <li class="<?php echo $isServices ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'services'), 'default', true); ?>" title="">
+                            <i class="icon-list-alt"></i><?php echo $translate->_('adminServices'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->modules['HotelRooms']) : ?>
+                    <li class="<?php echo $isHoteRooms ? 'active' : ''; ?>">
+                        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'admin', 'module' => 'hotelrooms'), 'default', true); ?>" title="">
+                            <i class="icon-building"></i><?php echo $translate->_('adminHotelRooms'); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <li class="<?php echo $isAdminTags ? 'active' : ''; ?>">
+                    <a href="<?php echo $this->url(array('action' => 'tags', 'controller' => 'index', 'module' => 'admin'), 'default', true); ?>" title="">
+                        <i class="icon-tags"></i><?php echo $translate->_('adminTags'); ?>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- /main navigation -->
+
+        </div>
+
+        <div id="stuff">
+            <ul class="navigation widget">
+                <li>
+                    <a href="<?php echo $this->url(array('action' => 'settings', 'controller' => 'index', 'module' => 'admin'), 'default', true); ?>#stuff" title="">
+                        <i class="icon-cogs"></i><?php echo $translate->_('mainSettings'); ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(array('action' => 'analytics', 'controller' => 'index', 'module' => 'admin'), 'default', true); ?>#stuff" title="">
+                        <i class="icon-cog"></i><?php echo $translate->_('adminAnalyticsSettings'); ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(array('action' => 'settings', 'controller' => 'mail', 'module' => 'admin'), 'default', true); ?>#stuff" title="">
+                        <i class="icon-envelope"></i><?php echo $translate->_('adminSettings'); ?>
+                    </a>
+                </li>
+                <?php if ($this->modules['User']) :?>
+                <li>
+                    <a href="<?php echo $this->url(array('action' => 'edit-user', 'controller' => 'admin', 'module' => 'user', 'id' => $authId), 'default', true); ?>#stuff" title="">
+                        <i class="icon-user"></i><?php echo $translate->_('adminUserEdit'); ?>
+                    </a>
+                </li>
+                <?php endif; ?>
+                <li>
+                    <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'social-networks', 'module' => 'admin'), 'default', true); ?>#stuff" title="">
+                        <i class="icon-barcode"></i><?php echo $translate->_('socialSettings'); ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'phones', 'module' => 'admin'), 'default', true); ?>#stuff" title="">
+                        <i class="icon-phone"></i><?php echo $translate->_('phones'); ?>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+</div>
+<!-- /sidebar -->

@@ -1,0 +1,24 @@
+<div id="portfolio_page" class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<?php echo $this->url(array(), '/', true);?>">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Портфолио</li>
+        </ol>
+    </nav>
+    <div class="pages_title">Портфолио</div>
+    <div id="portfolio_page_gallery">
+        <div class="row">
+            <?php if ($this->paginator->count() > 0) : ?>
+                <?php foreach ($this->paginator as $item) : ?>
+                    <?php echo $this->action('index-item', 'index', 'portfolio', ['currentPortfolio' => $item]);?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php if ($this->paginator->count() > 0) : ?>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml', array('pattern' => array('action' => 'index', 'controller' => 'index', 'module' => 'portfolio'))); ?>
+    <?php endif; ?>
+</div>
+<?php echo $this->action('call-us-pages', 'index', 'default');?>
+
+

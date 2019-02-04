@@ -1,0 +1,14 @@
+<?php $translate = Zend_Registry::get('Root_Translate'); ?>
+<nav class="header-nav-top">
+    <ul class="nav nav-pills">
+        <li class="hidden-xs">
+            <a href="<?php echo $this->url(array('alias' => 'contacts'), '/static/index/index');?>"><i class="fa fa-angle-right"></i><?php echo $translate->_('menuContacts');?></a>
+        </li>
+        <li class="hidden-xs">
+            <a href="<?php echo $this->url(array('alias' => 'about'), '/static/index/index');?>"><i class="fa fa-angle-right"></i><?php echo $translate->_('menuAbout');?></a>
+        </li>
+        <li>
+            <span class="ws-nowrap"><i class="fa fa-phone"></i> <?php echo $this->contacts['phone'] ?></span>
+        </li>
+    </ul>
+</nav>

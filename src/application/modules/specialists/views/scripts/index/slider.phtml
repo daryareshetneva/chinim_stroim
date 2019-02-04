@@ -1,0 +1,47 @@
+<div class="specialists">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="text-center specialists-header">
+                    Юридический центр Аврора<br />
+                    <span>Право для бизнеса</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 hidden-sm hidden-xs specialists-list">
+                <?php foreach ($this->items as $key => $item) { ?>
+                    <div class="specialist specialist<?php echo $key + 1;?>" data-id="<?php echo $key + 1;?>">
+                        <img src="<?php echo $this->baseUrl() . '/' . $this->specialistImage($item['photo']);?>" class="img-responsive" id="spec<?php echo $key + 1;?>-official" />
+                        <div class="info hidden" id="spec<?php echo $key + 1;?>-box">
+                            <div class="title">
+                                <?php echo $item['fio'];?>
+                            </div>
+                            <div class="text">
+                                <?php echo $item['shortDescription'] ;?>
+                            </div>
+                            <div class="btn ask-question" data-target="#feedbackModal" data-toggle="modal">Задать вопрос</div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="col-lg-12 col-md-12 hidden-sm hidden-xs">
+                <div class="button-ask-question">
+                    <a href="#" class="btn btn-blue" data-target="#feedbackModal" data-toggle="modal">Задать вопрос</a>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12 hidden-lg hidden-md">
+                <div class="specialists-slider">
+                    <?php foreach ($this->items as $key => $item) { ?>
+                        <div class="specialist-slider-item">
+                            <img src="<?php echo $this->baseUrl() . '/' . $this->specialistImage($item['photo']);?>" class="img-responsive"  alt="<?php echo $item['fio'];?>"/>
+                            <div class="title">
+                                <?php echo $item['fio'];?>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

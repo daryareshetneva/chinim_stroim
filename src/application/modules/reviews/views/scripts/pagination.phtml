@@ -1,0 +1,23 @@
+<?php
+$prevPage = ($this->current != 1) ? ($this->current - 1) : 1;
+$nextPage = ($this->current != count($this->pagesInRange)) ? ($this->current + 1) : count($this->pagesInRange);
+?>
+<ul class="pagination pagination-lg pull-right">
+    <li>
+        <a href="<?php echo $this->url(array('page' => $prevPage), $this->pattern, true); ?>">
+            «
+        </a>
+    </li>
+    <?php foreach ($this->pagesInRange as $page): ?>
+        <li class="<?php echo ($page == $this->current) ? 'active' : '';?>">
+            <a href="<?php echo $this->url(array('page' => $page), $this->pattern, true); ?>">
+                <?php echo $page;?>
+            </a>
+        </li>
+    <?php endforeach;?>
+    <li>
+        <a href="<?php echo $this->url(array('page' => $nextPage), $this->pattern, true); ?>">
+            »
+        </a>
+    </li>
+</ul>

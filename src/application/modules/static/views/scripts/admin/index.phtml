@@ -1,0 +1,78 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('staticAdminPageTitle'); ?></h5>
+        <span></span>
+    </div>
+</div>
+<!-- /page header -->
+
+<h5 class="widget-name"></h5>
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6><?php echo $this->translate('staticAdminPageList'); ?></h6>
+            <div class="nav pull-right">
+                <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'add', 'module' => 'static'), 'default', 'true'); ?>" class="navbar-icon tip" data-original-title="<?php echo $this->translate('staticAdminAdd'); ?>">
+                    <i class="icon-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><?php echo $this->translate('staticAdminPage'); ?></th>
+                    <th><?php echo $this->translate('staticAdminHeader'); ?></th>
+                    <th class="actions-column"><?php echo $this->translate('staticAdminActions');?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->paginator as $page) : ?>
+                    <tr>
+                        <td>
+                            <a href="<?php echo $this->url(array('action' => 'edit', 'controller' => 'admin', 'module' => 'static', 'alias' => $page['alias']), 'default', true); ?>" title="">
+                                <?php echo $page['alias']; ?>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="<?php echo $this->url(array('action' => 'edit', 'controller' => 'admin', 'module' => 'static', 'alias' => $page['alias']), 'default', true); ?>" title="">
+                                <?php echo $page['title']; ?>
+                            </a>
+                        </td>
+                        <td>
+                            <ul class="table-controls">
+                                <li>
+                                    <a href="<?php echo $this->url(array('alias' => $page['alias']), '/static/index/index', true); ?>"
+                                       class="btn tip" title="" data-original-title="<?php echo $this->translate('staticAdminShow'); ?>">
+                                        <i class="icon-desktop"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $this->url(array('action' => 'edit', 'controller' => 'admin', 'module' => 'static', 'alias' => $page['alias']), 'default', true); ?>"
+                                       class="btn tip" title="" data-original-title="<?php echo $this->translate('staticAdminEdit'); ?>">
+                                        <i class="icon-pencil"></i>
+                                    </a>
+                                </li>
+                                <?php if (($page['alias'] != 'home') && ($page['alias'] != 'about') && ($page['alias'] != 'contacts') && ($page['alias'] != 'stoimost-uslug')) :?>
+                                <li>
+                                    <a href="<?php echo $this->url(array('action' => 'delete', 'controller' => 'admin', 'module' => 'static', 'alias' => $page['alias']), 'default', true); ?>"
+                                       class="btn tip" title="" data-original-title="<?php echo $this->translate('staticAdminDelete'); ?>">
+                                        <i class="icon-remove"></i>
+                                    </a>
+                                </li>
+                                <?php endif; ?>
+
+                            </ul>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin_static_pagination.phtml', array()); ?>
+    </div>
+</div>
+<!-- /media datatable -->

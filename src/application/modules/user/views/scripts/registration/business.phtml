@@ -1,0 +1,20 @@
+<h2> <?php echo $this->title == '' ? $this->translate('registration') : $this->title; ?> </h2>
+
+<div class="registration">   
+    <?php echo $this->form; ?>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#refresh').click(function() { 
+        $.ajax({ 
+            url: '<?php echo $this->baseUrl(); ?>/user/registration/refresh-captcha', 
+            dataType:'json', 
+            success: function(data) { 
+                $('.captcha-row img').attr('src', data.src); 
+                $('#captcha-id').attr('value', data.id); 
+            }
+        }); 
+    }); 
+});
+</script>

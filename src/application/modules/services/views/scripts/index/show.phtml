@@ -1,0 +1,72 @@
+<div class="right">
+    <h4><?php echo $this->translate('servicesPrice') . ": " . $this->item['price'];?></h4>
+</div>
+
+
+<?php echo $this->item['description']; ?>
+<?php if ($this->files) : ?>
+    <h4><?php echo $this->translate('attach');?></h4>
+    <ul style="list-style: none;">
+        <?php foreach ($this->files as $file) : ?>
+            <li>
+                <a href="<?php echo $this->baseUrl() . DIRECTORY_SEPARATOR . $file['path'];?>">
+                    <i class="fa fa-file"></i> <?php echo $file['title'];?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+<div class="post-block post-share">
+    <h3><i class="fa fa-share"></i><?php echo $this->translate('servicesShare');?></h3>
+
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style ">
+        <script type="text/javascript" src="<?php echo $this->baseUrl();?>/js/socialsharing.js"></script>
+        <ul class="social-icons">
+            <li class="vk">
+                <a href="" id="vk" target="_blank" data-placement="bottom" data-tooltip title="Поделиться Вконтакте">
+                    Поделиться Вконтакте
+                </a>
+            </li>
+            <li class="facebook">
+                <a href="" id="facebook" target="_blank" data-placement="bottom" data-tooltip title="Поделиться в Facebook">
+                    Поделиться в Facebook
+                </a>
+            </li>
+            <li class="twitter">
+                <a href="" id="twitter" target="_blank" data-placement="bottom" data-tooltip title="Поделиться в Twitter">
+                    Поделиться в Twitter
+                </a>
+            </li>
+            <li class="od">
+                <a href="" id="od" target="_blank" data-placement="bottom" data-tooltip title="Поделиться в Одноклассниках">
+                    Поделиться в Twitter
+                </a>
+            </li>
+        </ul>
+        <!-- AddThis Button END -->
+
+    </div>
+</div>
+
+<div>&nbsp;</div>
+<a href="<?php echo $this->url(array(), '/orderService') . "?serviceId=" . $this->item['id'];?>" class="btn btn-primary"><?php echo $this->translate('servicesOrderNow');?></a>
+<hr class="tall"/>
+
+
+<script>
+    var vk = document.getElementById('vk');
+    var fb = document.getElementById('facebook');
+    var twitter = document.getElementById('twitter');
+    var od = document.getElementById('od');
+    var description = '<?php echo json_encode(str_replace('&raquo;', '»', str_replace('&laquo;', '«', strip_tags(substr($this->item["description"], 0, 500)) . '...')));?>';
+    var title = '<?php echo $this->item["title"];?>';
+    var link = 'http://argument-uf.ru<?php echo $this->url(array("alias" => $this->item["alias"]), "/services/showAlias", "true"); ?>';
+
+    fb.href = Share.facebook(link, title, '',description);
+    vk.href = Share.vkontakte(link, title, '',description);
+    twitter.href = Share.twitter(link, title);
+    od.href = Share.odnoklassniki(link, title);
+
+</script>

@@ -1,0 +1,128 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('adminCategoryPageTitle'); ?></h5>
+        <span><?php echo $this->translate('adminCategoryPageTitleSpan'); ?></span>
+    </div>
+</div>
+
+<h5 class="widget-name"></h5>
+
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+	    <?php if ( $this->category ) : ?>
+		<div class="nav pull-left">
+		    <a href="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'categories', 'module' => 'gallery', 'id' => $this->category[ db_PhotoCategory::_PID ] ), 'default', true ); ?>"
+		       class="navbar-icon tip" data-original-title="<?php echo $this->translate( 'adminCategoryNavbarTitleBack' ); ?>">
+			<i class="icon-reply"></i>
+		    </a>
+		</div>
+		<h6>
+			<?php echo $this->translate( 'adminCategoryNavbarTitleCategory' ); ?>:
+			<strong><?php echo $this->category[ db_PhotoCategory::_TITLE ]; ?></strong>
+		</h6>
+	    <?php else : ?>
+		<h6>
+		    <?php echo $this->translate( 'adminCategoryNavbarTitleAll' ); ?>
+		</h6>
+	    <?php endif; ?>
+            <div class="nav pull-right">
+		<?php if ( $this->category ) : ?>
+		    <a href="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'add-category', 'module' => 'gallery', 'id' => $this->category[ db_PhotoCategory::_ID ] ), 'default', 'true' ); ?>"
+		       class="navbar-icon tip" data-original-title="<?php echo $this->translate( 'add' ); ?>">
+			<i class="icon-plus"></i>
+		    </a>
+		<?php else : ?>
+		    <a href="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'add-category', 'module' => 'gallery' ), 'default', 'true' ); ?>"
+		       class="navbar-icon tip" data-original-title="<?php echo $this->translate( 'add' ); ?>">
+			<i class="icon-plus"></i>
+		    </a>
+		<?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="smallNumber"><?php echo $this->translate('number'); ?></th>
+                    <th><?php echo $this->translate('title'); ?></th>
+                    <th class="small"><?php echo $this->translate('date'); ?></th>
+                    <th class="smallActions"><?php echo $this->translate('actions'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+		<?php if ( count( $this->paginator ) == 0 ) : ?>
+		    <tr>
+			<td colspan="4">
+			    <center><strong>
+				<?php echo $this->translate( 'emptyCategories' ); ?>
+			    </strong></center>
+			</td>
+		    </tr>
+		<?php else : ?>
+
+		    <?php isset( $this->params[ 'page' ] ) ? $i = 15 * ( $this->params[ 'page' ] - 1 ) + 1 : $i = 1; ?>
+		    <?php foreach ( $this->paginator as $item ) : ?>
+			<tr>
+			    <td><?php echo $i++; ?></td>
+			    <td>
+				<?php echo $item[ 'title' ]; ?>
+			    </td>
+			    <td>
+				<?php echo $item[ 'date' ]; ?>
+			    </td>
+			    <td>
+				<ul class="table-controls">
+				    <?php if ( $item[ 'childs' ] ) : ?>
+					<li>
+					    <a href ="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'categories', 'module' => 'gallery', 'id' => $item[ 'id' ] ), 'default', true ); ?>" 
+					       class="btn tip" title="<?php echo $this->translate( 'adminShowChilds' ); ?>">
+						<i class="icon-folder-open"></i>
+					    </a>
+					</li>
+				    <?php else : ?>
+					<li>
+					    <a href="#_noHref" class="btn disabled">
+						<i class="icon-folder-open"></i>
+					    </a>
+					</li>
+				    <?php endif; ?>
+				    <li>
+					<a href ="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'photos', 'module' => 'gallery', 'id' => $item[ 'id' ] ), 'default', true ); ?>" 
+					   class="btn tip" title="<?php echo $this->translate( 'photos' ); ?>">
+					    <i class="icon-picture"></i>
+					</a>
+				    </li>
+				    <li>
+					<a href="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'edit-category', 'module' => 'gallery', 'id' => $item[ 'id' ] ), 'default', 'true' ); ?>"
+					   class="btn tip" title="" data-original-title="<?php echo $this->translate( 'edit' ); ?>">
+					    <i class="icon-pencil"></i>
+					</a>
+				    </li>
+				    <li>
+					<?php if ( $item[ 'photos' ] ) : ?>
+					    <a href="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'del-category', 'module' => 'gallery', 'id' => $item[ 'id' ] ), 'default', 'true' ); ?>"
+					       class="btn tip" title="" data-original-title="<?php echo $this->translate( 'delete' ); ?>">
+						<i class="icon-trash"></i>
+					    </a>
+					<?php else : ?>
+					    <a href="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'del-category', 'module' => 'gallery', 'id' => $item[ 'id' ] ), 'default', 'true' ); ?>"
+					       class="btn tip" title="" data-original-title="<?php echo $this->translate( 'delete' ); ?>"
+					       onClick="return confirm('<?php echo $this->translate( 'confirmDeleteCategory' ); ?>')">
+						<i class="icon-trash"></i>
+					    </a>
+					<?php endif; ?>
+				    </li>
+				</ul>
+			    </td>
+			</tr>
+		    <?php endforeach; ?>
+		<?php endif; ?>
+            </tbody>
+        </table>
+	<?php $params = array( 'urlParams' => array( 'action' => 'categories', 'controller' => 'admin', 'module' => 'gallery') ); ?>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin_pagination.phtml', $params); ?>
+    </div>
+</div>

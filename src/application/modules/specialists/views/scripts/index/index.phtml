@@ -1,0 +1,46 @@
+<div class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="<?php echo $this->url(array(), '/static/index/home');?>">Главная</a>
+        </li>
+        <li class="breadcrumb-separator">
+            >
+        </li>
+        <li>
+            Специалисты
+        </li>
+    </ul>
+</div>
+<div class="specialists-list-page">
+    <h1>Специалисты</h1>
+    <?php foreach ($this->items as $item) { ?>
+    <div class="specialist-item">
+        <div>
+            <a href="<?php echo $this->url(array('action' => 'show', 'controller' => 'index', 'id' => $item['id']), '/specialists/show');?>">
+                <img src="<?php echo $this->baseUrl() . '/' . $this->specialistImage($item['photo']);?>" alt="<?php echo $item['fio']; ?>" />
+            </a>
+        </div>
+        <div>
+            <div class="title">
+                <a href="<?php echo $this->url(array('action' => 'show', 'controller' => 'index', 'id' => $item['id']), '/specialists/show');?>">
+                    <?php echo $item['fio']; ?>
+                </a>
+            </div>
+            <div class="post">
+                <?php echo $item['post']; ?>
+            </div>
+            <div class="desc">
+                <p>
+                    <?php echo $item['shortDescription']; ?>
+                </p>
+            </div>
+            <div class="btn btn-blue">
+                <a href="<?php echo $this->url(array('action' => 'show', 'controller' => 'index', 'id' => $item['id']), '/specialists/show');?>">
+                    Подробнее
+                </a>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+
+</div>

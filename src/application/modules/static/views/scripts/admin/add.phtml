@@ -1,0 +1,33 @@
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('staticAdminAdd');?></h5>
+    </div>
+</div>
+
+<h5 class="widget-name"><?php echo $this->translate('staticAdminPageList');?></h5>
+<div class="widget row-fluid">
+    <div class="well span8">
+        <div class="form-overflow">
+            <?php echo $this->form; ?>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        CKEDITOR.replace('staticContent', {
+            toolbar: [
+                { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
+                { name: 'paragraph', items : [ 'NumberedList','BulletedList' ] },
+                { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+                { name: 'colors', items : [ 'TextColor','BGColor' ] },
+                { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+                    '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+                { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+                { name: 'insert', items : [ 'Image','Table','Smiley'] },
+            ],
+            width: '99%',
+            resize_enabled: false
+        });
+    }
+</script>

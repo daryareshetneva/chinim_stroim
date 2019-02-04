@@ -1,0 +1,36 @@
+<div id="services_page" class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'default'], 'default', true);?>">Главная</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Услуги</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <ul id="sidebar" class="col-xl-3 col-lg-4 offset-0 col-12">
+            <?php foreach ($this->categories as $item) : ?>
+                <li class="<?php echo ($this->activeCategory['id'] == $item['id']) ? 'active' : '';?>">
+                    <a href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'services', 'id' => $item['id']], 'default', true);?>"><?php echo $item['title'];?></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <div class="offset-xl-1 col-xl-7 col-lg-8 offset-0 col-12">
+            <div class="title">Услуги</div>
+            <nav id="services_navbar" class="navbar">
+                <ul class="navbar-nav">
+                    <?php foreach ($this->items as $serviceItem) : ?>
+                        <li class="nav-item"><a href="<?php echo $this->url(['controller' => 'index', 'action' => 'services-example', 'module'=> 'services', 'serviceId' => $serviceItem['id']], 'default', true);?>"><?php echo $serviceItem['title'];?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </nav>
+            <div class="content">
+                <b><?php echo $this->activeCategory['title'];?></b>
+                <p><?php echo $this->activeCategory['description'];?></p>
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo $this->action('call-us-pages', 'index', 'default');?>
+
+

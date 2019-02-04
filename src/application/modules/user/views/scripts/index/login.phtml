@@ -1,0 +1,28 @@
+<section class="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Авторизация</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <?php echo $this->loginForm;?>
+                <ul class="social-auth">
+                    <?php if (!empty($this->vkUrl)) :?>
+                        <li class="vk"><a href="<?php echo $this->vkUrl;?>"></a></li>
+                    <?php endif;?>
+                    <?php if (!empty($this->fbUrl)) :?>
+                        <li class="fb"><a href="<?php echo $this->fbUrl;?>"></a> </li>
+                    <?php endif;?>
+                    <?php if (!empty($this->yandexUrl)) :?>
+                        <li class="yandex"><a href="<?php echo $this->yandexUrl;?>"></a> </li>
+                    <?php endif;?>
+                    <?php if (!empty($this->googleUrl)): ?>
+                        <li class="google"><a href="<?php echo $this->googleUrl;?>"></a> </li>
+                    <?php endif;?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

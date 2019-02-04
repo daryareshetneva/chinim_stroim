@@ -1,0 +1,33 @@
+<?php
+    $action = '';
+    if ($this->action == 'add')
+    {
+        $action = $this->translate('shopCategoriesAdd');
+    } elseif ($this->action = 'edit')
+    {
+        $action = $this->translate('shopCategoriesEdit');
+    }
+?>
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('shopCategories'); ?></h5>
+        <span><?php echo $action ?></span>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Page form -->
+<div class="widget row-fluid">
+    <div class="well">
+        <?php if (!empty($this->error)): ?>
+            <div class="alert margin">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <?php echo $this->error; ?>
+            </div>
+        <?php endif; ?>
+        <?php echo $this->form; ?>
+    </div>
+</div>
+<!-- /Page form -->
+<script type="text/javascript">
+    CKEDITOR.replace('description');
+</script>

@@ -1,0 +1,40 @@
+<div class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="<?php echo $this->url(array(), '/static/index/home');?>">Главная</a>
+        </li>
+        <li class="breadcrumb-separator">
+            >
+        </li>
+        <li>
+            <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'index', 'page' => 1), '/news/index/index');?>">Новости</a>
+        </li>
+        <li class="breadcrumb-separator">
+            >
+        </li>
+        <li>
+            <?php echo $this->news['title']; ?>
+        </li>
+    </ul>
+</div>
+
+<div class="news-item">
+    <div class="news">
+        <div class="news-date">
+            <?php echo date('d.m.Y', strtotime($this->news['date'])); ?>
+        </div>
+        <h4>
+            <?php echo $this->news['title']; ?>
+        </h4>
+        <img src="<?php echo $this->baseUrl() . '/' .$this->newsImage($this->news['image']);?>" class="img-responsive" alt="<?php echo $this->news['title']; ?>" />
+        <div class="content">
+            <div class="desc">
+                <?php echo $this->news['description']; ?>
+            </div>
+            <hr />
+            <div class="desc">
+                <?php echo $this->news['content']; ?>
+            </div>
+        </div>
+    </div>
+</div>

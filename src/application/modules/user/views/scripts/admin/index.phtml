@@ -1,0 +1,109 @@
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('user'); ?></h5>
+        <span></span>
+    </div>
+</div>
+
+<h5 class="widget-name"></h5>
+
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6><?php echo $this->translate('userList'); ?></h6>
+            <div class="nav pull-right">
+                <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'add-user', 'module' => 'user'), 'default', 'true'); ?>" class="navbar-icon tip" data-original-title="<?php echo $this->translate('userAdd'); ?>">
+                    <i class="icon-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="search">
+        <?php echo $this->searchForm; ?>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="small"><?php echo $this->translate('userType'); ?></th>
+                    <th><?php echo $this->translate('userFio'); ?></th>
+                    <th><?php echo $this->translate('userEmail'); ?></th>
+                    <th><?php echo $this->translate('userPhone'); ?></th>
+                    <th><?php echo $this->translate('userVisitDate'); ?></th>
+                    <th class="small"><?php echo $this->translate('userActions');?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (count($this->paginator) > 0) : ?>
+                    <?php foreach ($this->paginator as $user) : ?>
+                        <tr>
+                            <?php $editUserUrl = $this->url(array('action' => 'edit-user', 'controller' => 'admin', 'module' => 'user', 'id' => $user[ db_Users::_ID ], 'page' => $this->page), 'default', true); ?>
+                            <?php $removeUserUrl = $this->url(array('action' => 'remove-user', 'controller' => 'admin', 'module' => 'user', 'id' => $user[ db_Users::_ID ], 'page' => $this->page), 'default', true); ?>
+                            <td>
+                                <?php echo $this->translate('userType_' . $user['type']); ?>
+                            </td>
+                            <td>
+                                <a href="<?php echo $editUserUrl; ?>" title="<?php echo $this->translate('userEdit'); ?>">
+                                    <?php echo $user['lastName'] . ' ' . $user['firstName'] . ' ' . $user['patronymic']; ?>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="mailto:<?php echo $user[ db_Users::_EMAIL ];?>" title="<?php echo $this->translate('userWriteEmail'); ?>">
+                                    <?php echo $user['email'];?>
+                                </a>
+                            </td>
+                            <td>
+                                <?php echo $user['phone'];?>
+                            </td>
+                            <td>
+                                <?php if (strtotime($user[ db_Users::_LAST_DATE ])) : ?>
+                                    <?php echo date('d.m.Y H:i', strtotime($user[ db_Users::_LAST_DATE ])); ?>
+                                <?php else : ?>
+                                    <?php echo $this->translate('userLastDateEmpty'); ?>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <ul class="table-controls">
+                                    <li>
+                                        <a href="<?php echo $this->url(array('action' => 'edit-user', 'controller' => 'admin', 'module' => 'user', 'id' => $user['id'], 'page' => $this->page), 'default', true); ?>"
+                                           class="btn tip" title="" data-original-title="<?php echo $this->translate('userEdit'); ?>">
+                                            <i class="icon-pencil"></i>
+                                        </a>
+                                    </li>
+                                    <?php if (1 != $user['id']) : ?>
+                                        <li>
+                                            <a href="<?php echo $this->url(array('action' => 'remove-user', 'controller' => 'admin', 'module' => 'user', 'id' => $user['id'], 'page' => $this->page), 'default', true); ?>"
+                                               class="btn tip" title="" data-original-title="<?php echo $this->translate('remove'); ?>">
+                                                <i class="icon-trash"></i>
+                                            </a>
+                                        </li>
+                                    <?php endif;?>
+                                </ul>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else :  ?>
+                    <tr>
+                        <td colspan="7" style="text-align: center;">
+                            <?php echo $this->translate('UsersNone'); ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <?php
+        echo $this->paginationControl(
+                $this->paginator, 'Sliding', 'admin_pagination.phtml',
+                array('pattern' => array(
+                    'action' => 'index',
+                    'controller' => 'admin',
+                    'module' => 'user',
+                    'search' => $this->query
+                ))
+        );
+    ?>
+
+</div>
+<!-- /media datatable -->

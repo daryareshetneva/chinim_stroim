@@ -1,0 +1,23 @@
+<section class="gallery-slider">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Фотогалерея</h1>
+                <div class="header_decorator">
+                    <img src="<?php echo $this->baseUrl();?>/img/header_decorator.png" class="img-responsive" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="gallery-slider">
+                    <?php foreach ($this->photos as $photo) { ?>
+                        <div class="gallery-slider-item">
+                            <img src="<?php echo $this->baseUrl() . '/' . $photo['src'];?>" class="img-responsive" />
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

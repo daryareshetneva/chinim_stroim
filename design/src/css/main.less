@@ -1,9 +1,11 @@
-/* Импорт стилей Bootstrap*/
+/* Импорт стилей Bootstrap и другие*/
 @import "../../../bower_components/bootstrap/dist/css/bootstrap.min.css";
 @import "../../../bower_components/bootstrap/dist/css/bootstrap-grid.min.css";
 @import "../../../bower_components/bootstrap/dist/css/bootstrap-reboot.min.css";
 @import "../../../bower_components/lightbox2/dist/css/lightbox.min.css";
 @import "../../../bower_components/fontawesome/css/all.min.css";
+@import "../../../bower_components/slick-carousel/slick/slick.css";
+@import "../../../bower_components/slick-carousel/slick/slick-theme.css";
 
 /* Переменные для цветов сайта */
 @white: #ffffff;
@@ -20,6 +22,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&subset=cyrillic,cyrillic-ext');
 
 /* Общие стили */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
@@ -32,9 +39,13 @@ body {
   background-color: @orange;
   font-weight: bold;
   text-transform: uppercase;
-  color: @white;
   border: 0;
   cursor: pointer;
+  color: @white;
+  &:hover {
+    color: @white;
+    text-decoration: none;
+  }
 }
 
 .main_title {
@@ -42,8 +53,105 @@ body {
   font-size: 25px;
   font-weight: bold;
   padding-bottom: 35px;
-  padding-top: 35px;
+  padding-top: 15px;
   color: @title;
+}
+
+.pages_title {
+  font-weight: bold;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #000000;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+& .breadcrumb {
+  background-color: @white;
+  border-radius: 0;
+  padding: 20px 0px;
+  margin-bottom: 0;
+  & .breadcrumb-item {
+    font-size: 15px;
+    & a {
+      color: #bcbcbc;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    &.active {
+      color: #bcbcbc;
+    }
+    &+.breadcrumb-item::before {
+      content: "-";
+      color: #bcbcbc;
+    }
+  }
+}
+
+.content {
+  color: @darkgrey_header;
+  text-align: left;
+  & p {
+    color: @lightgrey;
+  }
+}
+
+/* Небольшое изменение стилей slick*/
+.slick-prev, .slick-next {
+  display: none !important;
+}
+.slick-dots {
+  bottom: -35px;
+  & li button {
+    &:before {
+      font-size: 30px;
+      opacity: 1;
+      color: #c4c4c4;
+    }
+    &:hover:before, &:focus:before {
+      color: @orange;
+    }
+  }
+  & li.slick-active button:before {
+    opacity: 1;
+    color: @orange;
+  }
+}
+
+input, textarea {
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+input.warning {
+  background: #f1bbb3 !important;
+}
+
+.close_button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  background-color: @white;
+  border: 0;
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    top: 21px;
+    left: 10px;
+    width: 26px;
+    height: 2px;
+    background: @orange;
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
 }
 
 /* Импорт собственных стилей */
@@ -51,6 +159,17 @@ body {
 @import "partials/promoblock.less";
 @import "partials/achievments.less";
 @import "partials/services_home.less";
-@import "partials/feedback_home.less";
-@import "partials/portfolio.less";
+@import "partials/feedback_item.less";
+@import "partials/portfolio_home.less";
 @import "partials/footer.less";
+@import "partials/thankyou_overlay.less";
+@import "partials/services.less";
+@import "partials/callus_pages.less";
+@import "partials/services_example.less";
+@import "partials/about.less";
+@import "partials/contacts.less";
+@import "partials/feedback.less";
+@import "partials/portfolio.less";
+@import "partials/portfolio_item.less";
+@import "partials/portfolio_example.less";
+@import "partials/callus_modal.less";

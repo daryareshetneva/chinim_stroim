@@ -1,0 +1,107 @@
+<?php 
+    $noImageCut = $this->baseUrl() . DIRECTORY_SEPARATOR . 'images/nophoto_cut.jpg';
+?>
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate( 'adminPhotosPageTitle' ); ?></h5>
+        <span><?php echo $this->translate( 'adminPhotosPageTitleSpan' ); ?></span>
+    </div>
+</div>
+
+<h5 class="widget-name"></h5>
+
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+	    <?php
+		$backUrl = array( 'controller' => 'admin', 'action' => 'categories', 'module' => 'gallery', db_PhotoCategory::_ID => $this->category[ db_PhotoCategory::_PID ] );
+	    ?>
+	    <div class="nav pull-left">
+		<a href="<?php echo $this->url( $backUrl, 'default', true ); ?>"
+		   class="navbar-icon tip" data-original-title="<?php echo $this->translate( 'adminCategoryNavbarTitleBack' ); ?>">
+		    <i class="icon-reply"></i>
+		</a>
+	    </div>
+	    <h6>
+		<?php echo $this->translate( 'adminPhotosNavbarTitle' ); ?>:
+		<strong><?php echo $this->category[ db_PhotoCategory::_TITLE ]; ?></strong>
+	    </h6>
+            <div class="nav pull-right">
+		<?php
+		    $addUrl = array( 'controller' => 'admin', 'action' => 'add-photo', 'module' => 'gallery', db_Photo_Relations::_CATEGORY_ID => $this->category[ db_PhotoCategory::_ID ] );
+		?>
+                <a href="<?php echo $this->url( $addUrl, 'default', 'true' ); ?>"
+                   class="navbar-icon tip" data-original-title="<?php echo $this->translate( 'add' ); ?>">
+                    <i class="icon-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="smallNumber"><?php echo $this->translate( 'number' ); ?></th>
+                    <th class="smallImage"><?php echo $this->translate( 'image' ); ?></th>
+                    <th><?php echo $this->translate( 'title' ); ?></th>
+                    <th class="small"><?php echo $this->translate( 'date' ); ?></th>
+                    <th class="small"><?php echo $this->translate( 'actions' ); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+		<?php isset( $this->params[ 'page' ] ) ? $i = 15 * ( $this->params[ 'page' ] - 1 ) + 1 : $i = 1; ?>
+		<?php if ( !count( $this->paginator ) ) : ?>
+		    <tr>
+			<td colspan="5">
+			    <center><strong>
+				<?php echo $this->translate( 'emptyPhotos' ); ?>
+			    </strong></center>
+			</td>
+		    </tr>
+		<?php else : ?>
+		    <?php foreach ( $this->paginator as $item ) : ?>
+			<tr>
+			    <td><?php echo $i++; ?></td>
+			    <td>
+				<a href="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'edit-photo', 'module' => 'gallery', 'id' => $item[ db_Photos::_ID ] ), 'default', 'true' ); ?>"
+				   class="image-block center">
+				    <img alt="<?php $item[ db_Photos::_TITLE ]; ?>"
+					 src="<?php
+						 echo ( !empty( $item[ db_Photos::_SRC ] ) && file_exists( $item[ db_Photos::_SRC ] ) ) ?
+							 $this->baseUrl() . DIRECTORY_SEPARATOR . $item[ db_Photos::_SRC ] : $noImageCut;
+						 ?>"/> 
+				</a>
+			    </td>
+			    <td>
+				    <?php echo $item[ db_Photos::_TITLE ]; ?>
+			    </td>
+			    <td>
+				    <?php echo $item[ db_Photos::_DATE ]; ?>
+			    </td>
+			    <td>
+				<ul class="table-controls">
+				    <li>
+					<a href="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'edit-photo', 'module' => 'gallery', 'id' => $item[ db_Photos::_ID ] ), 'default', 'true' ); ?>"
+					   class="btn tip" title="" data-original-title="<?php echo $this->translate( 'edit' ); ?>">
+					    <i class="icon-pencil"></i>
+					</a>
+				    </li>
+				    <li>
+					<a href="<?php echo $this->url( array( 'controller' => 'admin', 'action' => 'del-photo', 'module' => 'gallery', 'id' => $item[ db_Photos::_ID ] ), 'default', 'true' ); ?>"
+					   class="btn tip" title="" data-original-title="<?php echo $this->translate( 'delete' ); ?>"
+					   onClick="return confirm('<?php echo $this->translate( 'deletePhotoConfirm' ); ?>')">
+					    <i class="icon-trash"></i>
+					</a>
+				    </li>
+				</ul>
+			    </td>
+			</tr>
+		    <?php endforeach; ?>
+		<?php endif; ?>
+            </tbody>
+        </table>
+	<?php $params = array( 'urlParams' => array( 'action' => 'photos', 'controller' => 'admin', 'module' => 'gallery', 'id' => $this->category[ db_PhotoCategory::_ID ] ) ); ?>
+	<?php echo $this->paginationControl( $this->paginator, 'Sliding', 'admin_pagination.phtml', $params ); ?>
+    </div>
+</div>

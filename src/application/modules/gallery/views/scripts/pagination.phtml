@@ -1,0 +1,12 @@
+<ul class="pagination pagination-lg pull-right">
+    <li><a href="<?php echo (isset($this->previous)) ? $this->url(['module' => 'gallery', 'controller' => 'index', 'action' => 'index', 'page' => $this->previous], 'gallery/index', true) : ''; ?>">«</a></li>
+    <?php foreach($this->pagesInRange as $page): ?>
+        <?php if($page != $this->current): ?>
+            <li><a href="<?php echo $this->url(['module' => 'gallery', 'controller' => 'index', 'action' => 'index', 'page' => $page], 'gallery/index', true); ?>"><?php echo $page; ?></a></li>
+        <?php else : ?>
+            <li class="active"><a href="<?php echo $this->url(['module' => 'gallery', 'controller' => 'index', 'action' => 'index', 'page' => $page], 'gallery/index', true); ?>"><?php echo $page; ?></a></li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <li><a href="<?php echo (isset($this->next)) ? $this->url(['module' => 'gallery', 'controller' => 'index', 'action' => 'index', 'page' => $this->next], 'gallery/index', true) : ''; ?>">»</a></li>
+</ul>
+

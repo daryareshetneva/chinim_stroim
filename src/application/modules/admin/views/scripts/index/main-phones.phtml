@@ -1,0 +1,14 @@
+<?php $limit = 2; ?>
+<div class="item phone">
+    <?php foreach ($this->items as $key => $item) {?>
+        <?php if ($limit < ($key + 1)) {
+            continue;
+        } ?>
+        <div>
+            <span class="hidden-xs hidden-sm">
+                <?php echo $item['phone'];?>
+            </span>
+            <a href="tel:<?php echo $item['phone'];?>" class="hidden-lg hidden-md"><?php echo $item['phone'];?></a>
+        </div>
+    <?php } ?>
+</div>

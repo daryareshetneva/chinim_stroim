@@ -1,0 +1,75 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('tagsHeaderPage'); ?></h5>
+        <span></span>
+    </div>
+</div>
+<!-- /page header -->
+
+<h5 class="widget-name"></h5>
+
+<!-- Media datatable Last Orders -->
+<?php foreach ($this->tags as $module => $controllers) : ?>
+    <div class="widget">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <h6><?php echo $this->translate('tagsHeaderTable_' . $module); ?></h6>
+                <div class="nav pull-right">
+                </div>
+            </div>
+        </div>
+        <div class="table-overflow">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="small"><?php echo $this->translate('tagsTableTagId'); ?></th>
+                        <th><?php echo $this->translate('tagsTableTagTitle'); ?></th>
+                        <th class="actions-column"><?php echo $this->translate('actions');?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($controllers as $controller => $actions) : ?>
+                        <?php foreach ($actions as $action => $tags) : ?>
+                            <tr>
+                                <?php 
+                                    $nameRouter = "/{$module}/{$controller}/{$action}";
+                                    $url = null;
+                                    try {
+                                        $url = $this->url(array(), $nameRouter, true);
+                                    } catch (Exception $e){
+                                        $url = $this->url(array('module' => $module, 'controller' => $controller, 'action' => $action), 'default', true);
+                                    }
+                                ?>
+                                
+                                <td>
+                                    <?php echo $this->translate($module . '_' . $controller . '_' . $action); ?>
+                                </td>
+                                <td>
+                                    <?php echo $tags['title']; ?>
+                                </td>
+                                <td>
+                                    <ul class="table-controls">
+                                        <li>
+                                            <a href="<?php echo $this->url(array('action' => 'edit-tag', 'controller' => 'index', 'module' => 'admin', 'tagId' => $tags['id']), 'default', true); ?>"
+                                               class="btn tip" title="" data-original-title="<?php echo $this->translate('editing'); ?>">
+                                                <i class="icon-pencil"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo $url; ?>"
+                                               class="btn tip" title="" data-original-title="<?php echo $this->translate('showingPage'); ?>">
+                                                <i class="icon-desktop"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- /media datatable -->

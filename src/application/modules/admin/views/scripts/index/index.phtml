@@ -1,0 +1,95 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('dashboard'); ?></h5>
+        <span></span>
+    </div>
+    <ul class="page-stats">
+        <li>
+            <div class="showcase">
+                <span><?php echo $this->translate('newOrders'); ?></span>
+                <h2><?php echo $this->newOrdersAmount; ?></h2>
+            </div>
+            <?php $amountString = '' ;?>
+            <?php $totalSum = 0 ;?>
+            <?php $totalString = ''; ?>
+            <?php foreach ($this->ordersByDate as $item) { ?>
+                <?php $amountString .= $item['amount'] . ',';?>
+                <?php $totalSum += $item['total']; ?>
+                <?php $totalString .= $item['total'] . ','; ?>
+            <?php } ?>
+            <div id="total-visits" class="chart">
+                <?php echo substr($amountString, 0, strlen($amountString) - 1);?>
+            </div>
+        </li>
+        <li>
+            <div class="showcase">
+                <span>Общая сумма заказов за месяц</span>
+                <h2><?php echo $totalSum;?></h2>
+            </div>
+            <div id="balance" class="chart">
+                <?php echo substr($totalString, 0, strlen($totalString) - 1);?>
+            </div>
+        </li>
+        <li>
+
+        </li>
+    </ul>
+</div>
+<!-- /page header -->
+
+<h5 class="widget-name"></h5>
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6><?php echo $this->translate('todayOrders'); ?></h6>
+            <div class="nav pull-right">
+            </div>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th><?php echo $this->translate('orderClient'); ?></th>
+                    <th><?php echo $this->translate('orderTotal'); ?></th>
+                    <th><?php echo $this->translate('orderStatus'); ?></th>
+                    <th class="actions-column"><?php echo $this->translate('orderActions');?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (count($this->lastOrders) > 0) : ?>
+                    <?php foreach ($this->lastOrders as $order) : ?>
+                    <tr>
+                        <td>
+                            <a href="<?php echo $this->url(['id' => $order['id']], 'admin/order', true); ?><?php echo $this->url(['id' => $item['id']], 'admin/order', true); ?>" title="">
+                                <?php echo $order['id']; ?>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="<?php echo $this->url(['id' => $order['id']], 'admin/order', true); ?>" title=""><?php echo $order['name']; ?></a>
+                        </td>
+                        <td><?php echo $order['total'];?></td>
+                        <td><?php echo $this->translate('orderStatus-' .$order['status']); ?></td>
+                        <td>
+                            <ul class="navbar-icons">
+                                <li><a href="<?php echo $this->url(['id' => $order['id']], 'admin/order', true); ?>" class="tip" title="<?php echo $this->translate('edit');?>"><i class="icon-edit"></i></a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                <?php else :  ?>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">
+                            <?php echo $this->translate('lastOrdersNone'); ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- /media datatable -->

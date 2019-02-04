@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Чиним Строим Строительная компания</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -9,58 +10,59 @@
     <header class="sticky-top">
         <div id="info">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-2 logo">
-                        <img src="img/header_logo.jpg" alt="Логотип Чиним Строим">
-                    </div>
-                    <div class="col-lg-6">
-                        <div id="phone">
-                            <i class="fas fa-phone fa-flip-horizontal"></i><span>+7 983 333 33 33</span>
-                        </div>
-                        <div id="address">
-                            <i class="fas fa-map-marker-alt"></i><span>г. Томск, ул. Дизайнеров, д. 10</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <button id="callus" class="main_button">Заказать звонок</button>
-                    </div>
-                    <button id="toggle" class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                <div id="logo" class="d-lg-block">
+                    <img src="img/header_logo.jpg" alt="Логотип Чиним Строим">
                 </div>
+                <div id="phone" class="d-lg-block d-md-none d-sm-none d-none">
+                    <i class="fas fa-phone fa-flip-horizontal"></i><span>+7 983 333 33 33</span>
+                </div>
+                <div id="address" class="d-lg-block d-md-none d-sm-none d-none">
+                    <i class="fas fa-map-marker-alt"></i><span>г. Томск, ул. Дизайнеров, д. 10</span>
+                </div>
+                <div class="d-lg-block d-md-none d-sm-none d-none">
+                    <button type="button" id="callus" class="main_button" data-toggle="modal"
+                            data-target="#callus_modal">Заказать звонок</button>
+                </div>
+                <button id="toggle" class="navbar-toggler d-lg-none d-md-block d-sm-block d-block" data-toggle="collapse"
+                        data-target="#collapse_target" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
         </div>
-        <nav class="navbar navbar-expand-md">
-            <ul class="navbar-nav collapse navbar-collapse container" id="collapse_target">
-                <li class="nav-item"><a class=" active" href="#">Главная</a></li>
-                <li class="nav-item"><a class="" href="#">Услуги</a></li>
-                <li class="nav-item"><a class="" href="#">О Компании</a></li>
-                <li class="nav-item"><a class="" href="#">Контакты</a></li>
-                <li class="nav-item"><a class="" href="#">Портфолио</a></li>
-                <li class="nav-item"><a class="" href="#">Отзывы</a></li>
-            </ul>
+        <nav id="header_navbar" class="navbar navbar-expand-lg">
+            <div class="collapse navbar-collapse container">
+                <ul class="navbar-nav justify-content-around" id="collapse_target">
+                    <li id="index" class="nav-item active"><a class="nav-link" href="index.html">Главная</a></li>
+                    <li id="services" class="nav-item"><a  class="nav-link" href="services.html">Услуги</a></li>
+                    <li id="about" class="nav-item"><a  class="nav-link" href="about.html">О Компании</a></li>
+                    <li id="contacts" class="nav-item"><a  class="nav-link" href="contacts.html">Контакты</a></li>
+                    <li id="portfolio" class="nav-item"><a class="nav-link" href="portfolio.html">Портфолио</a></li>
+                    <li id="feedback" class="nav-item"><a class="nav-link" href="feedback.html">Отзывы</a></li>
+                </ul>
+            </div>
         </nav>
-    
     </header>
     <section id="promoblock">
         <div class="container">
-            <div id="promotext" class="offset-lg-3 col-lg-6">Доверьте ремонт профессионалам</div>
+            <div id="promotext" class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 col-12">Доверьте ремонт профессионалам</div>
             <div id="hint" class="offset-lg-3 col-lg-6">а не нам</div>
-            <div id="callus_form" class="offset-lg-3 col-lg-6">
+            <div id="callus_form" class="offset-lg-3 col-lg-6 offset-md-2 col-md-8 col-sm-12 col-12">
                 <div class="formheader">
                     <b>Оставьте заявку</b>
                     <small><small>наш менеджер перезвонит вам в течении 20 минут</small></small>
                 </div>
-                <form class="col-lg-12">
+                <form class="col-12" method="post" action="">
                     <div class="form-group row">
-                        <label for="nameInput" class="col-lg-2"><i class="fas fa-user"></i></label>
-                        <input type="text" class="form-control col-lg-10" id="nameInput" aria-describedby="name" placeholder="Имя">
+                        <label for="nameInput" class="col-2"><i class="fas fa-user"></i></label>
+                        <input type="text" class="form-control col-10" id="nameInput" aria-describedby="name" placeholder="Имя" required>
                     </div>
                     <div class="form-group row">
-                        <label for="phoneInput" class="col-lg-2"><i class="fas fa-phone fa-flip-horizontal"></i></label>
-                        <input type="text" class="form-control col-lg-10" id="phoneInput" placeholder="Телефон">
+                        <label for="phoneInput" class="col-2"><i class="fas fa-phone fa-flip-horizontal"></i></label>
+                        <input type="text" class="form-control col-10" id="phoneInput" placeholder="Телефон" required>
                     </div>
-                    <button type="submit" class="main_button">Отправить</button>
+                    <button id="callus_button" type="submit" class="main_button">Отправить</button>
                 </form>
             </div>
         </div>
@@ -69,63 +71,63 @@
         <div class="container">
             <div class="row justify-content-around">
                 <div class="achiev_block">
-                    <div class="achiev_img d-flex"><img class="align-bottom" src="img/achiev_gear.svg"></div>
-                    <div class="achiev_text">Нам доверяют <b>30</b> крупных компаний</div>
+                    <div class="image_content d-flex"><img class="align-bottom" src="img/achiev_list.svg"></div>
+                    <div class="text">Нам доверяют <b>30</b> крупных компаний</div>
                 </div>
                 <div class="achiev_block">
-                    <div class="achiev_img d-flex"><img class="align-bottom" src="img/achiev_house.svg"></div>
-                    <div class="achiev_text">У нас на счету более <b>400</b> довольных клиентов</div>
+                    <div class="image_content d-flex"><img class="align-bottom" src="img/achiev_plan.svg"></div>
+                    <div class="text">У нас на счету более <b>400</b> довольных клиентов</div>
                 </div>
                 <div class="achiev_block">
-                    <div class="achiev_img d-flex"><img class="align-bottom" src="img/achiev_gear.svg"></div>
-                    <div class="achiev_text">О нас написали более <b>200</b> положительных отзывов</div>
+                    <div class="image_content d-flex"><img class="align-bottom" src="img/achiev_gear.svg"></div>
+                    <div class="text">О нас написали более <b>200</b> положительных отзывов</div>
                 </div>
                 <div class="achiev_block">
-                    <div class="achiev_img d-flex"><img class="align-bottom" src="img/achiev_house.svg"></div>
-                    <div class="achiev_text">Мы входим в топ <b>10</b> строительных компаний города</div>
+                    <div class="image_content d-flex"><img class="align-bottom" src="img/achiev_house.svg"></div>
+                    <div class="text">Мы входим в топ <b>10</b> строительных компаний города</div>
                 </div>
             </div>
         </div>
     </section>
-    <section id="services">
+    <section id="services_home">
         <div class="overlay">
             <div class="container">
                 <div class="card-deck">
-                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
-                                <span class="card-title">Ремонт квартир “под ключ”</span>
-                                <div class="card-image"><img src="img/repair.png"></div>
+                                <span class="card-title"><a href="services.html">Ремонт квартир “под ключ”</a></span>
+                                <div class="card-image img-responsive"><img src="img/repair.png"></div>
                                 <ul class="list-group">
-                                    <li class="list-group-item">Стандартный ремонт</li>
-                                    <li class="list-group-item">Ремонт бизнес-класса</li>
-                                    <li class="list-group-item">Дизайнерский ремонт</li>
+                                    <li class="list-group-item"><a href="services_example.html">Стандартный ремонт</a></li>
+                                    <li class="list-group-item"><a href="services_example.html">Ремонт бизнес-класса</a></li>
+                                    <li class="list-group-item"><a href="services_example.html">Дизайнерский ремонт</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
-                                <span class="card-title">Ремонт квартир “под ключ”</span>
-                                <div class="card-image"><img src="img/repair.png"></div>
+                                <span class="card-title"><a href="services.html">Ремонт квартир “под ключ”</a></span>
+                                <div class="card-image img-responsive"><img src="img/repair.png"></div>
                                 <ul class="list-group">
-                                    <li class="list-group-item">Стандартный ремонт</li>
-                                    <li class="list-group-item">Ремонт бизнес-класса</li>
-                                    <li class="list-group-item">Дизайнерский ремонт</li>
+                                    <li class="list-group-item"><a href="services_example.html">Стандартный ремонт</a></li>
+                                    <li class="list-group-item"><a href="services_example.html">Ремонт бизнес-класса</a></li>
+                                    <li class="list-group-item"><a href="services_example.html">Дизайнерский ремонт</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
-                                <span class="card-title">Ремонт квартир “под ключ”</span>
-                                <div class="card-image"><img src="img/repair.png"></div>
+                                <span class="card-title"><a href="services.html">Ремонт квартир “под ключ”</a></span>
+                                <div class="card-image img-responsive"><img src="img/repair.png"></div>
                                 <ul class="list-group">
-                                    <li class="list-group-item">Стандартный ремонт</li>
-                                    <li class="list-group-item">Ремонт бизнес-класса</li>
-                                    <li class="list-group-item">Дизайнерский ремонт</li>
+                                    <li class="list-group-item"><a href="services_example.html">Стандартный ремонт</a></li>
+                                    <li class="list-group-item"><a href="services_example.html">Ремонт бизнес-класса</a></li>
+                                    <li class="list-group-item"><a href="services_example.html">Дизайнерский ремонт</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -134,58 +136,118 @@
             </div>
         </div>
     </section>
-    <section id="feedback">
+    <section id="feedback_home">
         <div class="container">
             <div class="main_title">Отзывы</div>
             <div class="card-deck">
-                <div class="col-lg-4">
-                    <div class="card">
-                        <p><img align="left" src="img/review_user.png"><span class="feedback_user">Романенко О.А.</span><br>
-                            Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии. предварительного просмотра макета и визуальных макетах. Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.</p>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="feedback_card">
+                        <div class="feedback_photo">
+                            <img src="img/review_user.png">
+                        </div>
+                        <div class="feedback_user">Романенко О.А.</div>
+                        <div class="message">
+                            <p>
+                                Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии.
+                                предварительного просмотра макета и визуальных макетах.
+                                Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии.
+                                предварительного просмотра макета и визуальных макетах.
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card">
-                        <p><img align="left" src="img/review_user.png"><span class="feedback_user">Романенко О.А.</span><br>
-                            Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии. предварительного просмотра макета и визуальных макетах. Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.</p>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="feedback_card">
+                        <div class="feedback_photo">
+                            <img src="img/review_user.png">
+                        </div>
+                        <div class="feedback_user">Романенко О.А.</div>
+                        <div class="message">
+                            <p>
+                                Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии.
+                                предварительного просмотра макета и визуальных макетах.
+                                Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии.
+                                предварительного просмотра макета и визуальных макетах.
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card">
-                        <p><img align="left" src="img/review_user.png"><span class="feedback_user">Романенко О.А.</span><br>
-                            Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии. предварительного просмотра макета и визуальных макетах. Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.</p>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="feedback_card">
+                        <div class="feedback_photo">
+                            <img src="img/review_user.png">
+                        </div>
+                        <div class="feedback_user">Романенко О.А.</div>
+                        <div class="message">
+                            <p>
+                                Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии.
+                                предварительного просмотра макета и визуальных макетах.
+                                Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии.
+                                предварительного просмотра макета и визуальных макетах.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section id="portfolio">
+    <section id="portfolio_home">
         <div class="container">
             <div class="main_title">Портфолио</div>
             <div class="row">
-                <a class="col-lg-4" href="img/flat_fullsize.png" data-lightbox="portfolio_images" data-title="Пример нашей работы">
-                    <img class="" src="img/flat.png" alt="Квартира"/></a>
-                <a class="col-lg-4" href="img/flat_fullsize.png" data-lightbox="portfolio_images" data-title="Пример нашей работы">
-                    <img class="" src="img/flat.png" alt="Квартира"/></a>
-                <a class="col-lg-4" href="img/flat_fullsize.png" data-lightbox="portfolio_images" data-title="Пример нашей работы">
-                    <img class="" src="img/flat.png" alt="Квартира"/></a>
-                <a class="col-lg-4" href="img/flat_fullsize.png" data-lightbox="portfolio_images" data-title="Пример нашей работы">
-                    <img class="" src="img/flat.png" alt="Квартира"/></a>
-                <a class="col-lg-4" href="img/flat_fullsize.png" data-lightbox="portfolio_images" data-title="Пример нашей работы">
-                    <img class="" src="img/flat.png" alt="Квартира"/></a>
-                <a class="col-lg-4" href="img/flat_fullsize.png" data-lightbox="portfolio_images" data-title="Пример нашей работы">
-                    <img class="" src="img/flat.png" alt="Квартира"/></a>
+                <div class="portfolio_item col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="portfolio_photo">
+                        <a href="portfolio_example.html">
+                            <img class="" src="img/flat.png" alt="Квартира"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio_item col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="portfolio_photo">
+                        <a href="portfolio_example.html">
+                            <img class="" src="img/flat.png" alt="Квартира"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio_item col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="portfolio_photo">
+                        <a href="portfolio_example.html">
+                            <img class="" src="img/flat.png" alt="Квартира"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio_item col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="portfolio_photo">
+                        <a href="portfolio_example.html">
+                            <img class="" src="img/flat.png" alt="Квартира"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio_item col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="portfolio_photo">
+                        <a href="portfolio_example.html">
+                            <img class="" src="img/flat.png" alt="Квартира"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio_item col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="portfolio_photo">
+                        <a href="portfolio_example.html">
+                            <img class="" src="img/flat.png" alt="Квартира"/>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <button class="main_button col-lg-2">Все работы</button>
+            <a href="portfolio.html" class="main_button">Все работы</a>
         </div>
     </section>
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-2 logo">
-                    <img src="img/footer_logo.png" alt="Логотип Чиним Строим">
+                <div class="logo col-lg-2 col-md-4 d-lg-block d-md-block d-sm-none d-none">
+                    <img src="img/footer_logo.png" alt="Логотип Чиним Строим" class="img-responsive">
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 d-lg-block d-md-none d-sm-none d-none">
                     <ul class="row offset-lg-1">
                         <li class="col-lg-6"><a class="active" href="#">Главная</a></li>
                         <li class="col-lg-6"><a class="" href="#">Контакты</a></li>
@@ -195,14 +257,14 @@
                         <li class="col-lg-6"><a class="" href="#">Отзывы</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
+                <div class="offset-lg-0 col-lg-3 offset-md-0 col-md-4 offset-sm-0 col-sm-6 offset-1 col-11">
                     <div class="title">Контакты</div>
-                    <div id="contacts">
+                    <div id="contact_info">
                         <div><i class="fas fa-phone fa-flip-horizontal"></i><span>+7 983 333 33 33</span></div>
                         <div><i class="fas fa-map-marker-alt"></i><span>г. Томск, ул. Дизайнеров, д. 10</span></div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="offset-lg-0 col-lg-3 offset-md-0 col-md-4 offset-sm-0 col-sm-6 offset-1 col-11">
                     <div class="title">Соц. сети</div>
                     <div id="socials">
                         <div><a><i class="fab fa-vk"></i>vk.com/chinimstroim</a></div>
@@ -214,12 +276,42 @@
         </div>
         <div id="copyright"><i class="fas fa-star"></i>ВЕБ-СТУДИЯ ITROCKS 2018</div>
     </footer>
-    <div id="thankyou_overlay">
-        THANK YOU
+    <div class="modal fade" id="callus_modal" tabindex="-1" role="dialog" aria-labelledby="callUsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <b class="modal-title" id="exampleModalLabel">Укажите номер вашего телефона</b>
+                    <small>Мы перезвоним вам в течении 20 минут</small>
+                    <button type="button" class="close_button" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="" method="post" action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name" id="nameInputModal" aria-describedby="name" placeholder="Имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="phone" id="phoneInputModal" placeholder="Телефон" required>
+                        </div>
+                        <button id="callus_button_modal" type="submit" class="main_button">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="thankyou_overlay" class="invisible">
+        <div id="popup">
+            <div class="text">
+                <b>Спасибо за обращение!</b><br>
+                <small>В скором времени с вами свяжется наш менеджер</small>
+            </div>
+            <img src="img/thankyou.png">
+            <button type="button" class="close_button"></button>
+        </div>
     </div>
     <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../bower_components/lightbox2/dist/js/lightbox.min.js"></script>
+    <script src="../../bower_components/slick-carousel/slick/slick.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

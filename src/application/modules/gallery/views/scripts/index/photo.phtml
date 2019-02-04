@@ -1,0 +1,47 @@
+<?php
+$noImageCut = $this->baseUrl() . DIRECTORY_SEPARATOR . 'images/nophoto_cut.jpg';
+?>
+<h2>
+    <?php echo $this->title == '' ? $this->translate( 'photo' ) : $this->title; ?>
+</h2>
+
+
+<div id="images">
+    <a href="<?php echo $this->url( array( 'id' => $this->photo[ db_Photos::_ID ] ), 'gallery/photo', 'true' ); ?>"
+       class="image-block center">
+	<img alt="<?php $this->photo[ db_Photos::_TITLE ]; ?>"
+	     src="<?php
+	     echo (!empty( $this->photo[ db_Photos::_SRC ] ) && file_exists( $this->photo[ db_Photos::_SRC ] ) ) ?
+		     $this->baseUrl() . DIRECTORY_SEPARATOR . $this->photo[ db_Photos::_SRC ] : $noImageCut;
+	     ?>"/> 
+    </a>
+</div>
+
+<ul>
+    <li>
+	<?php if ($this->prev) : ?>
+	    <a href="<?php echo $this->url( array( 'id' => $this->prev[ db_Photos::_ID ] ), 'gallery/photo', 'true' ); ?>">
+		Назад
+	    </a>
+	<?php else : ?>
+	    <a href="#_noHref">
+		Назад дороги нет!
+	    </a>
+	<?php endif; ?>
+    </li>
+    <li>
+	<?php if ($this->next) : ?>
+	    <a href="<?php echo $this->url( array( 'id' => $this->next[ db_Photos::_ID ] ), 'gallery/photo', 'true' ); ?>">
+		Вперед
+	    </a>
+	<?php else : ?>
+	    <a href="#_noHref">
+		Вперед дороги нет!
+	    </a>
+	<?php endif; ?>
+    </li>
+</ul>
+
+<h3><?php echo $this->photo[ db_Photos::_TITLE ]; ?></h3>
+<br/>
+<div><?php echo $this->photo[ db_Photos::_DESC ]; ?></div>

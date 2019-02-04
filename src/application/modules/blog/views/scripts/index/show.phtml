@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="blog-posts single-post">
+                <article class="post post-large blog-single-post">
+                    <div class="post-date">
+                        <span class="day"><?php echo date('d', strtotime($this->item['date'])); ?></span>
+                        <span class="month"><?php echo $this->translate(date('M', strtotime($this->item['date']))); ?></span>
+                    </div>
+                    <div class="post-content">
+                        <h2><a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'alias' => $this->item['alias']], '/blog/show', true); ?>"><?php echo stripslashes($this->item['title']); ?></a></h2>
+                        <div class="img">
+                            <a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'alias' => $this->item['alias']], '/blog/show', true); ?>">
+                                <img style="max-width: 200px; max-height: 200px;" src="<?php echo $this->baseUrl() . '/' .$this->blogImage($this->item['image']);?>" class="img-responsive" alt="<?php echo $this->item['title']; ?>" />
+                            </a>
+                        </div>
+                        <?php echo stripslashes($this->item['shortDescription']); ?>
+                        <hr>
+                        <?php echo stripslashes($this->item['description']); ?>
+                        <div class="post-block post-share">
+                            <h3 class="heading-primary"><i class="fa fa-share"></i><?php echo $this->translate('blogPostShare');?></h3>
+                            <div class="addthis_toolbox addthis_default_style ">
+                                <!-- AddThis Button BEGIN -->
+                                <ul class="social-icons">
+                                    <li class="vk">
+                                        <a href="http://vk.com/share.php?url=<?php echo $this->getUrl(true); ?>&title=<?php echo stripslashes($this->item['title']); ?>&description=<?php echo stripslashes($this->item['shortDescription']); ?>&image=IMG_PATH&noparse=true" target="_blank" onclick="return Share.me(this);" id="vk" data-placement="bottom" data-tooltip title="Поделиться Вконтакте">
+                                            Поделиться Вконтакте
+                                        </a>
+                                    </li>
+                                    <li class="facebook">
+                                        <a href="http://www.facebook.com/sharer/sharer.php?s=100&p%5Btitle%5D=<?php echo stripslashes($this->item['title']); ?>&p%5Bsummary%5D=<?php echo stripslashes($this->item['shortDescription']); ?>&p%5Burl%5D=<?php echo $this->getUrl(true); ?>&p%5Bimages%5D%5B0%5D=IMG_PATH" target="_blank" onclick="return Share.me(this);" id="facebook" data-placement="bottom" data-tooltip title="Поделиться в Facebook">
+                                            Поделиться в Facebook
+                                        </a>
+                                    </li>
+                                    <li class="twitter">
+                                        <a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Ffiddle.jshell.net%2F_display%2F&text=<?php echo stripslashes($this->item['title']); ?>&url=<?php echo $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'alias' => $this->item['alias']], '/blog/show', true); ?>" target="_blank" onclick="return Share.me(this);" id="twitter" data-placement="bottom" data-tooltip title="Поделиться в Twitter">
+                                            Поделиться в Twitter
+                                        </a>
+                                    </li>
+                                    <li class="od">
+                                        <a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=<?php echo stripslashes($this->item['shortDescription']); ?>&st._surl=<?php echo $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'alias' => $this->item['alias']], '/blog/show', true); ?>" target="_blank" onclick="return Share.me(this);" id="od" data-placement="bottom" data-tooltip title="Поделиться в Одноклассниках">
+                                            Поделиться в Twitter
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- AddThis Button END -->
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#captcha-refresh').click(function() {
+                $.ajax({
+                    url: '<?php echo $this->baseUrl(); ?>/refresh-captcha',
+                    dataType:'json',
+                    success: function(data) {
+                        $('.captcha-row img').attr('src', data.src);
+                        $('#captcha-id').attr('value', data.id);
+                    }
+                });
+            });
+        });
+    </script>
+
+</div>

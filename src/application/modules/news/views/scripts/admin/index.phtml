@@ -1,0 +1,77 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('newsAdminPageTitle'); ?></h5>
+        <span><?php echo $this->translate('newsAdminPageTitleSpan'); ?></span>
+    </div>
+</div>
+<!-- /page header -->
+
+<h5 class="widget-name"></h5>
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6><?php echo $this->translate('newsAdminPageList'); ?></h6>
+            <div class="nav pull-right">
+                <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'add', 'module' => 'news'), 'default', 'true'); ?>"
+                   class="navbar-icon tip" data-original-title="<?php echo $this->translate('newsAdminAdd'); ?>">
+                    <i class="icon-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="small"><?php echo $this->translate('newsAdminId'); ?></th>
+                    <th><?php echo $this->translate('newsAdminImage'); ?></th>
+                    <th><?php echo $this->translate('newsAdminTitle'); ?></th>
+                    <th class="small"><?php echo $this->translate('newsAdminDate'); ?></th>
+                    <th class="actions-column"><?php echo $this->translate('newsAdminActions');?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->news as $page) : ?>
+                    <tr>
+                        <td>
+                            <?php echo $page['id']; ?>
+                        </td>
+                        <td>
+                            <img src="<?php echo $this->baseUrl() . '/' . $this->newsImage($page['image'])?>" width="120" height="120" alt="<?= $page['image']; ?>"/>
+                        </td>
+                        <td>
+                            <a href="<?php echo $this->url(array('action' => 'edit', 'controller' => 'admin', 'module' => 'news', 'id' => $page['id']), 'default', true); ?>" title="">
+                                <?php echo $page['title']; ?>
+                            </a>
+                        </td>
+                        <td>
+                            <?php echo $page['date']; ?>
+                        </td>
+                        <td>
+                            <ul class="table-controls">
+                                <li>
+                                    <a href="<?php echo $this->url(array('action' => 'edit', 'controller' => 'admin', 'module' => 'news', 'id' => $page['id']), 'default', true); ?>"
+                                       class="btn tip" title="" data-original-title="<?php echo $this->translate('newsAdminEdit'); ?>">
+                                        <i class="icon-pencil"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $this->url(array('action' => 'delete', 'controller' => 'admin', 'module' => 'news', 'id' => $page['id']), 'default', true); ?>"
+                                       class="btn tip" title="" data-original-title="<?php echo $this->translate('newsAdminRemove'); ?>"
+                                       onclick="<?php echo "return confirm('{$this->translate('confirmNewsDelete')}')"; ?>">
+                                        <i class="icon-trash"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin_pagination.phtml', array('pattern' => array('action' => 'index', 'controller' => 'admin', 'module' => 'news'))); ?>
+    </div>
+</div>
+<!-- /media datatable -->

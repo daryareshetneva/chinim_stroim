@@ -1,0 +1,20 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('mainSettings'); ?></h5>
+        <span></span>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Page form -->
+<div class="widget row-fluid">
+    <div class="well">
+        <?php if (!empty($this->error)): ?>
+            <div class="alert margin">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <?php echo $this->error; ?>
+            </div>
+        <?php endif; ?>
+        <?php echo $this->form; ?>
+    </div>
+</div>

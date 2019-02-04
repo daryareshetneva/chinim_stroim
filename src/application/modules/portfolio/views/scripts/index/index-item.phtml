@@ -1,0 +1,17 @@
+<div class="portfolio_item col-lg-4 col-md-6 col-12">
+    <div class="portfolio_photo">
+        <a href="<?php echo $this->url(['controller' => 'index', 'action' => 'portfolio-example', 'module'=> 'portfolio', 'portfolioId' => $this->currentPortfolio['id']], 'default', true);?>">
+            <img class="" src="<?php echo $this->baseUrl() . '/' . $this->mainImage[0]['image'];?>" alt="Квартира"/>
+        </a>
+    </div>
+    <div class="portfolio_title"><a href="<?php echo $this->url(['controller' => 'index', 'action' => 'portfolio-example', 'module'=> 'portfolio', 'portfolioId' => $this->currentPortfolio['id']], 'default', true);?>"><?php echo $this->currentPortfolio['title'];?></a></div>
+    <div class="portfolio_descr">
+        <p>
+            <?php echo $this->currentPortfolio['miniDescription'];?>
+        </p>
+    </div>
+    <div class="portfolio_data_price">
+        <span class="data"><i class="fas fa-calendar-alt"></i><?php echo date('d.m.Y', strtotime($this->currentPortfolio['date']));?></span>
+        <span class="price"><i class="fas fa-money-bill-wave"></i><?php echo $this->currentPortfolio['price'];?> Р</span>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('staticAdminShow');?></h5>
+    </div>
+</div>
+
+<h5 class="widget-name"><?php echo $this->translate('contactFeedbackMessage');?> № </b> <?php echo $this->message[0]['id'] ?></h5>
+<div class="widget row-fluid">
+    <div class="well feedback span8">
+        <p><b><?php echo $this->translate('contactFormName');?>:</b> <?php echo $this->message[0]['name'] ?></p>
+        <p><b>Телефон:</b> <?php echo $this->message[0]['phone'] ?></p>
+        <p><b><?php echo $this->translate('contactFormMessage');?>:</b></p>
+        <p><?php echo stripslashes($this->message[0]['message']); ?></p>
+        <p><b><?php echo $this->translate('contactDate');?>:</b> <?php echo date('d.m.Y H:i:s', strtotime($this->message[0]['date']));?></p>
+        <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'feedback-delete', 'module' => 'static', 'id' => $this->message[0]['id'])); ?>" class="tip btn btn-primary remove" title="<?php echo $this->translate('delete');?>" >Удалить</a>
+    </div>
+</div><script type="text/javascript">
+    $('a.remove').click(function () {
+        if (!confirm('<?php echo $this->translate("feedbackDelete"); ?>')) {
+            return false;
+        }
+    });
+</script>

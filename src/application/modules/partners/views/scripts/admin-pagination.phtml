@@ -1,0 +1,66 @@
+<?php
+    $urlParams = $this->pattern;
+?>
+<?php $translate = Zend_Registry::get('Root_Translate'); ?>
+<div class="datatable-footer">
+    <div class="dataTables_info" id="data-table_info">
+        <?php 
+            echo sprintf($translate->_('paginatorInfoAbstract'),
+                    $this->current == 1 ? ($this->totalItemCount == 0) ? '0' : '1' : ($this->current - 1) * $this->itemCountPerPage,
+                    ($this->current) * $this->itemCountPerPage > $this->totalItemCount ? $this->totalItemCount : ($this->current) * $this->itemCountPerPage,
+                    $this->totalItemCount ); 
+        ?>
+    </div>
+    <div class="dataTables_paginate paging_full_numbers" id="data-table_paginate">
+        <?php if (isset($this->previous)) : ?>
+            <?php $urlParams['page'] = $this->first; ?>
+            <a tabindex="0"  class="first paginate_button" id="data-table_first" href="<?php echo $this->url($urlParams, 'default', true);?>">
+                <?php echo $translate->_('paginatorInfoFirst'); ?>
+            </a>
+        <?php else : ?>
+            <a tabindex="0"  class="first paginate_button paginate_button_disabled" id="data-table_first" href="#">
+                <?php echo $translate->_('paginatorInfoFirst'); ?>
+            </a>
+        <?php endif; ?>
+        <?php if (isset($this->previous)) : ?>
+            <?php $urlParams['page'] = $this->previous; ?>
+            <a tabindex="0"  class="previous paginate_button" id="data-table_previous" href="<?php echo $this->url($urlParams, 'default', true);?>">
+                &lt;
+            </a>
+        <?php else : ?>
+            <a tabindex="0"  class="previous paginate_button paginate_button_disabled" id="data-table_previous" href="#">
+                &lt;
+            </a>
+        <?php endif; ?>
+        <span>
+            <?php foreach($this->pagesInRange as $page): ?>
+                <?php $urlParams['page'] = $page; ?>
+                <?php if($page != $this->current): ?>      
+                    <a tabindex="0"  class="paginate_button" href="<?php echo $this->url($urlParams, 'default', true);?>"><?php echo $page; ?></a>
+                <?php else : ?>
+                    <a tabindex="0"  class="paginate_active" href="<?php echo $this->url($urlParams, 'default', true);?>"><?php echo $page; ?></a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </span>
+        <?php if (isset($this->next)) : ?>
+                <?php $urlParams['page'] = $this->next; ?>
+            <a tabindex="0"  class="next paginate_button" id="data-table_next" href="<?php echo $this->url($urlParams, 'default', true);?>">
+                &gt;
+            </a>
+        <?php else : ?>
+            <a tabindex="0"  class="next paginate_button paginate_button_disabled" id="data-table_next" href="#">
+                &gt;
+            </a>
+        <?php endif; ?>
+        <?php if (isset($this->next)) : ?>
+            <?php $urlParams['page'] = $this->last; ?>
+            <a tabindex="0"  class="last paginate_button" id="data-table_last" href="<?php echo $this->url($urlParams, 'default', true);?>">
+                <?php echo $translate->_('paginatorInfoLast'); ?>
+            </a>
+        <?php else : ?>
+            <a tabindex="0"  class="last paginate_button paginate_button_disabled" id="data-table_last" href="#">
+                <?php echo $translate->_('paginatorInfoLast'); ?>
+            </a>
+        <?php endif; ?>
+    </div>
+</div>

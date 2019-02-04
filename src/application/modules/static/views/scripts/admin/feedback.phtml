@@ -1,0 +1,58 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('contactFormTitle'); ?></h5>
+        <span><?php echo $this->translate('contactFeedbackHint'); ?></span>
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6><?php echo $this->translate('contactFeedbackList'); ?></h6>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-striped table-bordered table-checks">
+            <thead>
+            <tr>
+                <th><?php echo $this->translate('contactDate'); ?></th>
+                <th><?php echo $this->translate('contactFormName'); ?></th>
+                <th>Телефон</th>
+                <th class="actions-column"><?php echo $this->translate('feature');?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->paginator as $item) : ?>
+                <tr>
+                    <td><?php echo date('d.m.Y H:i:s', strtotime($item['date']));?></td>
+                    <td>
+                        <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'feedback-show', 'module' => 'static', 'id' => $item['id'])); ?>" title=""><?php echo $item['name']; ?></a>
+                    </td>
+                    <td>
+                        <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'feedback-show', 'module' => 'static', 'id' => $item['id'])); ?>" title=""><?php echo $item['phone']; ?></a>
+                    </td>
+
+                    <td>
+                        <ul class="navbar-icons">
+                            <li><a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'feedback-show', 'module' => 'static', 'id' => $item['id'])); ?>" class="tip" title="<?php echo $this->translate('Просмотр');?>" ><i class="icon-desktop"></i></a></li>
+                            <li><a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'feedback-delete', 'module' => 'static', 'id' => $item['id'])); ?>" class="tip remove" title="<?php echo $this->translate('delete');?>" ><i class="icon-remove"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin-feedback-pagination.phtml', array('pattern' => array('action' => 'index', 'controller' => 'admin', 'module' => 'reviews'))); ?>
+    </div>
+</div>
+<!-- /media datatable -->
+<script type="text/javascript">
+    $('a.remove').click(function () {
+        if (!confirm('<?php echo $this->translate("feedbackDelete"); ?>')) {
+            return false;
+        }
+    });
+</script>

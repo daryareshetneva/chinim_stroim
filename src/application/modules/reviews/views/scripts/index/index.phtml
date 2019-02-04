@@ -1,0 +1,34 @@
+
+<div id="feedback_page">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'default'], 'default', true);?>">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Отзывы</li>
+            </ol>
+        </nav>
+        <div class="pages_title">Оставьте отзыв о нас</div>
+    </div>
+    <div id="give_feedback">
+        <div class="overlay">
+            <div class="container">
+                <div id="give_feedback_form" class="offset-lg-1 col-lg-10 offset-0 col-12">
+                    <form class="row">
+                        <div class="form-group col-lg-4 col-12">
+                            <input type="text" class="form-control" id="nameInput" aria-describedby="name" placeholder="Имя" required>
+                            <input type="tel" class="form-control" id="phoneInput" placeholder="Телефон" required>
+                            <button id="give_feedback_button" type="reset" class="main_button">Отправить</button>
+                        </div>
+                        <div class="form-group col-lg-8 order-lg-last col-12 order-first">
+                            <textarea id="feedbackInput"  class="form-control" rows="6" placeholder="Сообщение" required></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <?php echo $this->action('reviews-item', 'index', 'reviews');?>
+        <a id="show_more" href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'reviews', 'reviewsCount' => $this->reviewsCount + 9], 'default', true);?>" class="main_button">Показать ещё</a>
+    </div>
+</div>

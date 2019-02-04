@@ -1,27 +1,24 @@
-#portfolio {
-  margin-bottom: 35px;
-  .row a {
-    margin-bottom: 25px;
-    &:hover::after {
-      content: "\f002";
-      font-size: 32px;
-      color: @orange;
-      background-color: rgba(0,0,0,.5);
-      display: block;
-      position: absolute;
-      top: 0px;
-      width: 350px;
-      height: 290px;
-      padding-top: 130px;
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
-    }
-    & > img {
-      width: 100%;
-    }
+#portfolio_page {
+  & #portfolio_page_gallery {
+    margin-top: 35px;
+    margin-bottom: 60px;
   }
-  button {
-    padding: 7px 22px 7px 22px;
-    font-size: 18px;
+  & nav#portfolio_pagination {
+    margin-bottom: 55px;
+    display: flex;
+    justify-content: center;
+    & ul.pagination {
+      margin-bottom: 0;
+      & li a {
+        color: @orange;
+        border: 0;
+        &:hover {
+          background-color: #f7f7f7;
+        }
+      }
+      & li.active a {
+        background-color: #f7f7f7;
+      }
+    }
   }
 }

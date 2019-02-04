@@ -1,0 +1,21 @@
+<section id="services_home">
+    <div class="overlay">
+        <div class="container">
+            <div class="card-deck">
+                <?php foreach ($this->multiplator as $item) : ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <span class="card-title"><a href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'services', 'id' => $item['id']], 'default', true);?>"><?php echo $item['title'];?></a></span>
+                                <div class="card-image img-responsive"><img src="<?php echo $this->baseUrl() . '/' . $this->servicesImage($item['categoryPhoto']);?>"></div>
+                                <ul class="list-group">
+                                    <?php echo $this->action('services-home-item', 'index', 'services', ['currentCategory' => $item['alias']]);?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</section>

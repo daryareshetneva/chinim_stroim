@@ -1,0 +1,17 @@
+<div class="card-deck">
+    <?php foreach ($this->multiplator as $item) : ?>
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="feedback_card">
+                <div class="feedback_photo">
+                    <img src="<?php echo $this->baseUrl() . '/' . $this->reviewsImage($item['photo']);?>">
+                </div>
+                <div class="feedback_user"><?php echo $item['title']; ?></div>
+                <div class="message">
+                    <p>
+                        <?php echo $item['answer'];?>
+                    </p>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>

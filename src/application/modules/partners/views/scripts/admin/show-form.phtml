@@ -1,0 +1,21 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <?php if ('add' == $this->action) { ?>
+            <h5><?php echo $this->translate('addingPartnersPageTitle'); ?></h5>
+        <?php } else { ?>
+            <h5><?php echo $this->translate('editingPartnersPageTitle'); ?></h5>
+        <?php } ?>
+    </div>
+</div>
+
+<h5 class="widget-name"></h5>
+
+<div class="widget row-fluid">
+    <div class="well span16">
+        <div class="form-overflow">
+            <?php echo $this->form; ?>
+        </div>
+    </div>
+</div>
+

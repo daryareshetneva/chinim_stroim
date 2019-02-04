@@ -1,0 +1,17 @@
+<h2><?php echo $this->translate('editProfile'); ?></h2>
+<div class="row profile">
+    <?php echo $this->action('cabinet-menu', 'index', 'user');?>
+    <div class="col-md-9 order-content">
+        <div class="form_main col-md-4 col-sm-5 col-xs-7">
+            <?php echo $this->form; ?>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        var phoneInput = document.getElementById('phone');
+        var phoneMask = new Inputmask('+79999999999');
+        phoneMask.mask(phoneInput);
+    });
+</script>

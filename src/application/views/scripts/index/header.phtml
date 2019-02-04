@@ -1,0 +1,50 @@
+<header class="sticky-top">
+    <div id="info">
+        <div class="container">
+            <div id="logo" class="d-lg-block">
+                <img src="<?php echo $this->baseUrl(); ?>/img/header_logo.jpg" alt="Логотип Чиним Строим">
+            </div>
+            <div id="phone" class="d-lg-block d-md-none d-sm-none d-none">
+                <i class="fas fa-phone fa-flip-horizontal"></i><span><?php echo $this->data['phone'];?></span>
+            </div>
+            <div id="address" class="d-lg-block d-md-none d-sm-none d-none">
+                <i class="fas fa-map-marker-alt"></i><span><?php echo $this->data['address'];?></span>
+            </div>
+            <div class="d-lg-block d-md-none d-sm-none d-none">
+                <button type="button" id="callus" class="main_button" data-toggle="modal"
+                        data-target="#callus_modal">Заказать звонок</button>
+            </div>
+            <button id="toggle" class="navbar-toggler d-lg-none d-md-block d-sm-block d-block" data-toggle="collapse"
+                    data-target="#collapse_target" type="button">
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+    <nav id="header_navbar" class="navbar navbar-expand-lg">
+        <div class="collapse navbar-collapse container">
+            <ul class="navbar-nav justify-content-around" id="collapse_target">
+                <li id="index" class="nav-item <?php echo ($this->action == 'home' && $this->module == 'static') ? 'active' : '';?>">
+                    <a class="nav-link" href="<?php echo $this->url(array(), '/', true);?>">Главная</a>
+                </li>
+                <li id="services" class="nav-item <?php echo ($this->module == 'services') ? 'active' : '';?>">
+                    <a  class="nav-link" href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'services', 'id' => $this->defaultServicesCategory[0]['id']], 'default', true);?>">Услуги</a>
+                </li>
+                <li id="about" class="nav-item <?php echo ($this->alias == 'about' && $this->module == 'static') ? 'active' : '';?>">
+                    <a  class="nav-link" href="<?php echo $this->url(array('alias' => 'about'), '/static/index/index', true);?>">О Компании</a>
+                </li>
+                <li id="contacts" class="nav-item <?php echo ($this->alias == 'contacts' && $this->module == 'static') ? 'active' : '';?>">
+                    <a  class="nav-link" href="<?php echo $this->url(array('alias' => 'contacts'), '/static/index/index', true);?>">Контакты</a>
+                </li>
+                <li id="portfolio" class="nav-item <?php echo ($this->module == 'portfolio') ? 'active' : '';?>">
+                    <a class="nav-link" href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'portfolio', 'page' => 1], 'default', true);?>">Портфолио</a>
+                </li>
+                <li id="feedback" class="nav-item <?php echo ($this->module == 'reviews') ? 'active' : '';?>">
+                    <a class="nav-link" href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'reviews', 'reviewsCount' => 9], 'default', true);?>">Отзывы</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+

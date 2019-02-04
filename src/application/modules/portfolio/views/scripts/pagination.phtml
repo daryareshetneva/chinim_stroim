@@ -1,0 +1,68 @@
+ <?php
+ $prevPage = ($this->current != 1) ? ($this->current - 1) : 1;
+ $nextPage = ($this->current != count($this->pagesInRange)) ? ($this->current + 1) : count($this->pagesInRange);
+ ?>
+ <nav id="portfolio_pagination" class="">
+     <ul class="pagination">
+         <li class="page-item">
+             <a class="page-link" href="<?php echo $this->url(['action' => 'index', 'controller' => 'index', 'module' => 'portfolio', 'page' => $prevPage], 'default', true) ?>" aria-label="Previous">
+                 <i class="fas fa-arrow-left"></i>
+             </a>
+         </li>
+         <?php foreach ($this->pagesInRange as $page): ?>
+             <li class="page-item <?php echo ($page == $this->current) ? 'active' : '';?>">
+                 <a class="page-link" href="<?php echo $this->url(['action' => 'index', 'controller' => 'index', 'module' => 'portfolio', 'page' => $page], 'default', true); ?>">
+                     <?php echo $page;?>
+                 </a>
+             </li>
+         <?php endforeach;?>
+         <li class="page-item">
+             <a class="page-link" href="<?php echo $this->url(['action' => 'index', 'controller' => 'index', 'module' => 'portfolio', 'page' => $nextPage], 'default' , true); ?>" aria-label="Next">
+                 <i class="fas fa-arrow-right"></i>
+             </a>
+         </li>
+     </ul>
+ </nav>
+
+<!-- <ul class="pagination pagination-lg pull-right">-->
+<!--     <li>-->
+<!--         <a href="--><?php //echo $this->url(array('page' => $prevPage), $this->pattern, true); ?><!--">-->
+<!--             «-->
+<!--         </a>-->
+<!--     </li>-->
+<!--     --><?php //foreach ($this->pagesInRange as $page): ?>
+<!--         <li class="--><?php //echo ($page == $this->current) ? 'active' : '';?><!--">-->
+<!--             <a href="--><?php //echo $this->url(array('page' => $page), $this->pattern, true); ?><!--">-->
+<!--                 --><?php //echo $page;?>
+<!--             </a>-->
+<!--         </li>-->
+<!--     --><?php //endforeach;?>
+<!--     <li>-->
+<!--         <a href="--><?php //echo $this->url(array('page' => $nextPage), $this->pattern, true); ?><!--">-->
+<!--             »-->
+<!--         </a>-->
+<!--     </li>-->
+<!-- </ul>-->
+
+
+
+<!-- --><?php //if (isset($this->pattern)) : ?>
+<!--     <ul class="paginator">-->
+<!--         --><?php //foreach($this->pagesInRange as $page): ?>
+<!--             --><?php //if($page != $this->current): ?>
+<!--                 <li>-->
+<!--                     <a class="page-active" href="--><?php //echo $this->baseUrl() . '/' .  str_replace(':page', $page, $this->pattern); ?><!--">-->
+<!--                         --><?php //echo $page; ?>
+<!--                     </a>-->
+<!--                 </li>-->
+<!--             --><?php //else: ?>
+<!--                 <li>-->
+<!--                     <p class="page">-->
+<!--                         --><?php //echo $page; ?>
+<!--                     </p>-->
+<!--                 </li>-->
+<!--             --><?php //endif; ?>
+<!--         --><?php //endforeach; ?>
+<!--     </ul>-->
+<!-- --><?php //endif; ?>
+

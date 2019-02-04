@@ -1,0 +1,50 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate( 'showTrxPageTitle' ); ?></h5>
+        <span><?php echo $this->translate( 'showTrxPageTitleSpan' ); ?></span>
+    </div>
+</div>
+
+<h5 class="widget-name"></h5>
+
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6><?php echo $this->translate( 'showTrxNavbarTitle' ); ?></h6>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><?php echo $this->translate( 'id' ); ?></th>
+                    <th><?php echo $this->translate( 'type' ); ?></th>
+                    <th><?php echo $this->translate( 'status' ); ?></th>
+                    <th><?php echo $this->translate( 'user' ); ?></th>
+                    <th><?php echo $this->translate( 'amount' ); ?></th>
+                    <th><?php echo $this->translate( 'orderId' ); ?></th>
+                    <th><?php echo $this->translate( 'bankTs' ); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ( $this->paginator as $item ) : ?>
+                    <tr>
+                        <td><?php echo $item[ 'id' ]; ?></td>
+                        <td><?php echo isset( $item[ 'type' ] ) ? $this->translate( $item[ 'type' ] ) : ' - '; ?></td>
+                        <td><?php echo isset( $item[ 'type' ] ) ? $this->translate( $item[ 'status' ] ) : ' - '; ?></td>
+                        <td>
+                            <b><?php echo $this->translate( 'fio' ); ?></b>: <?php echo $item[ 'fio' ]; ?>
+                            <br>
+                            <b><?php echo $this->translate( 'email' ); ?></b>: <?php echo $item[ 'email' ]; ?>
+                        </td>
+                        <td><?php echo $item[ 'amount' ]; ?></td>
+                        <td><?php echo $item[ 'orderId' ]; ?></td>
+                        <td><?php echo isset( $item[ 'bankTs' ] ) ? $item[ 'bankTs' ] : $item[ 'ts' ]; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php echo $this->paginationControl( $this->paginator, 'Sliding', 'admin_index_pagination.phtml' ); ?>
+    </div>
+</div>

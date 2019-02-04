@@ -1,0 +1,76 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5>
+	  <?php echo sprintf($this->translate('servicesOfCategory'), $this->categoryTitle); ?>
+	</h5>
+        <span>
+	  <br />
+	  <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'index', 'module'=> 'services','parent' => $this->parentCategoryId), 'default', true);?>" class="btn btn-primary">
+	    <?php echo sprintf($this->translate('servicesBackCategory'), $this->categoryTitle);?>
+	  </a>
+	</span>
+    </div>
+</div>
+<!-- /page header -->
+
+<h5 class="widget-name"></h5>
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6><?php echo $this->translate('servicesList'); ?></h6>
+            <div class="nav pull-right">
+                <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'add-service', 'module' => 'services', 'category' => $this->categoryId), 'default', 'true'); ?>"
+                   class="navbar-icon tip" data-original-title="<?php echo $this->translate('servicesCategoryAdd'); ?>">
+                    <i class="icon-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+	      <th><?php echo $this->translate('servicesName'); ?></th>
+                <th><?php echo $this->translate('servicesAlias');?></th>
+                <th><?php echo $this->translate('servicesCategory');?></th>
+                <th class="actions-column-wide"><?php echo $this->translate('servicesAction');?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach($this->services as $service) : ?>
+                <tr>
+		  <td><?php echo $service['title'];?></td>
+                  <td><?php echo $service['alias'];?></td>
+                    
+                    <td>
+		      <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'index', 'module'=> 'services','parent' => $this->parentCategoryId), 'default', true);?>">
+			<?php echo $this->categoryTitle;?>
+		      </a>
+		    </td>
+                    <td>
+                        <ul class="table-controls">
+                            <li>
+                                <a href="<?php echo $this->url(array('action' => 'edit-service', 'controller' => 'admin', 'module' => 'services', 'id' => $service['id'], 'category' => $service['category_id']), 'default', true); ?>"
+                                   class="btn tip" title="" data-original-title="<?php echo $this->translate('servicesCategoryEdit'); ?>">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $this->url(array('action' => 'remove-service', 'controller' => 'admin', 'module' => 'services', 'id' => $service['id'], 'category' => $service['category_id']), 'default', true); ?>"
+                                   class="btn tip" title="" data-original-title="<?php echo $this->translate('servicesCategoryDelete'); ?>"
+                                   onclick="<?php echo "return confirm('{$this->translate('servicesCategoryDeleteConfirm')}')"; ?>">
+                                    <i class="icon-trash"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- /media datatable -->

@@ -1,0 +1,34 @@
+<div id="portfolio_example_page" class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<?php echo $this->url(array(), '/', true);?>">Главная</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'portfolio', 'page' => 1], 'default', true);?>">Портфолио</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><?php echo $this->portfolio['title'];?></li>
+        </ol>
+    </nav>
+    <div class="pages_title"><?php echo $this->portfolio['title'];?></div>
+    <div class="row">
+        <div class="content col-lg-6 col-md-6 col-12">
+            <div class="data"><i class="fas fa-calendar-alt"></i><?php echo date('d.m.Y', strtotime($this->portfolio['date']));?></div>
+            <div class="text">
+                <p>
+                    <?php echo $this->portfolio['description'];?>
+                </p>
+            </div>
+        </div>
+        <div class="image_content col-lg-6 col-md-6 order-md-last col-12 order-first">
+            <a href="<?php echo $this->baseUrl() . '/' . $this->images[0]['image'];?>" data-lightbox="main_image" data-title="Пример нашей работы">
+                <img class="img-responsive" src="<?php echo $this->baseUrl() . '/' . $this->images[0]['image'];?>">
+            </a>
+        </div>
+    </div>
+    <div class="" id="portfolio_slider">
+        <?php foreach ($this->images as $item) : ?>
+            <div class="slider_item">
+                <a class="" href="<?php echo $this->baseUrl() . '/' . $item['image'];?>" data-lightbox="services_slider_images" data-title="Пример нашей работы">
+                    <img class="" src="<?php echo $this->baseUrl() . '/' . $item['image'];?>" alt="Квартира"/>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

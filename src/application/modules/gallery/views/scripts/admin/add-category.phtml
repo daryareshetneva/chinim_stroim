@@ -1,0 +1,34 @@
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('addingCategoryTitle'); ?></h5> 
+        <span><?php echo $this->translate('addingCategoryTitleSpan'); ?></span>
+    </div>
+</div>
+
+<h5 class="widget-name"></h5>
+
+<div class="widget row-fluid">
+    <div class="well span10">
+        <div class="form-overflow">
+            <?php echo $this->form; ?>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        CKEDITOR.replace('description', {
+            toolbar: [
+               { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
+                { name: 'paragraph', items : [ 'NumberedList','BulletedList' ] },
+                { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+                { name: 'colors', items : [ 'TextColor','BGColor' ] },
+                { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+                    '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+                { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+            ],
+            width: '99%',
+            resize_enabled: false
+        });
+    }
+</script>

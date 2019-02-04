@@ -1,0 +1,67 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('socialNetworks'); ?></h5>
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar-inner">
+        <h6><?php echo $this->translate('socialNetworksList'); ?></h6>
+        <div class="nav pull-right">
+            <a href="<?php echo $this->url(array('controller' => 'social-networks', 'action' => 'add', 'module' => 'admin'), 'default', 'true'); ?>" class="navbar-icon tip" data-original-title="<?php echo $this->translate('add'); ?>">
+                <i class="icon-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-striped table-bordered table-checks">
+            <thead>
+            <tr>
+                <th>Иконка</th>
+                <th><?php echo $this->translate('socialNetworksTitle'); ?></th>
+                <th><?php echo $this->translate('socialNetworksUrl'); ?></th>
+                <th class="actions-column"><?php echo $this->translate('actions');?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->paginator as $item) : ?>
+                <tr>
+                    <td style="background: gray;">
+                        <a href="<?php echo $this->url(['module' => 'admin', 'controller' => 'social-networks', 'action' => 'edit', 'id' => $item['id'], 'page' => $this->page], 'default', true); ?>" title="">
+                            <img src="<?php echo $this->baseUrl() . '/images/common/' . $item['img']; ?>" alt="<?php echo $item['title']; ?>" height="50px" />
+                        </a>
+                    </td>
+                    <td>
+                        <a href="<?php echo $this->url(['module' => 'admin', 'controller' => 'social-networks', 'action' => 'edit', 'id' => $item['id'], 'page' => $this->page], 'default', true); ?>" title="">
+                            <?php echo $item['title']; ?>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="<?php echo $item['url']; ?>" target="_blank">
+                            <?php echo $item['url']; ?>
+                        </a>
+                    </td>
+                    <td>
+                        <ul class="navbar-icons">
+                            <li><a href="<?php echo $this->url(['module' => 'admin', 'controller' => 'social-networks', 'action' => 'edit', 'id' => $item['id'], 'page' => $this->page], 'default', true); ?>" class="tip" title="<?php echo $this->translate('edit');?>"><i class="icon-edit"></i></a></li>
+                            <li><a href="<?php echo $this->url(['module' => 'admin', 'controller' => 'social-networks', 'action' => 'delete', 'id' => $item['id'], 'page' => $this->page], 'default', true); ?>" class="tip remove" title="<?php echo $this->translate('remove');?>" ><i class="icon-remove"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin-pagination.phtml', array('pattern' => array('action' => 'index', 'controller' => 'social-networks', 'module' => 'admin'))); ?>
+    </div>
+</div>
+<!-- /media datatable -->
+<script type="text/javascript">
+    $('a.remove').click(function () {
+        if (!confirm('<?php echo $this->translate("socialNetworkDeleteConfirm"); ?>')) {
+            return false;
+        }
+    });
+</script>

@@ -1,0 +1,51 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('servicesAdding'); ?></h5>
+        <span></span>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Page form -->
+<div class="widget row-fluid">
+    <div class="well">
+        <form method="POST" action="" enctype="multipart/form-data" class="form-horizontal">
+            <?php echo $this->form->title; ?>
+            <?php echo $this->form->price; ?>
+            <?php echo $this->form->category_id; ?>
+            <?php echo $this->form->description; ?>
+            <?php echo $this->form->alias; ?>
+            <?php echo $this->form->meta_title; ?>
+            <?php echo $this->form->meta_description; ?>
+            <?php echo $this->form->serviceMainPhoto; ?>
+            <div class="control-group ">
+                <label class="control-label"><?php echo $this->translate('serviceImage') ?>:</label>
+                <div class="controls">
+                    <input type="file" id="unstyled-file" name="image[]">
+                </div>
+            </div>
+            <span id="images"></span>
+            <div class="control-group ">
+                <label class="control-label"><?php echo $this->translate('serviceImageAdd') ?>:</label>
+                <div class="controls">
+                    <i class="icon-plus clickable" id="addImage"></i>
+                </div>
+            </div>
+            <?php echo $this->form->submit; ?>
+        </form>
+    </div>
+</div>
+<!-- /Page form -->
+<script type="text/javascript">
+    CKEDITOR.replace('description');
+    var image = '<div class="control-group ">';
+    image += '<label class="control-label"><?php echo $this->translate("serviceImage") ?>:</label>';
+    image += '<div class="controls">';
+    image += '<input type="file" id="unstyled-file" name="image[]">';
+    image += '</div>';
+    image += '</div>';
+
+    $('#addImage').click(function () {
+        $('#images').append(image);
+    });
+</script>

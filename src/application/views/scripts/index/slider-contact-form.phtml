@@ -1,0 +1,63 @@
+<div class="slider-contact-form">
+    <div class="container">
+        <?php $translate = Zend_Registry::get('Root_Translate'); ?>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-7">
+                <div class="featured-boxes mt-none mb-none">
+                    <div class="featured-box featured-box-primary mt-xl">
+                        <div class="box-content">
+                            <h4 class="mb-none"><?php echo $translate->_('contactFormTitle');?></h4>
+                            <p><?php echo $translate->_('contactFormDesc');?></p>
+                            <form id="contactForm" action="php/contact-form.php" method="POST">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label><?php echo $translate->_('contactFormName');?> *</label>
+                                            <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><?php echo $translate->_('contactFormMail');?> *</label>
+                                            <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label><?php echo $translate->_('contactFormSubject');?></label>
+                                            <input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label><?php echo $translate->_('contactFormMessage');?> *</label>
+                                            <textarea maxlength="5000" data-msg-required="Please enter your message." rows="3" class="form-control" name="message" id="message" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="submit" value="<?php echo $translate->_('contactFormSendMessage');?>" class="btn btn-primary mb-xl" data-loading-text="Loading...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="alert alert-success hidden" id="contactSuccess">
+                                            <?php echo $translate->_('contactFormOk');?>
+                                        </div>
+
+                                        <div class="alert alert-danger hidden" id="contactError">
+                                            <?php echo $translate->_('contactFormError');?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

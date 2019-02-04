@@ -1,0 +1,95 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('servicesEditing'); ?></h5>
+        <span></span>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Page form -->
+<div class="widget row-fluid">
+    <div class="well">
+        <form method="POST" action="" enctype="multipart/form-data" class="form-horizontal">
+            <?php echo $this->form->title; ?>
+            <?php echo $this->form->price; ?>
+            <?php echo $this->form->category_id; ?>
+            <?php echo $this->form->description; ?>
+            <?php echo $this->form->alias; ?>
+            <?php echo $this->form->meta_title; ?>
+            <?php echo $this->form->meta_description; ?>
+            <?php echo $this->form->serviceMainPhoto; ?>
+            <div class="control-group ">
+                <label class="control-label"><?php echo $this->translate('serviceImage') ?>:</label>
+                <div class="controls">
+                    <input type="file" id="unstyled-file" name="image[]">
+                </div>
+            </div>
+            <span id="images"></span>
+            <div class="control-group ">
+                <label class="control-label"><?php echo $this->translate('serviceImageAdd') ?>:</label>
+                <div class="controls">
+                    <i class="icon-plus clickable" id="addImage"></i>
+                </div>
+            </div>
+            <div class="control-group">
+                <ul class="currentImages">
+                    <?php foreach ($this->images as $image) : ?>
+                        <li class="li<?php echo $image['id']; ?>">
+                            <img src="<?php echo $this->baseUrl() . '/' . $image['image']; ?>" class="pull-left">
+                            <i id="deleteImage" number="<?php echo $image['id']; ?>" class="deleteImage icon-minus clickable pull-right"></i>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <?php echo $this->form->submit; ?>
+        </form>
+    </div>
+</div>
+<!-- /Page form -->
+<script type="text/javascript">
+    CKEDITOR.replace('description');
+    var image = '<div class="control-group ">';
+    image += '<label class="control-label"><?php echo $this->translate("serviceImage") ?>:</label>';
+    image += '<div class="controls">';
+    image += '<input type="file" id="unstyled-file" name="image[]">';
+    image += '</div>';
+    image += '</div>';
+
+    $('#addImage').click(function () {
+        $('#images').append(image);
+    });
+
+    $('.deleteImage').click(function() {
+        var imageId = $(this).attr('number');
+        $.ajax({
+            url: '<?php echo $this->url(["controller" => "admin", "module" => "service", "action" => "delete-service-image"], "default", true); ?>',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                imageId: imageId
+            },
+            success: function (response) {
+                if (response.success == 'success') {
+                    var liBlock = '.li' + imageId;
+                    $(liBlock).remove();
+                } else {
+                    alert("Some error occure. Please contact Administrator");
+                }
+            },
+            error: function () {
+                alert("Some error occure. Check your connection");
+            }
+        });
+    });
+</script>
+<script>
+    var module_id = '<?php echo $this->module_id;?>';
+    var action_id = '<?php echo $this->action_id;?>';
+    var post_id = '<?php echo $this->item->id; ?>';
+
+    var getUrl = '<?php echo $this->url(array('controller' => 'uploader', 'action' => 'get-files'), 'default', true);?>';
+    var deleteUrl = '<?php echo $this->url(array('controller' => 'uploader', 'action' => 'delete-file'), 'default', true);?>';
+    var uploadUrl = '<?php echo $this->url(array('controller' => 'uploader', 'action' => 'upload-file'), 'default', true);?>';
+</script>
+<script src="<?php echo $this->baseUrl(); ?>/js/vue.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/js/uploader.js"></script>

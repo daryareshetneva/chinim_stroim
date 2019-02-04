@@ -1,0 +1,26 @@
+<div id="about_page" class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'default'], 'default', true);?>">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">О компании</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="content col-lg-7 col-md-6 col-12">
+            <div class="pages_title">О компании</div>
+            <p>Таким образом новая модель организационной деятельности способствует подготовки и реализации систем массового участия.
+                Таким образом реализация намеченных плановых заданий позволяет оценить значение новых предложений. Значимость этих
+                проблем настолько очевидна, что консультация с широким активом играет важную роль в формировании новых предложений.
+                Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм деятельности обеспечивает широкому
+                кругу (специалистов) участие в формировании новых предложений.</p>
+        </div>
+        <div class="offset-lg-1 col-lg-4 offset-md-0 col-md-6 d-lg-block d-md-block d-sm-none d-none">
+            <div class="image_content">
+                <img src="<?php echo $this->baseUrl(); ?>/img/skyscraper.png">
+            </div>
+        </div>
+    </div>
+    <?php echo $this->action('index', 'index', 'certificates');?>
+</div>
+
+

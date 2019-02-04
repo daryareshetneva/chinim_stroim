@@ -1,0 +1,9 @@
+<div class="" id="about_slider">
+    <?php foreach ($this->multiplator as $item) : ?>
+        <div class="slider_item">
+            <a class="" href="<?php echo $this->baseUrl() . '/images/certificates/' . ($item['image']);?>" data-lightbox="about_slider_images" data-title="<?php echo $item['title'];?>">
+                <img src="<?php echo $this->baseUrl() . '/images/certificates/' . ($item['image']);?>" alt="Сертификат"/>
+            </a>
+        </div>
+    <?php endforeach; ?>
+</div>

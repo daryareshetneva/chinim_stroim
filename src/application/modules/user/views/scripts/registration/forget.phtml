@@ -1,0 +1,27 @@
+<div class="row featured-boxes login">
+	<div class="col-sm-16">
+		<div class="featured-box featured-box-secundary default info-content">
+			<div class="box-content">
+				<h4><?php echo $this->translate('forget');?></h4>
+				<?php echo $this->form; ?>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#refresh').click(function() { 
+        $.ajax({ 
+            url: '<?php echo $this->baseUrl(); ?>/user/registration/refresh-captcha', 
+            dataType:'json', 
+            success: function(data) { 
+                $('.form-captcha-row img').attr('src', data.src); 
+                $('#captcha-id').attr('value', data.id); 
+            }
+        }); 
+    }); 
+});
+</script>

@@ -1,0 +1,12 @@
+<ul class="pagination pagination-lg pull-right">
+    <li><a href="<?php echo (isset($this->previous)) ? $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'page' => $this->previous], 'blogPages', true) : ''; ?>">«</a></li>
+    <?php foreach($this->pagesInRange as $page): ?>
+    <?php if($page != $this->current): ?>
+    <li><a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'page' => $page], 'blogPages', true); ?>"><?php echo $page; ?></a></li>
+    <?php else : ?>
+    <li class="active"><a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'page' => $page], 'blogPages', true); ?>"><?php echo $page; ?></a></li>
+    <?php endif; ?>
+    <?php endforeach; ?>
+    <li><a href="<?php echo (isset($this->next)) ? $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'page' => $this->next], 'blogPages', true) : ''; ?>">»</a></li>
+</ul>
+

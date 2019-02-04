@@ -1,0 +1,34 @@
+<?php
+$request = Zend_Controller_Front::getInstance()->getRequest();
+$action = $request->getActionName();
+?>
+<div class="col-md-3">
+    <div class="profile-sidebar">
+        <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+                <h4>
+                    <?php echo $this->user['firstName'].' '.$this->user['lastName'];?>
+                </h4>
+                <span><?php echo $this->user['email'];?></span>
+            </div>
+            <div class="profile-usertitle-job">
+            </div>
+        </div>
+        <div class="profile-usermenu">
+            <ul class="nav">
+                <li class="<?php echo $action == 'orders' || $action == 'view-order' ? 'active' : 0 ?>">
+                    <a href="<?php echo $this->url([], 'user/orders') ?>">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                        <span><?php echo $this->translate('viewOrders'); ?><span>
+                    </a>
+                </li>
+                <li class="<?php echo $action == 'edit-profile' ? 'active' : 0 ?>">
+                    <a href="<?php echo $this->url([], 'user/edit-profile') ?>">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span><?php echo $this->translate('editProfileTitle'); ?><span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

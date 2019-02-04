@@ -1,0 +1,60 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('partners'); ?></h5>
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <h6><?php echo $this->translate('partnersList'); ?></h6>
+        <div class="nav pull-right">
+          <a href="<?php echo $this->url(array('action' => 'add', 'controller' => 'admin', 'module' => 'partners'), 'default', true); ?>"
+            class="navbar-icon tip" data-original-title="<?php echo $this->translate('add'); ?>">
+            <i class="icon-plus"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-striped table-bordered table-checks">
+            <thead>
+                <tr>
+                    <th><?php echo $this->translate('partnerPhoto'); ?></th>
+                    <th><?php echo $this->translate('partnerTitle'); ?></th>
+                    <th class="actions-column">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->paginator as $item) : ?>
+                <tr>
+                    <td>
+                        <img src="<?php echo $this->baseUrl() . '/' . $this->partnersImage($item['photo']); ?>" />
+                    </td>
+                    <td>
+                        <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'edit', 'module' => 'partners', 'id' => $item['id'])); ?>" title=""><?php echo $item['title']; ?></a>
+                    </td>
+                    <td>
+                        <ul class="navbar-icons">
+                            <li><a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'edit', 'module' => 'partners', 'id' => $item['id'])); ?>" class="tip" title="<?php echo $this->translate('edit');?>"><i class="icon-edit"></i></a></li>
+                            <li><a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'delete', 'module' => 'partners', 'id' => $item['id'])); ?>" class="tip remove" title="<?php echo $this->translate('delete');?>" ><i class="icon-remove"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin-pagination.phtml', array('pattern' => array('action' => 'index', 'controller' => 'admin', 'module' => 'partners'))); ?>
+    </div>
+</div>
+<!-- /media datatable -->
+<script type="text/javascript">
+    $('a.remove').click(function () {
+        if (!confirm('<?php echo $this->translate("partnerDeleteConfirm"); ?>')) {
+            return false;
+        }
+    });
+</script>

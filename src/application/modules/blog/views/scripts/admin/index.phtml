@@ -1,0 +1,64 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('blogItems'); ?></h5>
+        <span><?php echo $this->translate('blogAdminItemsDescription'); ?></span>
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar-inner">
+      <h6><?php echo $this->translate('blogAdminList'); ?></h6>
+      <div class="nav pull-right">
+        <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'add', 'module' => 'blog'), 'default', 'true'); ?>" class="navbar-icon tip" data-original-title="<?php echo $this->translate('blogAdminAdd'); ?>">
+          <i class="icon-plus"></i>
+        </a>
+      </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-striped table-bordered table-checks">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th><?php echo $this->translate('blogImage'); ?></th>
+                    <th><?php echo $this->translate('blogTitle'); ?></th>
+                    <th class="actions-column"><?php echo $this->translate('blogActions');?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->paginator as $item) : ?>
+                    <tr>
+                        <td>
+                            <a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'admin', 'action' => 'edit', 'alias' => $item['alias']], 'default', true); ?>" title="">
+                                <?php echo $item['id']; ?>
+                            </a>
+                        </td>
+                        <td>
+                            <img style="max-height: 50px" src="<?php echo $this->baseUrl() . '/' . $this->blogImage($item['image'])?>" alt="<?php echo $item['image'];?>"/>
+                        </td>
+                        <td>
+                            <a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'admin', 'action' => 'edit', 'alias' => $item['alias']], 'default', true); ?>" title=""><?php echo $item['title']; ?></a>
+                        </td>
+                        <td>
+                            <ul class="navbar-icons">
+                                <li><a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'admin', 'action' => 'edit', 'alias' => $item['alias']], 'default', true); ?>" class="tip" title="<?php echo $this->translate('blogEdit');?>"><i class="icon-edit"></i></a></li>
+                                <li><a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'admin', 'action' => 'delete', 'alias' => $item['alias']], 'default', true); ?>" class="tip remove" title="<?php echo $this->translate('blogRemove');?>" ><i class="icon-remove"></i></a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+	<?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin-pagination.phtml', array('pattern' => array('action' => 'index', 'controller' => 'admin', 'module' => 'blog'))); ?>
+    </div>
+</div>
+<!-- /media datatable -->
+<script type="text/javascript">
+    $('a.remove').click(function () {
+        if (!confirm('<?php echo $this->translate("blogDeleteConfirm"); ?>')) {
+            return false;
+        }
+    });
+</script>

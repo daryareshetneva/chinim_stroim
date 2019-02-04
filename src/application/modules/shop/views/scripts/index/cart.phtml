@@ -1,0 +1,97 @@
+<div class="row static">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 header">
+        <h2>Корзина</h2>
+    </div>
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 main-content">
+        <div class="products-table-wrapper cart">
+            <?php if ($this->products) :?>
+                <?php foreach ($this->products as $product) :?>
+                    <?php
+                    $totalPrice = 0;
+                    $price = $product['price'];
+                    $newPrice = 0;
+
+                    if ($product['discount'] > 0) {
+                        $newPrice = $product['discount'];
+                        $totalPrice = $newPrice * $this->cart[$product['id']];
+                    } else {
+                        $totalPrice = $price * $this->cart[$product['id']];
+                    }
+                    ?>
+                    <div class="row product" id="item-<?php echo $product['id'];?>">
+                        <div class="image">
+                            <a href="<?php echo $this->url(['alias' => $product['alias']], '/shop/product');?>">
+                                <?php if (!empty($product['image'])) : ?>
+                                    <img src="<?php echo $this->baseUrl() . '/' . $this->productImage($product['image']);?>" alt="" />
+                                <?php endif;?>
+                            </a>
+                        </div>
+                        <div class="title">
+                            <a href="<?php echo $this->url(['alias' => $product['alias']], '/shop/product');?>"><?php echo $product['title']; ?></a>
+                        </div>
+                        <div class="price">
+                            <span id="product-cart-price-<?php echo $product['id'];?>" class="<?php echo ($newPrice > 0) ? 'crossed' : '' ;?>">
+                                <?php echo $price ?>
+                            </span>
+                            <span class="glyphicon glyphicon-rub <?php echo ($newPrice > 0) ? 'crossed' : '' ;?>"></span>
+                        </div>
+                        <div class="price-new">
+                            <?php if ($newPrice > 0) : ?>
+                                <span id="product-cart-price-discount-<?php echo $product['id'];?>"><?php echo $newPrice ?></span> <span class="glyphicon glyphicon-rub"></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="sale">
+
+                        </div>
+                        <div class="amount">
+                            <div class="product-amount-changer">
+                                <div class="minus cart-minus" data-id="<?php echo $product['id'];?>">-</div>
+                                <div class="amount" data-id="<?php echo $product['id'];?>">
+                                    <input type="text" value="<?php echo $this->cart[$product['id']]?>" name="product-amount" id="product-cart-amount-<?php echo $product['id'];?>" class="product-cart-amount" data-id="<?php echo $product['id'];?>" />
+                                </div>
+                                <div class="plus cart-plus" data-id="<?php echo $product['id'];?>">+</div>
+                            </div>
+                        </div>
+                        <div class="cancel">
+                            <span class="cancel remove-from-cart" data-id="<?php echo $product['id'];?>">Отменить</span>
+                        </div>
+                        <div class="total">
+                            <div>
+                                <div class="left">
+                                    <span id="product-total-<?php echo $product['id'];?>">
+                                        <?php echo $totalPrice; ?>
+                                    </span>
+                                    <span class="glyphicon glyphicon-rub"></span>
+                                </div>
+                                <div class="right">
+                                    Итого
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <div class="cart-total">
+                    <div class="left">
+                        <a href="<?php echo $this->url(['alias' => 'catalog'], 'shop/index');?>"><?php echo $this->translate('cartContinueShopping'); ?></a>
+                    </div>
+                    <div class="right">
+                        <span class="without-discount">
+                            Без скидки <span class="without-discount-total" id="without-discount-total"><?php echo $this->totals['priceWithoutDiscount'] ?></span><span class="glyphicon glyphicon-rub"></span>
+                        </span>
+                        <span class="total">
+                            <div class="total-sum">
+                                <span id="total-cart"><?php echo $this->totals['price'] ?></span> <span class="glyphicon glyphicon-rub"></span>
+                            </div>
+                            <div class="make-order">
+                                <a href="<?php echo $this->url([], 'cart/order');?>"><?php echo $this->translate('cartCheckout'); ?></a>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            <?php else: ?>
+                <h1><?php echo $this->translate('cartEmpty'); ?></h1>
+                <p><a href="<?php echo $this->url(['alias' => 'catalog'], 'shop/index');?>"><?php echo $this->translate('cartBackCatalog'); ?></a></p>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

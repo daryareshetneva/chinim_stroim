@@ -1,0 +1,36 @@
+<div id="services_example_page" class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="<?php echo $this->url(array(), '/', true);?>">Главная</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'services', 'id' => $this->defaultServicesCategory[0]['id']], 'default', true);?>">Услуги</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page"><?php echo $this->service['title'];?></li>
+        </ol>
+    </nav>
+    <div class="pages_title"><?php echo $this->service['title'];?></div>
+    <div class="row">
+        <div class="content col-lg-6 col-12">
+            <b>Описание услуги</b>
+            <p><?php echo $this->service['description'];?></p>
+        </div>
+        <div class="image_content order-lg-last col-lg-6 order-first col-12">
+            <img class="img-responsive" src="<?php echo $this->baseUrl() . '/' . $this->servicesImage($this->service['serviceMainPhoto']);?>">
+            <div class="price col-lg-12"><i class="fas fa-money-bill-wave"></i><?php echo $this->service['price'];?> Р</div>
+        </div>
+    </div>
+    <div class="" id="services_slider">
+        <?php foreach ($this->images as $item) : ?>
+            <div class="slider_item">
+                <a class="" href="<?php echo $this->baseUrl() . '/' . $item['image'];?>" data-lightbox="services_slider_images" data-title="Пример нашей работы">
+                    <img class="" src="<?php echo $this->baseUrl() . '/' . $item['image'];?>" alt="Квартира"/>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+<?php echo $this->action('call-us-pages', 'index', 'default');?>
+
+

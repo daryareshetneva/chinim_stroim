@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="blog-posts">
+                <?php if ($this->paginator->count() > 0) : ?>
+                <?php foreach ($this->paginator as $item) : ?>
+                    <article class="post post-large">
+                        <div class="post-date">
+                            <span class="day"><?php echo date('d', strtotime($item['date'])); ?></span>
+                            <span class="month"><?php echo $this->translate(date('M', strtotime($item['date']))); ?></span>
+                        </div>
+                        <div class="post-content">
+                            <h2><a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/blog/show', true); ?>"><?php echo stripslashes($item['title']); ?></a></h2>
+                            <div class="img">
+                                <a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/blog/show', true); ?>">
+                                    <img style="max-width: 200px; max-height: 200px;" src="<?php echo $this->baseUrl() . '/' .$this->blogImage($item['image']);?>" class="img-responsive" alt="<?php echo $item['title']; ?>" />
+                                </a>
+                            </div>
+                            <?php echo stripslashes($item['shortDescription']); ?>
+                            <div class="post-meta">
+                                   <a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/blog/show', true); ?>"
+                                   class="btn btn-xs btn-primary pull-right"><?php echo $this->translate('blogReadMore'); ?></a>
+                            </div>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="alert alert-info"><?php echo $this->translate('blogArticlesNotFound');?></div>
+                <?php endif; ?>
+                <?php if ($this->paginator->count() > 0) : ?>
+                <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml'); ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

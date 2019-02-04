@@ -1,0 +1,26 @@
+<article class="module width_full">
+    <header>
+        <h3><?php echo $this->translate('addTitle'); ?></h3>
+    </header>
+    <div class="module_content">
+        <?php echo $this->form; ?>
+    </div>
+</article>
+<script type="text/javascript">
+    window.onload = function () {
+        CKEDITOR.replace('faqAnswer', {
+            toolbar: [
+               { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
+                { name: 'paragraph', items : [ 'NumberedList','BulletedList' ] },
+                { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+                { name: 'colors', items : [ 'TextColor','BGColor' ] },
+                { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+                    '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+                { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+                { name: 'insert', items : [ 'Image','Table','Smiley'] },
+            ],
+            width: '99%',
+            resize_enabled: false
+        });
+    }
+</script>

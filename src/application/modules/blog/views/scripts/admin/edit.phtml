@@ -1,0 +1,25 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('blogEditPage'); ?></h5>
+        <span></span>    
+    </div>
+</div>
+<!-- /page header -->
+<!-- Page form -->
+<div class="widget row-fluid">
+    <div class="well">
+      <?php if (isset($this->error)): ?>
+	<button data-dismiss="alert" class="close" type="button">×</button>
+	<?php echo $this->error; ?>
+      </div>
+      <?php endif; ?>
+        <?php echo $this->form; ?>
+    </div>
+</div>
+<!-- /Page form -->
+<script type="text/javascript">
+    CKEDITOR.replace('shortDescription');
+    CKEDITOR.replace('description');
+    $("#diyDate").datepicker();
+</script>

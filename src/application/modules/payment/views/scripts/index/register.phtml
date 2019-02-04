@@ -1,0 +1,14 @@
+<?php echo "<?xml version='1.0' encoding='UTF-8'?>"; ?>
+<?php if (isset($this->resultDesc)) : ?>
+<register-payment-response>
+    <result>
+        <code>2</code>
+        <desc><?php echo $this->translate( $this->resultDesc ); ?></desc>
+    </result>
+</register-payment-response><?php else : ?>
+<register-payment-response>
+    <result>
+        <code>1</code>
+        <desc>OK</desc>
+    </result>
+</register-payment-response><?php endif; ?>

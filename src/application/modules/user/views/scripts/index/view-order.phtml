@@ -1,0 +1,86 @@
+<h2><?php echo $this->translate('editProfile'); ?></h2>
+<div class="row profile">
+    <?php echo $this->action('cabinet-menu', 'index', 'user');?>
+    <div class="col-md-9 order-content">
+        <div class="form_main col-md-4 col-sm-5 col-xs-7">
+            <h4 class="heading"><?php echo sprintf($this->translate('orderNumber'),$this->orders[0]['id'] ) ?><span></span></h4>
+            <div class="widget">
+                <div class='row-fluid'>
+                    <div class='span8'>
+                        <div class="navbar">
+                            <div class="navbar-inner">
+
+                                <h6><?php echo sprintf($this->translate('orderAmount'),$this->orders[0]['totalPrice'] ) ?>
+                                    <br>
+                                    <?php echo sprintf($this->translate('productsCount'),$this->orders[0]['totalCount'] ) ?>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped">
+                                <tbody>
+                                <tr>
+                                    <th><?php echo $this->translate('orderFio'); ?></th>
+                                    <td>
+                                        <b> <?php echo $this->orders[0]['name'] ?></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo $this->translate('orderPhone'); ?></th>
+                                    <td><b><?php echo $this->orders[0]['phone'] ?></b></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo $this->translate('orderEmail'); ?></th>
+                                    <td><b><?php echo $this->orders[0]['email'] ?></b></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo $this->translate('date'); ?></th>
+                                    <td><b><?php echo $this->orders[0]['date'] ?></b></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo $this->translate('orderComment'); ?></th>
+                                    <td><b><?php echo $this->orders[0]['comment'] = $this->orders[0]['comment'] ? : 'Комментария нет'; ?></b></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="well">
+                    <div class="form-overflow">
+                        <div class="table-overflow control-group">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th><?php echo $this->translate('orderName'); ?></th>
+                                    <th><?php echo $this->translate('orderPrice'); ?></th>
+                                    <th><?php echo $this->translate('orderCount'); ?></th>
+                                    <th><?php echo $this->translate('orderDiscount'); ?></th>
+                                    <th><?php echo $this->translate('orderTotalPrice'); ?></th>
+                                </tr>
+                                </thead>
+                                <tbody id="order_products">
+                                <?php foreach ($this->orders as $product) : ?>
+                                    <tr id="order_product_<?php echo $product['productId']; ?>">
+                                        <td><?php echo $product['productTitle']; ?></td>
+                                        <td><?php echo $product['price']; ?></td>
+                                        <td><?php echo $product['count']; ?></td>
+                                        <td><?php echo $product['discount']; ?></td>
+                                        <td><?php echo $product['discountPrice'].' ('.$product['discount'].'%)'; ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

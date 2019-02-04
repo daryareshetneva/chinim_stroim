@@ -1,0 +1,20 @@
+<div class="dotter"></div>
+<div>
+    <?php echo $this->translate( 'Logined' ) . $this->user['email'] ?>
+</div>
+<div>
+    <?php echo $this->translate( 'yourBalance' ) . ': ' . $this->user['balance'] . ' ' . $this->translate( 'currency' ) ?>
+</div>
+<?php if ( $this->user['hold'] > 0 ) : ?>
+    <div>
+        <?php echo $this->translate( 'yourHold' ) . ': ' . $this->user['hold'] . ' ' . $this->translate( 'currency' ) ?>
+    </div>
+<?php endif; ?>
+<?php if ($this->notPayedOrder != null) : ?>
+    <div>
+        <a href="<?php echo $this->url( array( 'action' => 'pay', 'controller' => 'basket', 'module' => 'shop' ), 'default', true ); ?>">
+            <?php echo $this->translate( 'notPayedOrder' ); ?>
+        </a>
+    </div>
+<?php endif; ?>
+<div class="dotter"></div>

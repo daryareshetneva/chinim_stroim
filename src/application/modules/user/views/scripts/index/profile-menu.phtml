@@ -1,0 +1,24 @@
+<div class="content-menu">
+	<ul class="clearme">
+		<li class="<?php echo $this->isProfile ? 'current ' : '' ?>clearme">
+			<a href="<?php echo $this->url( array( 'action' => 'index', 'controller' => 'index', 'module' => 'user' ), 'default', true ); ?>">
+				<?php echo $this->translate( 'myProfile' ); ?>
+			</a>
+		</li>
+		<li class="<?php echo $this->isOrders ? 'current ' : '' ?>clearme">
+			<a href="<?php echo $this->url( array( 'action' => 'index', 'controller' => 'orders', 'module' => 'shop' ), 'default', true ); ?>">
+				<?php echo $this->translate( 'myOrders' ); ?>
+			</a>
+		</li>
+		<li class="<?php echo $this->isGarage ? 'current ' : '' ?>clearme">
+			<a href="<?php echo $this->url( array( 'action' => 'widget', 'controller' => 'car', 'module' => 'user' ), 'default', true ); ?>">
+				<?php echo $this->translate( 'myGarage' ); ?>
+			</a>
+		</li>
+		<li class="<?php echo $this->isTrxs ? 'current ' : '' ?>clearme">
+			<a href="<?php echo $this->url( array( 'action' => 'trxs', 'controller' => 'index', 'module' => 'user' ), 'default', true ); ?>">
+				<?php echo $this->translate( 'myTrxs' ); ?>
+			</a>
+		</li>
+	</ul>
+</div>

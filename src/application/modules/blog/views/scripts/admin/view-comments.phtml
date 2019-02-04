@@ -1,0 +1,57 @@
+
+<!-- Page header -->
+<div class="page-header">
+  <div class="page-title">
+    <h5><a href="/cms/blog/admin"><?php echo $this->translate('blogItems') ?></a> - <a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'admin', 'action' => 'edit', 'alias' => $this->alias], 'default', true) ?>"><?php echo  $this->diy->title ?></a> - <?php echo $this->translate('blogCommentsList') ?></h5>
+  </div>
+</div>
+<!-- /page header -->
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+  <div class="navbar">
+  </div>
+  <div class="table-overflow">
+    <table class="table table-striped table-bordered table-checks">
+      <thead>
+        <tr>
+          <th><?php echo $this->translate('blogCommentDate'); ?></th>
+          <th><?php echo $this->translate('blogCommentUser'); ?></th>
+          <th><?php echo $this->translate('blogCommentStatus'); ?></th>
+          <th class="actions-column"><?php echo $this->translate('blogActions');?></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($this->comments as $comment) : ?>
+        <tr>
+          <td>
+            <?php echo date('d.m.Y', strtotime($comment['date'])); ?>
+          </td>
+          <td>
+            <a href="mailto:<?php echo $comment['email']; ?>" title=""><?php echo $comment['username']; ?></a>
+          </td>
+          <td>
+            <?php echo ($comment['status'] == 0) ? 'Скрытый' : 'Видимый'; ?>
+          </td>
+          <td>
+            <ul class="navbar-icons">
+              <li><a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'admin', 'action' => 'show-comment', 'alias' => $this->diy->alias, 'commentId' => $comment['id'] ], 'default', true); ?>" class="tip" title="<?php echo $this->translate('blogEdit');?>"><i class="icon-edit"></i></a></li>
+              <li><a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'admin', 'action' => 'delete-comment', 'alias' => $this->diy->alias, 'commentId' => $comment['id'] ], 'default', true); ?>" class="tip remove" title="<?php echo $this->translate('blogRemove');?>" ><i class="icon-remove"></i></a></li>
+            </ul>
+          </td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+      <?php
+      ?>
+    </table>
+  </div>
+</div>
+<!-- /media datatable -->
+<script type="text/javascript">
+    $('a.remove').click(function () { 
+   if (!confirm('<?php echo $this->translate("blogDeleteConfirm"); ?>')) {
+            return false;
+   }
+ });
+</script>

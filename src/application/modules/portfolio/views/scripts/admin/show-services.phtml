@@ -1,0 +1,105 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <?php
+            $urlTitleH5 = $this->url(array(
+                    'controller' => 'admin',
+                    'action' => 'index',
+                    'module' => 'portfolio'
+                ), 'default', true);
+            $urlTitleSpan = $this->url(array(
+                    'controller' => 'admin',
+                    'action' => 'add-portfolio',
+                    'module' => 'portfolio',
+                    'id' => $this->portfolioCatalog->id
+                ), 'default', true);
+        ?>
+        <h5><?php echo $this->translate('portfolio') . " \"<a href='" . $urlTitleH5 . "'>" . $this->portfolioCatalog->title . "</a>\""; ?></h5>
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6><?php echo $this->translate('portfolioList'); ?></h6>
+            <div class="nav pull-right">
+                <a href="<?php echo $urlTitleSpan; ?>"
+                   class="navbar-icon tip" data-original-title="<?php echo $this->translate('add'); ?>">
+                    <i class="icon-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-striped table-bordered table-checks">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th><?php echo $this->translate('portfolioTitle'); ?></th>
+                    <th><?php echo $this->translate('portfolioCommentAmount'); ?></th>
+                    <th class="actions-column"><?php echo $this->translate('portfolioActions');?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $urlArray = array(
+                        'controller' => 'admin',
+                        'action' => 'edit-portfolio',
+                        'module' => 'portfolio'
+                    );
+                    $urlArrayEditPortfolio = $urlArray;
+                    $urlArrayDeletePortfolio = $urlArrayEditPortfolio;
+                    $urlArrayDeletePortfolio['action'] = 'delete-portfolio';
+                    $urlArrayShowComments = $urlArray;
+                    $urlArrayShowComments['action'] = 'view-comments';
+                    $i = 1;
+                ?>
+                <?php foreach ($this->paginator as $item) : ?>
+                    <?php
+                        $urlArrayEditPortfolio['portfolioId'] = $item['id'];
+                        $urlArrayDeletePortfolio['portfolioId'] = $item['id'];
+                        $urlEditPortfolio = $this->url($urlArrayEditPortfolio, 'default', false);
+                        $urlDeletePortfolio = $this->url($urlArrayDeletePortfolio, 'default', false);
+
+                        $urlArrayShowComments['portfolioId'] = $item['id'];
+                        $urlComments = $this->url($urlArrayShowComments, 'default', false);
+                    ?>
+                    <tr>
+                        <td>
+                            <a href="<?php echo $urlEditPortfolio; ?>" title="">
+                                <?php echo $i++; ?>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="<?php echo $urlEditPortfolio; ?>" title=""><?php echo $item['title']; ?></a>
+                        </td>
+                        <td>
+                            <a href="<?php echo $urlComments ?>" title="<?php echo $this->translate('showComments'); ?>">
+                                  <?php echo $item['comments']; ?>
+                            </a>
+                        </td>
+                        <td>
+                            <ul class="navbar-icons">
+                                <li><a href="<?php echo $urlEditPortfolio; ?>" class="tip" title="<?php echo $this->translate('edit'); ?>"><i class="icon-edit"></i></a></li>
+                                <li><a href="<?php echo $urlDeletePortfolio; ?>" class="tip remove" title="<?php echo $this->translate('remove'); ?>" ><i class="icon-remove"></i></a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin-pagination.phtml', ['pattern' => [
+            'action' => 'show-services', 'controller' => 'admin', 'module' => 'portfolio', 'id' => $this->portfolioCatalog->id
+        ]]); ?>
+    </div>
+</div>
+<!-- /media datatable -->
+<script type="text/javascript">
+    $('a.remove').click(function () {
+        if (!confirm('<?php echo $this->translate("portfolioDeleteConfirm"); ?>')) {
+            return false;
+        }
+    });
+</script>

@@ -1,0 +1,26 @@
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-menu-nav" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<?php echo $this->url(array(), '/static/index/home');?>">
+                <img src="<?php echo $this->baseUrl();?>/img/small_logo.png" class="img-responsive" />
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="top-menu-nav">
+            <ul class="nav navbar-nav ">
+                <li class="<?php echo ($this->module == 'hotelrooms') ? 'active' : '';?>"><a href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'hotelrooms'], '/apartments', true);?>">номера</a></li>
+                <li class="<?php echo ($this->module == 'services') ? 'active' : '';?>"><a href="<?php echo $this->url([], '/services', true);?>">услуги</a></li>
+                <li class="<?php echo ($this->alias == 'contacts' && $this->module == 'static') ? 'active' : '';?>"><a href="<?php echo $this->url(array('alias' => 'contacts'), '/static/index/index');?>">контакты</a></li>
+                <li class="<?php echo ($this->alias == 'about' && $this->module == 'static') ? 'active' : '';?>"><a href="<?php echo $this->url(array('alias' => 'about'), '/static/index/index');?>">о нас </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+

@@ -1,0 +1,70 @@
+<div class="row">
+    <?php foreach ($this->rooms as $room) { ?>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="room_item big">
+                <div class="image">
+                    <a href="<?php echo $this->url(['controller' => 'index', 'action' => 'show', 'module'=> 'hotelrooms', 'alias' => $room['alias']], 'default', true);?>">
+                        <img src="<?php echo $this->baseUrl() .'/' . $this->hotelRoomImage($room['photo']); ?>" class="img-responsive" />
+                        <span>
+                            <div class="person">
+                                <img src="<?php echo $this->baseUrl();?>/img/person.png" /> <?php echo $room['personAmount']; ?>
+                            </div>
+                            <div class="description">
+                                <?php echo $room['shortDescription']; ?>
+                            </div>
+                            <div class="devider">
+                                <img src="<?php echo $this->baseUrl();?>/img/image_hover_devider.png" />
+                            </div>
+                            <ul class="room-services">
+                                <?php if ($room['bed']) : ?>
+                                    <li class="bed">Двухместная кровать</li>
+                                <?php endif;?>
+                                <?php if ($room['shower']) : ?>
+                                    <li class="shower">Душ</li>
+                                <?php endif;?>
+                                <?php if ($room['wifi']) : ?>
+                                    <li class="wifi">Wi-Fi</li>
+                                <?php endif;?>
+                                <?php if ($room['jacuzzi']) : ?>
+                                    <li class="jacusi">Джакузи</li>
+                                <?php endif;?>
+                                <?php if ($room['fridge']) : ?>
+                                    <li class="fridge">Холодильник</li>
+                                <?php endif;?>
+                                <?php if ($room['fireplace']) : ?>
+                                    <li class="fireplace">Камин</li>
+                                <?php endif;?>
+                            </ul>
+                        </span>
+
+                    </a>
+                </div>
+                <div class="title">
+                    <a href="<?php echo $this->url(['controller' => 'index', 'action' => 'show', 'module'=> 'hotelrooms', 'alias' => $room['alias']], 'default', true);?>">
+                        <?php echo $room['title']; ?>
+                    </a>
+                </div>
+                <div class="price">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-xs-6">
+                            цена за сутки
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-xs-6">
+                            <?php echo $room['pricePerDay']; ?> <span>руб</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-xs-6">
+                            цена за сутки
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-xs-6">
+                            <?php echo $room['pricePerHour']; ?> <span>руб</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</div>

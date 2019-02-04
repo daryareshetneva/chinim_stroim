@@ -1,0 +1,12 @@
+<ul class="pagination pagination-lg pull-right">
+    <li><a href="<?php echo (isset($this->previous)) ? $this->url(['page' => $this->previous], $this->pattern['route'], true) : ''; ?>">«</a></li>
+    <?php foreach($this->pagesInRange as $page): ?>
+        <?php if($page != $this->current): ?>
+            <li><a href="<?php echo $this->url(['page' => $page], $this->pattern['route'], true); ?>"><?php echo $page; ?></a></li>
+        <?php else : ?>
+            <li class="active"><a href="<?php echo $this->url(['page' => $page], $this->pattern['route'], true); ?>"><?php echo $page; ?></a></li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <li><a href="<?php echo (isset($this->next)) ? $this->url(['page' => $this->next], $this->pattern['route'], true) : ''; ?>">»</a></li>
+</ul>
+

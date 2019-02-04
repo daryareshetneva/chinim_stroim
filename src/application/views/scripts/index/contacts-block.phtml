@@ -1,0 +1,50 @@
+<section class="index-contacts-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Контакты</h1>
+                <div class="header_decorator">
+                    <img src="<?php echo $this->baseUrl();?>/img/header_decorator.png" class="img-responsive" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 ">
+                <p>
+                    Вас встретит профессиональный водитель на комфортабельном автомобиле.<br />
+                    Это наиболее простой способ добраться<br />
+                    до нашей гостиницы
+                </p>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <ul class="index-contacts-content-list">
+                            <li>
+                                <span class="circle">
+                                    <span class="address"></span>
+                                </span>
+                                <?php echo $this->contacts['address']?>
+                            </li>
+                            <li>
+                                <span class="circle">
+                                    <span class="phone"></span>
+                                </span>
+                                <?php echo $this->contacts['phone']?>
+                            </li>
+                            <li>
+                                <span class="circle">
+                                    <span class="email"></span>
+                                </span>
+                                <a href="mailto:hi@<?php echo $this->contacts['email']?>"><?php echo $this->contacts['email']?></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="index-contacts-content-btn btn">
+                            заказать трансфер
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

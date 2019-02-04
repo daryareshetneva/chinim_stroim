@@ -1,0 +1,70 @@
+<div class="container">
+
+    <div class="portfolio-title">
+        <div class="row">
+            <div class="portfolio-nav-all col-md-1">
+                <a href="<?php echo $this->url(['module' => 'portfolio', 'controller' => 'index', 'action' => 'index'], '/portfolio', true);?>" data-tooltip data-original-title="<?php echo $this->translate('back'); ?>"><i class="fa fa-th"></i></a>
+            </div>
+            <div class="col-md-10 center">
+                <h2 class="shorter"><?php echo $this->item['title']; ?></h2>
+            </div>
+        </div>
+    </div>
+
+    <hr class="tall">
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="owl-carousel" data-plugin-options='{"items": 1}'>
+                <?php foreach ($this->item['images'] as $image) : ?>
+                <div>
+                    <div class="thumbnail">
+                        <img alt="" class="img-responsive" src="<?php echo $this->baseUrl() . DIRECTORY_SEPARATOR . $image['image']; ?>">
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+
+        </div>
+
+        <div class="col-md-8">
+            <h4><?php echo $this->translate('portfolioDescription');?></h4>
+            <?php echo stripslashes($this->item['description']); ?>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="post-block post-comments clearfix">
+            <h3><i class="fa fa-comments"></i>Comments (<?php echo count($this->comments); ?>)</h3>
+
+            <ul class="comments">
+                <?php foreach ($this->comments as $comment) : ?>
+                    <li>
+                        <div class="comment">
+                            <div class="comment-block">
+                                <div class="comment-arrow"></div>
+															<span class="comment-by">
+																<strong><?php echo $comment['username']; ?></strong>
+															</span>
+
+                                <p><?php echo $comment['comment']; ?></p>
+                                <span class="date pull-right"><?php echo $comment['date']; ?></span>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+
+        </div>
+
+        <div class="post-block post-leave-comment">
+            <h3><?php echo $this->translate('portfolioWriteComment'); ?></h3>
+
+            <?php echo $this->form; ?>
+        </div>
+
+    </div>
+
+</div>

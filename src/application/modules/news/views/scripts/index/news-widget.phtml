@@ -1,0 +1,28 @@
+<div class="news-block">
+    <h3>Важное</h3>
+
+    <?php foreach ($this->items as $item) { ?>
+    <div class="news">
+        <div class="title">
+            <a href="<?php echo $this->url(['module' => 'news', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/news/show', true); ?>"><?php echo $item['title']; ?></a>
+        </div>
+        <div class="content">
+            <div class="img">
+                <a href="<?php echo $this->url(['module' => 'news', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/news/show', true); ?>">
+                    <img src="<?php echo $this->baseUrl() . '/' .$this->newsImage($item['image']);?>" class="img-responsive" alt="<?php echo $item['title']; ?>" />
+                </a>
+                <div class="news-date">
+                    <?php echo date('d.m.Y', strtotime($item['date'])); ?>
+                </div>
+            </div>
+            <div class="desc hidden-xs hidden-sm">
+                <?php echo stripslashes($item['description']); ?>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+
+    <div class="btn-news">
+        <a href="<?php echo $this->url(array('action' => 'index', 'controller' => 'index', 'page' => 1), '/news/index/index');?>" class="btn btn-default">Все новости</a>
+    </div>
+</div>

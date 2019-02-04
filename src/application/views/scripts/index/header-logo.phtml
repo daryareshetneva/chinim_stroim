@@ -1,0 +1,6 @@
+<a href="<?php echo $this->baseUrl();?>">
+	<?php $imageProportions = $this->logoProportions($this->commonImage($this->logo));?>
+
+	<img alt="<?php echo $this->translate('logoTitle');?>"  width="<?php echo $imageProportions['width'];?>" height="<?php echo $imageProportions['height'];?>" data-sticky-width="<?php echo $imageProportions['smallWidth'];?>" data-sticky-height="<?php echo $imageProportions['smallHeight'];?>" data-sticky-top="33" src="<?php echo $this->baseUrl() . DIRECTORY_SEPARATOR . $this->commonImage($this->logo); ?>">
+
+</a>

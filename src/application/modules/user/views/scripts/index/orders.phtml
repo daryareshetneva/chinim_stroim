@@ -1,0 +1,43 @@
+<h2><?php echo $this->translate('ordersTitle'); ?></h2>
+<div class="profile">
+    <?php echo $this->action('cabinet-menu', 'index', 'user');?>
+    <div class="col-md-9 order-content">
+        <div class="form_main col-md-4 col-sm-5 col-xs-7">
+            <h4 class="heading"><?php echo $this->translate('myOrders'); ?></h4>
+                <div class="widget">
+                    <div class="table-overflow">
+                        <table class="table table-striped table-bordered table-checks">
+                            <thead>
+                            <tr>
+                                <th><?php echo $this->translate('date'); ?></th>
+                                <th><?php echo $this->translate('orderStatus'); ?></th>
+                                <th class="text-right"><?php echo $this->translate('orderFeature'); ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($this->paginator as $item) : ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $item['date']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->status[$item['status']]; ?>
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="<?php echo $this->url(['id' =>  $item['id']], 'user/view-order') ?>" class="btn btn-info btn-sm">
+                                            <span class="glyphicon glyphicon-list-alt"></span> <?php echo $this->translate('viewOrder'); ?>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<?php if ($this->paginator->count() > 0) : ?>
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-orders.phtml', array('pattern' => ['route' => 'user/orders'])); ?>
+<?php endif; ?>

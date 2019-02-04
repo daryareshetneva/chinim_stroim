@@ -1,0 +1,36 @@
+<div class="row static">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 header">
+        <h2>Оформление заказа</h2>
+    </div>
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 main-content">
+        <br /><br />
+        <?php if(!empty($this->totals)) :?>
+        <div class="cabinet-form registration">
+            <form method="post" action="" enctype="multipart/form-data">
+                <div class="left">
+                    <?php echo $this->form->firstName; ?>
+                    <?php echo $this->form->lastName; ?>
+                    <?php echo $this->form->patronymic; ?>
+                    <?php echo $this->form->phone; ?>
+                    <?php echo $this->form->email; ?>
+                    <?php echo $this->form->comment; ?>
+                </div>
+                <div class="right">
+                    <?php echo $this->form->userType; ?>
+                    <?php echo $this->form->delivery; ?>
+
+                    <div class="row requisites">
+                        <label>Загрузите реквизиты</label>
+                        <input type="file" name="requisites" />
+                    </div>
+
+                    <?php echo $this->form->submit; ?>
+                </div>
+            </form>
+        </div>
+        <?php else :?>
+            <p><a href="<?php echo $this->url(['alias' => 'catalog'], 'shop/index');?>"><?php echo $this->translate('cartBackCatalog'); ?></a></p>
+        <?php endif;?>
+        <br /><br />
+    </div>
+</div>

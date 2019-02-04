@@ -1,0 +1,30 @@
+<?php if (count($this->items) > 0) { ?>
+    <div class="partners">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2>Клиенты и партнеры</h2>
+                </div>
+            </div>
+            <div class="row partners-slider">
+                <?php foreach ($this->items as $item) { ?>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <div class="partner">
+                            <div class="wrapper">
+                                <?php if (!empty($item['url'])) { ?>
+                                    <a href="<?php echo $item['url']; ?>" target="_blank">
+                                        <img src="<?php echo $this->baseUrl() . '/' . $this->partnersImage($item['photo']); ?>" alt="<?php echo $item['title'];?>" class="img-responsive" />
+                                    </a>
+                                <?php } else { ?>
+                                    <div>
+                                        <img src="<?php echo $this->baseUrl() . '/' . $this->partnersImage($item['photo']); ?>" alt="<?php echo $item['title'];?>" class="img-responsive" />
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+<?php } ?>

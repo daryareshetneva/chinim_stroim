@@ -1,0 +1,30 @@
+<section class="full-width-slider-with-form">
+    <div id="full-width-slider">
+        <?php foreach ($this->images as $key => $image) : ?>
+            <div class="full-width-slider-item">
+                <a href="<?php echo $image['url']; ?>">
+                    <img src="<?php echo $this->baseUrl() . DIRECTORY_SEPARATOR . $this->sliderImage($image['image']);?>" class="img-responsive" />
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <div class="slider-form">
+        <div class="slider_form_header">
+            Оставьте заявку, и мы<br />
+            подберем вам лучший номер
+        </div>
+        <form method="post" id="slider-main-form">
+            <div class="elem">
+                <input type="text" name="fio" placeholder="ФИО" id="slider-form-fio" required />
+                <span class="slider-fio-error"></span>
+            </div>
+            <div class="elem">
+                <input type="text" name="phone" placeholder="Телефон" id="slider-form-phone" required />
+                <span class="slider-phone-error"></span>
+            </div>
+            <div class="elem">
+                <button type="submit" class="btn btn-form">Отправить</button>
+            </div>
+        </form>
+    </div>
+</section>

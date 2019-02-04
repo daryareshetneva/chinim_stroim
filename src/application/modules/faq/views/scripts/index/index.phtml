@@ -1,0 +1,29 @@
+<div class="blog-posts">
+    <a href="<?php echo $this->url(['module'=>'faq', 'controller' => 'index', 'action' => 'add'], 'faqAdd', true);?>"
+       class="btn btn-primary pull-right"><?php echo $this->translate('faqIndexAdd');?></a>
+  <?php foreach ($this->faqs as $faq) : ?>
+  <article class="post post-large">
+    <div class="post-content">     
+      <h4>
+	<?php echo $faq['question']; ?>
+      </h4> 
+      <?php if($faq['answer']): ?>
+      <ul class="comments">
+	<li>
+	  <div class="comment">	    
+	    <div class="comment-block">
+	      <div class="comment-arrow"></div>
+	      <p><?php echo $faq['answer']; ?></p>
+	      <span class="date pull-right"><?php echo date('d.m.Y', strtotime($faq['answerDate']));?></span>
+	    </div>
+	  </div>
+	</li>
+      </ul>      
+      <?php endif; ?>
+    </div>
+  </article>
+  <?php endforeach;?>
+</div>
+ 
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml', array('pattern' => 'faq')); ?>
+

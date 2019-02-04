@@ -1,0 +1,82 @@
+
+.clearme:after {
+	content: ".";
+	display: block;
+	visibility: hidden;
+	clear: both;
+	height: 0;
+	font-size: 0.1em;
+	line-height: 0;
+}
+.control-group.error > .controls > .cke {
+	border: 1px solid #d79999;
+}
+.widget .table a.image-block.center {
+	display: block;
+	position: relative;
+	width: 80px;
+	height: 80px;
+}
+.widget .table a.image-block.center > img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	max-width: 80px;
+	max-height: 80px;
+}
+.table th.smallActions {
+	width: 130px;
+}
+.table th.smallNumber {
+	width: 20px;
+}
+.table th.smallImage {
+	width: 80px;
+}
+.nav.pull-left > .navbar-icon {
+	border-right: 1px solid #E2E2E2;
+}
+.float-left {
+	float: left;
+}
+.float-right {
+	float: right;
+}
+.controls input[type="file"] {
+	
+}
+form.form-horizontal > #images {
+	display: block;
+}
+form.form-horizontal > #images > .control-group {
+	border-top: none;
+}
+#uniform-parentId {
+	width: 99%;
+	max-width: 100% !important;
+}
+select#parentId > option{
+	padding: 5px;
+	font-size: 120%;
+}
+.clickable {
+    cursor: pointer;
+}
+.feedback{
+	padding: 25px;
+}
+form.form-horizontal > fieldset > img {
+	margin-left: 20.6%;
+	margin-bottom: 20px;
+	max-width: 300px;
+	max-height: 150px;
+}
+.analytics textarea{
+	min-height: 380px;
+}
+img.product-image {
+	max-height: 100px;
+}

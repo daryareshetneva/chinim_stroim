@@ -1,0 +1,40 @@
+<div class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="<?php echo $this->url(array(), '/static/index/home');?>">Главная</a>
+        </li>
+        <li class="breadcrumb-separator">
+            >
+        </li>
+        <li>
+            Новости
+        </li>
+    </ul>
+</div>
+<div class="news-block">
+    <h1>
+        Новости
+    </h1>
+    <?php foreach ($this->paginator as $item) : ?>
+        <div class="news">
+            <div class="title">
+                <a href="<?php echo $this->url(['module' => 'news', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/news/show', true); ?>"><?php echo $item['title']; ?></a>
+            </div>
+            <div class="content">
+                <div class="img">
+                    <a href="<?php echo $this->url(['module' => 'news', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/news/show', true); ?>">
+                        <img src="<?php echo $this->baseUrl() . '/' .$this->newsImage($item['image']);?>" class="img-responsive" alt="<?php echo $item['title']; ?>" />
+                    </a>
+                    <div class="news-date">
+                        <?php echo date('d.m.Y', strtotime($item['date'])); ?>
+                    </div>
+                </div>
+                <div class="desc">
+                    <?php echo stripslashes($item['description']); ?>
+                </div>
+            </div>
+        </div>
+    <?php endforeach;?>
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml'); ?>
+</div>
+

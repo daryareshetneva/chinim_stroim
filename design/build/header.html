@@ -1,36 +1,37 @@
 <header class="sticky-top">
     <div id="info">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-2 logo">
-                    <img src="img/header_logo.jpg" alt="Логотип Чиним Строим">
-                </div>
-                <div class="col-lg-6">
-                    <div id="phone">
-                        <i class="fas fa-phone fa-flip-horizontal"></i><span>+7 983 333 33 33</span>
-                    </div>
-                    <div id="address">
-                        <i class="fas fa-map-marker-alt"></i><span>г. Томск, ул. Дизайнеров, д. 10</span>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <button id="callus" class="main_button">Заказать звонок</button>
-                </div>
-                <button id="toggle" class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <div id="logo" class="d-lg-block">
+                <img src="img/header_logo.jpg" alt="Логотип Чиним Строим">
             </div>
+            <div id="phone" class="d-lg-block d-md-none d-sm-none d-none">
+                <i class="fas fa-phone fa-flip-horizontal"></i><span>+7 983 333 33 33</span>
+            </div>
+            <div id="address" class="d-lg-block d-md-none d-sm-none d-none">
+                <i class="fas fa-map-marker-alt"></i><span>г. Томск, ул. Дизайнеров, д. 10</span>
+            </div>
+            <div class="d-lg-block d-md-none d-sm-none d-none">
+                <button type="button" id="callus" class="main_button" data-toggle="modal"
+                        data-target="#callus_modal">Заказать звонок</button>
+            </div>
+            <button id="toggle" class="navbar-toggler d-lg-none d-md-block d-sm-block d-block" data-toggle="collapse"
+                    data-target="#collapse_target" type="button">
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </div>
-    <nav class="navbar navbar-expand-md">
-        <ul class="navbar-nav collapse navbar-collapse container" id="collapse_target">
-            <li class="nav-item"><a class=" active" href="#">Главная</a></li>
-            <li class="nav-item"><a class="" href="#">Услуги</a></li>
-            <li class="nav-item"><a class="" href="#">О Компании</a></li>
-            <li class="nav-item"><a class="" href="#">Контакты</a></li>
-            <li class="nav-item"><a class="" href="#">Портфолио</a></li>
-            <li class="nav-item"><a class="" href="#">Отзывы</a></li>
-        </ul>
+    <nav id="header_navbar" class="navbar navbar-expand-lg">
+        <div class="collapse navbar-collapse container">
+            <ul class="navbar-nav justify-content-around" id="collapse_target">
+                <li id="index" class="nav-item active"><a class="nav-link" href="index.html">Главная</a></li>
+                <li id="services" class="nav-item"><a  class="nav-link" href="services.html">Услуги</a></li>
+                <li id="about" class="nav-item"><a  class="nav-link" href="about.html">О Компании</a></li>
+                <li id="contacts" class="nav-item"><a  class="nav-link" href="contacts.html">Контакты</a></li>
+                <li id="portfolio" class="nav-item"><a class="nav-link" href="portfolio.html">Портфолио</a></li>
+                <li id="feedback" class="nav-item"><a class="nav-link" href="feedback.html">Отзывы</a></li>
+            </ul>
+        </div>
     </nav>
-
 </header>

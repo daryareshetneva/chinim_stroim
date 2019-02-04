@@ -1,0 +1,20 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('servicesCategoryEditing'); ?></h5>
+        <span></span>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Page form -->
+<div class="widget row-fluid">
+    <div class="well">
+        <?php echo $this->form; ?>
+    </div>
+</div>
+<!-- /Page form -->
+<script type="text/javascript">
+    window.onload = function () {
+        CKEDITOR.replace('description', $.cfg.ckeditorConfig );
+    }
+</script>

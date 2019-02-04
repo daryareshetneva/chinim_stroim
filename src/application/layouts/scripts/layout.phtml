@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <?php echo $this->headTitle(); ?>
+    <?php echo $this->headMeta(); ?>
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Импорт шрифтов -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&subset=cyrillic,cyrillic-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&subset=cyrillic,cyrillic-ext" rel="stylesheet">
+    <!-- Подключение стилей Bootstrap -->
+    <link href="<?php echo $this->baseUrl(); ?>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $this->baseUrl(); ?>/css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="<?php echo $this->baseUrl(); ?>/css/bootstrap-reboot.min.css" rel="stylesheet">
+    <!-- Подключение стилей Slick -->
+<!--    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>-->
+
+    <link href="<?php echo $this->baseUrl(); ?>/css/slick.css" rel="stylesheet">
+    <link href="<?php echo $this->baseUrl(); ?>/css/slick-theme.css" rel="stylesheet">
+    <!-- Подключение стилей Ligthbox -->
+    <link href="<?php echo $this->baseUrl(); ?>/css/lightbox.min.css" rel="stylesheet">
+    <!-- Подключение стилей Fontawesome -->
+    <link href="<?php echo $this->baseUrl(); ?>/css/all.min.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/css/main.css">
+</head>
+<body>
+<!-- Это переменные, в которых хранится информация о текущих action, module, controller, и alias
+     alias это то, что используется при нестандартном пути -->
+<?php
+$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+$alias = Zend_Controller_Front::getInstance()->getRequest()->getParam('alias');
+?>
+<!--Подключение шапки сайта-->
+<?php echo $this->action('header', 'index', 'default', ['action' => $action, 'controller' => $controller, 'module' => $module, 'alias' => $alias]);?>
+<!--Вывод ошибок-->
+<?php
+if ($messages = $this->layout()->errorMessages) {  echo $messages; }
+if ($messages = $this->layout()->messages) { echo $messages; }
+?>
+<!--Подключение контента страницы -->
+<?php echo $this->layout()->content; ?>
+<!--Подключение футера сайта -->
+<?php echo $this->action('footer', 'index', 'default', ['action' => $action, 'controller' => $controller, 'module' => $module, 'alias' => $alias]);?>
+<!--Подключение модального окна "Заказать звонок" и окна "Спасибо за заявку"-->
+<?php echo $this->action('call-us-modal', 'index', 'default');?>
+<!--Этот скрипт хранит в себе пути к обработчикам ajax-запросов-->
+<script type="text/javascript">
+    var config = {
+        hotelroom: {
+            request: '<?php echo $this->url(['action' => 'ajax-request', 'controller' => 'index', 'module' => 'hotelrooms'], 'default', true);?>',
+            successUrl: '<?php echo $this->url(['action' => 'success-request', 'controller' => 'index', 'module' => 'hotelrooms'], 'default', true);?>',
+            changeCategoryUrl: '<?php echo $this->url(['action' => 'categories-ajax', 'controller' => 'index', 'module' => 'hotelrooms'], 'default', true);?>',
+        },
+        callUs: {
+            request: '<?php echo $this->url(['action' => 'feedback', 'controller' => 'index', 'module' => 'default'], 'default', true);?>',
+            successUrl: '<?php echo $this->url(['action' => 'feedback-success', 'controller' => 'index', 'module' => 'default'], 'default', true);?>'
+        }
+    };
+</script>
+
+<script src="<?php echo $this->baseUrl(); ?>/js/jquery.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!--<script src="--><?php //echo $this->baseUrl(); ?><!--/js/slick.js"></script>-->
+<script src="<?php echo $this->baseUrl(); ?>/js/lightbox.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('reply'); ?></h5>
+        <span><?php echo ''; ?></span>
+    </div>
+</div>
+
+<h5 class="widget-name"></h5>
+
+<div class="widget row-fluid">
+    <div class="well span8 invoice">
+        <div class=" invoice-head">
+            <?php echo $this->translate('faqFio') . ': ' . $this->faq->fio; ?> <br />
+            <?php echo $this->translate('faqEmail') . ': ' . $this->faq->email; ?> <br />
+            <?php echo sprintf($this->translate('replyTitle'), $this->faq['question']); ?>
+        </div>
+        <div class="form-overflow">
+            <?php echo $this->form; ?>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        CKEDITOR.replace('faqsAnswer', $.cfg.ckeditorConfig);
+    }
+</script>

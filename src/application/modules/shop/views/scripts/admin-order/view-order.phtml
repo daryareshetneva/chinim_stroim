@@ -1,0 +1,107 @@
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('adminOrder') ?> №<?php echo $this->orders[0]['id'] ?></h5>
+        <span></span>
+    </div>
+</div>
+<h5 class="widget-name"></h5>
+
+<div class="widget">
+    <div class='row-fluid'>
+        <div class='span8'>
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <h6>Заказ на сумму: <?php echo $this->orders[0]['totalPrice'] ?> руб.
+                        <br>
+                        Товаров: <?php echo $this->orders[0]['totalCount'] ?>
+                    </h6>
+                </div>
+            </div>
+            <div class="table-overflow">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th><?php echo $this->translate('orderFio'); ?></th>
+                        <td><b>
+                                <?php if($this->orders[0]['userId'] > 0) :?>
+                                    <a href="<?php echo $this->url(array('action' => 'edit-user', 'controller' => 'admin', 'module' => 'user', 'id' => $this->orders[0]['userId'], 'page' => 1), 'default', true); ?>"><?php echo $this->orders[0]['name']; ?></a>
+                                    <br>
+                                <?php else :?>
+                                    <?php echo $this->orders[0]['name'] ?>
+                                <?php endif; ?>
+                            </b></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $this->translate('orderPhone'); ?></th>
+                        <td><b><?php echo $this->orders[0]['phone'] ?></b></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $this->translate('orderEmail'); ?></th>
+                        <td><b><?php echo $this->orders[0]['email'] ?></b></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $this->translate('adminOrderDate'); ?></th>
+                        <td><b><?php echo $this->orders[0]['date'] ?></b></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $this->translate('orderComment'); ?></th>
+                        <td><b><?php echo $this->orders[0]['comment'] = $this->orders[0]['comment'] ? : 'Комментария нет'; ?></b></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class='span4'>
+            <div class="widget">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <h6><?php echo $this->translate('orderStatus'); ?></h6>
+                    </div>
+                </div>
+                <div class="well">
+                    <div class="form-overflow">
+                        <?php echo $this->form; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6><?php echo $this->translate('orderProducts'); ?> (<?php echo $this->orders[0]['totalCount'] ?> шт.)</h6>
+        </div>
+    </div>
+    <div class="well">
+        <div class="form-overflow">
+            <div class="table-overflow control-group">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><?php echo $this->translate('orderProductId'); ?></th>
+                        <th><?php echo $this->translate('orderProductTitle'); ?></th>
+                        <th><?php echo $this->translate('orderProductCount'); ?></th>
+                        <th><?php echo $this->translate('orderProductPrice'); ?></th>
+                        <th><?php echo $this->translate('orderProductDiscountPrice'); ?></th>
+                    </tr>
+                    </thead>
+                    <tbody id="order_products">
+                    <?php foreach ($this->orders as $product) : ?>
+                        <tr id="order_product_<?php echo $product['productId']; ?>">
+                            <td><?php echo $product['productId']; ?></td>
+                            <td>
+                                <?php echo $product['productTitle']; ?>
+                            </td>
+                            <td><?php echo $product['count']; ?></td>
+                            <td><?php echo $product['price']; ?></td>
+                            <td><?php echo $product['discountPrice'].' ('.$product['discount'].'%)'; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

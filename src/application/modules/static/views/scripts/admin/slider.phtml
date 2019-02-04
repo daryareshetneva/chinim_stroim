@@ -1,0 +1,101 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('slider'); ?></h5>
+        <span></span>
+    </div>
+</div>
+<!-- /page header -->
+
+<h5 class="widget-name"></h5>
+
+<!-- Media datatable Last Orders -->
+<div class="widget">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h6><?php echo $this->translate('sliderImages'); ?></h6>
+            <div class="nav pull-right">
+                <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'slider-image-add', 'module' => 'static'), 'default', 'true'); ?>"
+                   class="navbar-icon tip" data-original-title="<?php echo $this->translate('sliderAdd'); ?>">
+                    <i class="icon-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="small"><?php echo $this->translate('sliderPosition');?></th>
+                <th><?php echo $this->translate('sliderImage');?></th>
+                <th>Заголовок</th>
+                <th class="actions-column-long text-right" style="width: 100px">
+                    <?php echo $this->translate('feature');?>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->paginator as $item) : ?>
+                <tr>
+                    <td>
+                        <select name="position" data-id="<?php echo $item['id'];?>" class="slider small">
+                            <?php for ($i = 1; $i <= $this->maxPosition; $i++) :?>
+                                <option value="<?php echo $i;?>" <?php echo ($i == $item['position']) ? 'selected="selected"' : '';?>><?php echo $i;?></option>
+                            <?php endfor;?>
+                        </select>
+                    </td>
+                    <td>
+                        <img src="<?php echo $this->baseUrl() . DIRECTORY_SEPARATOR . $this->sliderImage($item['image']);?>" width="100" />
+                    </td>
+                    <td>
+                        <p><?php echo $item['title'];?></p>
+                    </td>
+                    <td>
+                        <ul class="table-controls">
+                            <li>
+                                <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'slider-image-edit', 'module' => 'static', 'id' => $item['id'], 'page' => $this->page), 'default', true);?>"
+                                   class="btn tip" title="" data-original-title="<?php echo $this->translate('edit'); ?>">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'slider-image-delete', 'module' => 'static', 'id' => $item['id']), 'default', true);?>"
+                                   class="btn tip" title="" data-original-title="<?php echo $this->translate('delete'); ?>">
+                                    <i class="icon-trash"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin_pagination.phtml', array('pattern' => array('action' => 'slider', 'controller' => 'admin', 'module' => 'static'))); ?>
+    </div>
+</div>
+<!-- /media datatable -->
+<script>
+    $('.slider').change(function() {
+        var id = $(this).data('id');
+        var val = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo $this->url(['module' => 'static', 'controller' => 'admin', 'action' => 'slider-image-change-position'], 'default', true);?>',
+            data: {
+                id: id,
+                position: val
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (typeof data.error !== 'undefined') {
+                    alert('Произошла ошибка. Свяжитесь с администратором');
+                } else {
+                    window.location.href = '<?php echo $this->url(['module' => 'static', 'controller' => 'admin', 'action' => 'slider'], 'default', true);?>';
+                }
+            },
+            error: function() {
+
+            }
+        })
+    });
+</script>

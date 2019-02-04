@@ -7,25 +7,19 @@
   font-size: 20px;
   height: 110px;
   padding-top: 16px;
-  & .row div {
-    padding-right: 5px;
-    padding-left: 5px;
-  }
-  & #phone {
-    margin-right: 10px;
-    display: inline-block;
-    & i {
-      padding: 4px 4px 6px 4px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  & .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & #phone i {
+      padding: 4px 4px 5px 4px;
       border: 1px solid #ffc702;
       color: #ffc702;
-      height: 30px;
       margin-right: 8px;
       font-size: 16px;
     }
-  }
-  & #address {
-    display: inline-block;
-    & i {
+    & #address i {
       padding: 3px 4px 2px 4px;
       border: 1px solid #ffc702;
       color: #ffc702;
@@ -33,61 +27,84 @@
       height: 28px;
       margin-right: 8px;
     }
-  }
-  & #callus {
-    .main_button;
-    padding: 15px 35px 15px 35px;
-  }
-  & #toggle {
-    display: none;
+    & #callus {
+      .main_button;
+      padding: 15px 35px 15px 35px;
+    }
+    & #toggle {
+      background-color: @orange;
+      & span {
+        background-color: @white;
+        width: 30px;
+        height: 3px;
+        display: block;
+        margin: 6px auto;
+      }
+    }
   }
 }
-
 /* Стили меню */
-nav {
-  padding-top: 13px;
+nav#header_navbar {
   background-color: @darkgrey_header;
   font-size: 15px;
   text-transform: capitalize;
-  height: 50px;
+  height: auto;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+  @media (min-width: 992px) {
+    & ul {
+      width: 100%;
+      & li:first-child {
+        margin-left: 16.6777777%;
+      }
+      & li:last-child {
+        margin-right: 16.6777777%;
+      }
+      & li {
+        & a {
+          padding-bottom: 4px;
+          color: @white !important;
+        }
+        &:hover a, &.active a {
+          color: @orange !important;
+          border-bottom: 2px solid @orange;
+          position: relative;
+          cursor: pointer;
+          text-decoration: none !important;
+          &::before {
+            content: "";
+            background-color: @darkgrey_header;
+            width: 12px;
+            height: 11px;
+            position: absolute;
+            bottom: -2px;
+            left: -12px;
+            border-bottom: 2px solid @orange;
+            border-left: 2px solid @orange;
+          }
+          &::after {
+            content: "";
+            background-color: @darkgrey_header;
+            width: 12px;
+            height: 11px;
+            position: absolute;
+            bottom: -2px;
+            right: -12px;
+            border-bottom: 2px solid @orange;
+            border-right: 2px solid @orange;
+          }
+        }
+      }
+    }
+  }
   & ul {
-    & li:first-child {
-      margin-left: 16.6777777%;
-    }
-    & li:last-child {
-      margin-right: 16.6777777%;
-    }
-    & li a {
-      padding-bottom: 8px;
-      color: @white !important;
-      &:hover, &.active {
+    width: 100%;
+    & li {
+      & a {
+        padding-bottom: 4px;
+        color: @white !important;
+      }
+      &:hover a, &.active a {
         color: @orange !important;
-        border-bottom: 2px solid @orange;
-        position: relative;
-        cursor: pointer;
-        text-decoration: none !important;
-        &::before {
-          content: "";
-          background-color: @darkgrey_header;
-          width: 12px;
-          height: 11px;
-          position: absolute;
-          bottom: -2px;
-          left: -12px;
-          border-bottom: 2px solid @orange;
-          border-left: 2px solid @orange;
-        }
-        &::after {
-          content: "";
-          background-color: @darkgrey_header;
-          width: 12px;
-          height: 11px;
-          position: absolute;
-          bottom: -2px;
-          right: -12px;
-          border-bottom: 2px solid @orange;
-          border-right: 2px solid @orange;
-        }
       }
     }
   }

@@ -1,0 +1,60 @@
+<?php
+$url = $this->url(array('action' => 'feedback', 'controller' => 'admin', 'module' => 'static'), 'default', true);
+?>
+<div class="datatable-footer">
+    <div class="dataTables_info" id="data-table_info">
+        <?php
+        echo sprintf($this->translate('paginatorInfoAbstract'),
+            $this->current == 1 ? ($this->totalItemCount == 0) ? '0' : '1' : ($this->current - 1) * $this->itemCountPerPage,
+            ($this->current) * $this->itemCountPerPage > $this->totalItemCount ? $this->totalItemCount : ($this->current) * $this->itemCountPerPage,
+            $this->totalItemCount );
+        ?>
+    </div>
+    <div class="dataTables_paginate paging_full_numbers" id="data-table_paginate">
+        <?php if (isset($this->previous)) : ?>
+            <a tabindex="0"  class="first paginate_button" id="data-table_first" href="<?php echo $url . '/page/' . $this->first; ?>">
+                <?php echo $this->translate('paginatorInfoFirst'); ?>
+            </a>
+        <?php else : ?>
+            <a tabindex="0"  class="first paginate_button paginate_button_disabled" id="data-table_first" href="#">
+                <?php echo $this->translate('paginatorInfoFirst'); ?>
+            </a>
+        <?php endif; ?>
+        <?php if (isset($this->previous)) : ?>
+            <a tabindex="0"  class="previous paginate_button" id="data-table_previous" href="<?php echo $url . '/page/' . $this->previous; ?>">
+                &lt;
+            </a>
+        <?php else : ?>
+            <a tabindex="0"  class="previous paginate_button paginate_button_disabled" id="data-table_previous" href="#">
+                &lt;
+            </a>
+        <?php endif; ?>
+        <span>
+            <?php foreach($this->pagesInRange as $page): ?>
+                <?php if($page != $this->current): ?>
+                    <a tabindex="0"  class="paginate_button" href="<?php echo $url . '/page/' . $page; ?>"><?php echo $page; ?></a>
+                <?php else : ?>
+                    <a tabindex="0"  class="paginate_active" href="<?php echo $url . '/page/' . $page; ?>"><?php echo $page; ?></a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </span>
+        <?php if (isset($this->next)) : ?>
+            <a tabindex="0"  class="next paginate_button" id="data-table_next" href="<?php echo $url . '/page/' . $this->next; ?>">
+                &gt;
+            </a>
+        <?php else : ?>
+            <a tabindex="0"  class="next paginate_button paginate_button_disabled" id="data-table_next" href="#">
+                &gt;
+            </a>
+        <?php endif; ?>
+        <?php if (isset($this->next)) : ?>
+            <a tabindex="0"  class="last paginate_button" id="data-table_last" href="<?php echo $url . '/page/' . $this->last; ?>">
+                <?php echo $this->translate('paginatorInfoLast'); ?>
+            </a>
+        <?php else : ?>
+            <a tabindex="0"  class="last paginate_button paginate_button_disabled" id="data-table_last" href="#">
+                <?php echo $this->translate('paginatorInfoLast'); ?>
+            </a>
+        <?php endif; ?>
+    </div>
+</div>

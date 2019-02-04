@@ -1,0 +1,145 @@
+<section class="room-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1><?php echo $this->room->title;?></h1>
+                <div class="header_decorator">
+                    <img src="<?php echo $this->baseUrl();?>/img/header_decorator.png" class="img-responsive" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <ul id="room-page-vertical-slider">
+                    <li data-thumb="<?php echo $this->baseUrl() .'/' . $this->hotelRoomImage($this->room['photo']); ?>">
+                        <img src="<?php echo $this->baseUrl() .'/' . $this->hotelRoomImage($this->room['photo']); ?>" class="img-responsive" />
+                    </li>
+                    <?php foreach ($this->photos as $photo) { ?>
+                        <li data-thumb="<?php echo $this->baseUrl() .'/' . $this->hotelRoomImage($photo['photo']); ?>">
+                            <img src="<?php echo $this->baseUrl() .'/' . $this->hotelRoomImage($photo['photo']); ?>" class="img-responsive" />
+                        </li>
+                    <?php } ?>
+                </ul>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="room-page-item">
+                    <div class="title">
+                        <?php echo $this->category->title;?>
+                    </div>
+                    <div class="description">
+                        <?php echo $this->room->description;?>
+                    </div>
+                    <div class="price">
+                        <label>Цена за сутки</label>
+                        <span><?php echo $this->room->pricePerDay;?> <span>руб</span></span>
+                    </div>
+                    <div class="price">
+                        <label>Цена за час</label>
+                        <span><?php echo $this->room->pricePerHour;?> <span>руб</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h4>Предлогаемые удобства и возможности </h4>
+                <div class="header_decorator">
+                    <img src="<?php echo $this->baseUrl();?>/img/rooms/header_devider.png" class="img-responsive" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="room-page-services">
+                    <div class="row">
+                        <?php if ($this->room->bed == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="bed">Двухспальная кровать</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->wifi == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="wifi">Wi-Fi</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->fridge == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="fridge">Холодильник</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->shower == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="shower">Душ</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->jacuzzi == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="jacusi">Джакузи</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->fireplace == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="fireplace">Камин</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->satTv == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="sattv">Кабельное TV</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->conditioner == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="conditioner">Кондиционер</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->electrofireplace == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="electrofireplace">Электрокамин</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->cupboard == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="cupboard">Большой Шкаф</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->sauna == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="sauna">Сауна</span>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->room->minibar == 1) { ?>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <span class="mini-bar">Мини-бар</span>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <ul class="room-page-custom-services">
+                            <?php foreach ($this->properties as $property) { ?>
+                            <li>
+                                <?php echo $property['title'];?>
+                                <?php if (!empty($property['value'])) { ;?>
+                                    : <?php echo $property['value'];?>
+                                <?php } ?>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <a href="#" class="btn room-page-booking-btn" data-id="<?php echo $this->room->id;?>">
+                            Забронировать
+                        </a>
+                        <a href="<?php echo $this->url(['controller' => 'index', 'action' => 'index', 'module'=> 'hotelrooms'], '/apartments', true);?>" class="btn room-page-all-numbers-btn">
+                            все номера
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

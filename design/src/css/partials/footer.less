@@ -3,9 +3,27 @@ footer {
   text-align: left;
   color: #c6c6c6;
   font-size: 18px;
+  position: absolute;
+  width: 100%;
+  bottom: -464px;
+  @media (min-width: 576px) {
+    bottom: -314px;
+  }
+  @media (min-width: 768px) {
+    bottom: -362px;
+  }
+  @media (min-width: 992px) {
+    bottom: -362px;
+  }
+  @media (min-width: 1200px) {
+    bottom: -316px;
+  }
+
+  width: 100%;
+  height: auto;
   & .container > .row {
-    height: 275px;
     padding-top: 35px;
+    padding-bottom: 50px;
     & .logo {
       padding-top: 15px;
     }
@@ -14,11 +32,11 @@ footer {
       font-size: 20px;
       text-transform: capitalize;
       color: @white;
-      margin-bottom: 40px;
+      margin-bottom: 35px;
     }
     & ul {
       list-style-type: none;
-      padding-top: 68px;
+      padding-top: 63px;
       padding-left: 0;
       & li {
         margin-bottom: 15px;
@@ -34,9 +52,9 @@ footer {
       }
     }
     & i {
-      margin-right: 15px;
+      margin-right: 10px;
     }
-    & #contacts div {
+    & #contact_info div {
       margin-bottom: 20px;
       padding-left: 0;
       & i {

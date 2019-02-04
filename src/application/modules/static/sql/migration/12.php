@@ -1,0 +1,8 @@
+<?php
+$this->_db->query("DROP TABLE IF EXISTS `Slider`;
+CREATE TABLE `Slider` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `image` VARCHAR(250) NOT NULL,
+  `position` SMALLINT NOT NULL,
+  `url` VARCHAR(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;");

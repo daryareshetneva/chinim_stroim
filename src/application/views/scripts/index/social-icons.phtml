@@ -1,0 +1,23 @@
+<ul class="social-buttons">
+    <?php if ($this->social['vk']) :?>
+        <li>
+
+            <a href="<?php echo $this->social['vk']; ?>" target="_blank" class="vk"></a>
+        </li>
+    <?php endif;?>
+    <?php if ($this->social['facebook']) :?>
+        <li>
+            <a href="<?php echo $this->social['facebook']; ?>" target="_blank" class="fb"></a>
+        </li>
+    <?php endif;?>
+    <?php if ($this->social['twitter']) :?>
+        <li>
+            <a href="<?php echo $this->social['twitter']; ?>" target="_blank" class="tw"></a>
+        </li>
+    <?php endif;?>
+    <?php if ($this->social['instagram']) :?>
+        <li>
+            <a href="<?php echo $this->social['instagram']; ?>" target="_blank" class="insta"></a>
+        </li>
+    <?php endif;?>
+</ul>

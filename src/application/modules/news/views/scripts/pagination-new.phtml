@@ -1,0 +1,19 @@
+ <?php if (isset($this->pattern)) : ?>
+    <ul class="paginator">
+        <?php foreach($this->pagesInRange as $page): ?>
+            <?php if($page != $this->current): ?>
+                <li> 
+                    <a class="page-active" href="<?php echo $this->baseUrl() . '/' .  str_replace(':page', $page, $this->pattern) ?>">
+                        <?php echo $page; ?>
+                    </a>
+                </li>
+        <?php else: ?>
+            <li>
+                <p class="page"> 
+                    <?php echo $page; ?> 
+                </p>
+            </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</ul>
+<?php endif; ?>

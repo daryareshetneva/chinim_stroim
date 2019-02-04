@@ -1,0 +1,23 @@
+<?php
+$prevPage = ($this->current != 1) ? ($this->current - 1) : 1;
+$nextPage = ($this->current != count($this->pagesInRange)) ? ($this->current + 1) : count($this->pagesInRange);
+?>
+<div class="numeric_bottom">
+    <ol>
+        <li>
+            <a href="<?php echo $this->url(array('page' => $prevPage), 'certificatesPages', true); ?>"> < </a>
+        </li>
+
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <li class="<?php echo ($page == $this->current) ? 'active_numeric' : '';?>">
+                <a href="<?php echo $this->url(array('page' => $page), 'certificatesPages', true); ?>">
+                    <?php echo $page;?>
+                </a>
+            </li>
+        <?php endforeach;?>
+
+        <li>
+            <a href="<?php echo $this->url(array('page' => $nextPage), 'certificatesPages', true); ?>"> > </a>
+        </li>
+    </ol>
+</div>

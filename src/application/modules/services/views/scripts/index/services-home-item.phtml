@@ -1,0 +1,3 @@
+<?php foreach ($this->multiplator as $item) : ?>
+    <li class="list-group-item"><a href="<?php echo $this->url(['controller' => 'index', 'action' => 'services-example', 'module'=> 'services', 'serviceId' => $item['id']], 'default', true);?>"><?php echo $item['title'];?></a></li>
+<?php endforeach; ?>

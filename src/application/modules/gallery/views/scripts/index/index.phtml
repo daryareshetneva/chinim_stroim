@@ -1,0 +1,70 @@
+<?php if ( $this->category ) : ?>
+    <div class="main-gallery-category">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3">
+                <img src="<?php echo $this->baseUrl() . DIRECTORY_SEPARATOR . 'images/photos/categories/' . $this->category[ db_PhotoCategory::_IMAGE ]; ?>" alt="" class="img-responsive">
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <h2 class="mb-none"><?php echo $this->title == '' ? $this->category[ db_PhotoCategory::_TITLE ] : $this->title; ?></h2>
+                <?php if ( $this->category[ db_PhotoCategory::_DESC ] ) : ?>
+                    <?php echo $this->category[ db_PhotoCategory::_DESC ]; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <hr>
+<?php endif; ?>
+
+<?php if ( count( $this->paginator ) > 0 ) : ?>
+    <div class="row">
+        <?php foreach ( $this->paginator as $item ) : ?>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="gallery-category">
+                    <a href="<?php echo $this->url( array('id' => $item[ db_PhotoCategory::_ID ]), 'gallery/index', true ); ?>">
+                        <img class="img-responsive" src="<?php echo $this->baseUrl() . DIRECTORY_SEPARATOR . 'images/photos/categories/' . $item[ db_PhotoCategory::_IMAGE ]; ?>" alt="<?php echo $item[ db_PhotoCategory::_TITLE ]; ?>">
+                        <p class="gallery-category-title"><?php echo $item[ db_PhotoCategory::_TITLE ]; ?></p>
+                    </a>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <hr>
+<?php elseif ( $this->params[ 'id' ] == 0 ) : ?>
+    <h3><?php echo $this->translate( 'frontEmptyCategories' ); ?></h3>
+<?php endif; ?>
+
+<div class="row">
+    <?php if ( $this->photos ) : ?>
+        <ul class="image-gallery sort-destination lightbox" data-sort-id="portfolio" data-plugin-options="{'delegate': 'a.lightbox-portfolio', 'type': 'image', 'gallery': {'enabled': true}}">
+            <?php foreach ( $this->photos as $item ) : ?>
+                <li class="col-md-3 col-sm-6 col-xs-12 isotope-item">
+                    <div class="image-gallery-item">
+                        <a href="<?php echo ( !empty( $item[ db_Photos::_SRC ] )) ?  $this->baseUrl() . DIRECTORY_SEPARATOR . $item[ db_Photos::_SRC ] : $noImageCut; ?>" class="lightbox-portfolio">
+                            <span class="thumb-info">
+                                <span class="thumb-info-wrapper">
+                                    <img src="<?php echo ( !empty( $item[ db_Photos::_SRC ] )) ?  $this->baseUrl() . DIRECTORY_SEPARATOR . $item[ db_Photos::_SRC ] : $noImageCut; ?>" class="img-responsive" alt="<?php $item[ db_Photos::_TITLE ]; ?>">
+                                    <?php if(!empty($item[ db_Photos::_SRC ])) : ?>
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"><?php echo $item[ db_Photos::_TITLE]; ?></span>
+                                    </span>
+                                    <?php endif; ?>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i class="fa fa-search-plus"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php elseif (empty($this->photos)) : ?>
+        Фоток нет
+    <?php endif; ?>
+</div>
+
+
+<?php $params = array( 'urlParams' => array( 'action' => 'index', 'controller' => 'index', 'module' => 'gallery', 'id' => $this->category[ db_PhotoCategory::_ID ] ) ); ?>
+<?php if ($this->paginator->count() > 1) : ?>
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml'); ?>
+<?php endif; ?>

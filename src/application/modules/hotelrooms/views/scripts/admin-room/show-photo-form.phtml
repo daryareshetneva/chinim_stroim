@@ -1,0 +1,20 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <?php if ('add-photo' == $this->action) { ?>
+            <h5>Добавление фотографии</h5>
+        <?php } else { ?>
+            <h5>Редактирование фотографии</h5>
+        <?php } ?>
+    </div>
+</div>
+
+<h5 class="widget-name"></h5>
+
+<div class="widget row-fluid">
+    <div class="well span16">
+        <div class="form-overflow">
+            <?php echo $this->form; ?>
+        </div>
+    </div>
+</div>

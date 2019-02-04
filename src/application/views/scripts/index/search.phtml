@@ -1,0 +1,76 @@
+<?php $translate = Zend_Registry::get('Root_Translate'); ?>
+<form id="searchForm" action="<?php echo $this->baseUrl() . '/search'; ?>" method="get" style="margin-bottom: 20px;">
+  <div class="input-group">
+    <input type="text" class="form-control" name="query" id="q" placeholder="Поиск..." required value="<?php echo $this->searchQuery; ?>">
+    <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+    </span>
+  </div>
+</form>
+<?php if(!empty($this->searchQuery)) :?>
+<h4 class="heading-primary">По запросу <strong><?php echo $this->searchQuery; ?></strong> найдено <?php echo count($this->items); ?>.</h4>
+<?php endif;?>
+
+<?php if ($this->modules['Shop'] && (count($this->items['Shop_Model_DbTable_Products']) > 0)) :?>
+    <h5><?php echo $translate->_('searchCatalog'); ?></h5>
+    <ul class="simple-post-list">
+        <?php foreach ($this->items['Shop_Model_DbTable_Products'] as $item) :?>
+            <li>
+                <div class="post-info">
+                    <a href="<?php echo $this->url(['alias' => $item['alias']], '/shop/product');?>"><?php echo $item['title'];?></a>
+                    <div class="post-meta">
+                        <?php echo $item['description'];?>
+                    </div>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif;?>
+<?php if ($this->modules['News'] && (count($this->items['News_Model_DbTable_Table']) > 0)) :?>
+    <hr>
+    <h5><?php echo $translate->_('searchNews'); ?></h5>
+    <ul class="simple-post-list">
+        <?php foreach ($this->items['News_Model_DbTable_Table'] as $item) :?>
+            <li>
+                <div class="post-info">
+                    <a href="<?php echo $this->url(['module' => 'news', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/news/show', true); ?>"><?php echo $item['title'];?></a>
+                    <div class="post-meta">
+                        <?php echo $item['description'];?>
+                    </div>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif;?>
+<?php if ($this->modules['Blog'] && (count($this->items['Blog_Model_DbTable_Blog']) > 0)) :?>
+    <hr>
+    <h5><?php echo $translate->_('searchBlog'); ?></h5>
+    <ul class="simple-post-list">
+        <?php foreach ($this->items['Blog_Model_DbTable_Blog'] as $item) :?>
+            <li>
+                <div class="post-info">
+                    <a href="<?php echo $this->url(['module' => 'blog', 'controller' => 'index', 'action' => 'show', 'alias' => $item['alias']], '/blog/show', true); ?>"><?php echo $item['title'];?></a>
+                    <div class="post-meta">
+                        <?php echo $item['description'];?>
+                    </div>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif;?>
+<?php if ($this->modules['Static'] && (count($this->items['Static_Model_DbTable_Static']) > 0)) :?>
+    <hr>
+    <h5><?php echo $translate->_('searchStatic'); ?></h5>
+    <ul class="simple-post-list">
+        <?php foreach ($this->items['Static_Model_DbTable_Static'] as $item) :?>
+            <li>
+                <div class="post-info">
+                    <a href="<?php echo $this->url(['module' => 'static', 'controller' => 'index', 'action' => 'index', 'alias' => $item['alias']], '/static/index/index', true); ?>"><?php echo $item['title'];?></a>
+                    <div class="post-meta">
+                        <?php echo $item['description'];?>
+                    </div>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif;?>

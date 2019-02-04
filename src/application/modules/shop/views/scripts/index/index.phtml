@@ -1,0 +1,115 @@
+<div class="row catalog-header">
+	<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+		<div class="left">
+			<h2>Каталог</h2>
+		</div>
+		<div class="right">
+			<a href="#" class="block active" id="block-view"></a>
+			<a href="#" class="list" id="list-view"></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<!-- Filter -->
+	<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 filter">
+		<ul>
+			<?php echo $this->viewTreeCategories($this->allCategories, $this->alias); ?>
+		</ul>
+
+		<form method="get" action="">
+
+			<?php foreach ($this->availableFilters as $filterId => $availableFilter) { ?>
+				<div class="filter-item">
+					<h5><?php echo $availableFilter['title']; ?> <span class="clear-filter-item" data-filter="<?php echo $availableFilter['alias'];?>">Сбросить</span> </h5>
+					<ul>
+						<?php
+							if (isset($this->filters[$availableFilter['alias']])) {
+								$checkedValue = $this->filters[$availableFilter['alias']];
+							} else {
+								$checkedValue = -1;
+							}
+						;?>
+						<?php foreach ($availableFilter['elements'] as $elementId => $elementTitle) { ?>
+							<li>
+								<input type="radio" value="<?php echo $elementId;?>" name="<?php echo $availableFilter['alias'];?>" <?php echo ($checkedValue == $elementId) ? "checked='checked'" : "";?> class="filter" data-filter="<?php echo $availableFilter['alias'];?>" />
+								<?php echo $elementTitle; ?>
+							</li>
+						<?php } ?>
+					</ul>
+				</div>
+			<?php } ?>
+			<div class="filter-button">
+				<button type="submit" class="btn btn-blue"> Применить</button>
+			</div>
+		</form>
+	</div>
+	<!-- End Filter-->
+	<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12 main-content">
+		<?php if (count($this->paginator) > 0) {?>
+			<div class="products-wrapper">
+				<?php foreach ($this->paginator as $item) : ?>
+				<div class="product-block">
+					<div class="image">
+						<a href="<?php echo $this->url(['alias' => $item['alias']], '/shop/product');?>">
+							<?php if (!empty($item['image'])) : ?>
+								<img src="<?php echo $this->baseUrl() . '/' . $this->productImage($item['image']);?>" alt="" />
+							<?php endif;?>
+						</a>
+					</div>
+					<div class="title">
+						<a href="<?php echo $this->url(['alias' => $item['alias']], '/shop/product');?>"><?php echo $item['title']; ?></a>
+					</div>
+					<div class="desc">
+						<?php echo $item['catTitle'];?>
+					</div>
+					<div class="price">
+						<?php echo $item['price']?> <span class="glyphicon glyphicon-rub"></span>
+					</div>
+					<?php if (1 == $item['sale']) { ?>
+						<div class="awaiting sale">
+							Распродажа
+						</div>
+					<?php } else if (1 == $item['new']) { ?>
+						<div class="awaiting new">
+							Новинка
+						</div>
+					<?php } else { ?>
+						<div class="awaiting ">
+
+						</div>
+					<?php } ?>
+					<div class="product-hover">
+						<div class="btns">
+							<div>
+								<a href="<?php echo $this->url(['alias' => $item['alias']], '/shop/product');?>">Подробнее</a>
+								<div class="add-to-cart" data-id="<?php echo $item['productId'];?>">В корзину</div>
+							</div>
+						</div>
+						<div class="other">
+							<div class="title">
+								<a href="<?php echo $this->url(['alias' => $item['alias']], '/shop/product');?>"><?php echo $item['title']; ?></a>
+							</div>
+							<div class="desc">
+								<?php echo $item['catTitle'];?>
+							</div>
+							<div class="price">
+								<?php echo $item['price']?> <span class="glyphicon glyphicon-rub"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+		<?php } else { ?>
+			<p class="nothing-found">
+				Не найдено ни одного товара. Попробуйте изменить условия
+			</p>
+		<?php } ?>
+	</div>
+</div>
+<div class="row pagination">
+	<?php if ($this->paginator->count() > 0) : ?>
+		<?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml', array('pattern' => array('alias' => $this->alias))); ?>
+	<?php endif; ?>
+</div>
+

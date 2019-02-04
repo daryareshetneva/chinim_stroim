@@ -1,0 +1,18 @@
+<div class="row featured-boxes login">
+  <div class="col-sm-16">
+    <div class="featured-box featured-box-secundary default info-content">
+      <div class="box-content">
+        <h4><?php echo $this->translate('userRegisterForm');?></h4>
+        <?php echo $this->form; ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var phoneInput = document.getElementById('phone');
+    var phoneMask = new Inputmask('+79999999999');
+    phoneMask.mask(phoneInput);
+  });
+</script>

@@ -1,0 +1,99 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('portfolioEdit'); ?></h5>
+        <span></span>    
+    </div>
+</div>
+<!-- /page header -->
+<!-- Page form -->
+<div class="widget row-fluid">
+    <?php if (!empty($this->error)) : ?>
+  <div class="alert margin">
+    <button data-dismiss="alert" class="close" type="button">×</button>
+    <?php echo $this->translate($this->error); ?>
+  </div>
+  <?php endif; ?>
+  <div class="well">
+      <form method="POST" action="" enctype="multipart/form-data" class="form-horizontal">
+        <?php echo $this->form->title; ?>
+        <?php echo $this->form->alias; ?>
+	<?php echo $this->form->metaTitle; ?>
+	<?php echo $this->form->metaDescription; ?>
+	<?php echo $this->form->portfolioCatalogId; ?>
+	<?php echo $this->form->description; ?>
+          <?php echo $this->form->miniDescription; ?>
+          <?php echo $this->form->price; ?>
+          <?php echo $this->form->date; ?>
+	<div class="control-group ">
+          <label class="control-label"><?php echo $this->translate('portfolioImage') ?>:</label>
+          <div class="controls">
+            <input type="file" id="unstyled-file" name="image[]"> 
+          </div>
+        </div>
+	<span id="images">
+	</span>
+	<div class="control-group ">
+          <label class="control-label"><?php echo $this->translate('portfolioImageAdd') ?>:</label>
+          <div class="controls">
+            <i class="icon-plus clickable" id="addImage"></i>
+          </div>
+        </div>
+	<div class="control-group">
+	  <ul class="currentImages">
+	    <?php foreach ($this->images as $image) : ?>
+	    <li class="li<?php echo $image['id']; ?>">
+	      <img src="<?php echo $this->baseUrl() . '/' . $image['image']; ?>" class="pull-left">
+	      <i id="deleteImage" number="<?php echo $image['id']; ?>" class="deleteImage icon-minus clickable pull-right"></i>
+	    </li>
+	    <?php endforeach; ?>
+	  </ul>
+	</div>
+	<?php echo $this->form->submit; ?>
+      </form>
+  </div>
+</div>
+<!-- /Page form -->
+<script type="text/javascript">
+ CKEDITOR.replace('description');
+ $("#portfolioCatalogId").change(function () {
+   $("#valueportfolioCatalogId").html($("#portfolioCatalogId :selected").text());
+ });
+
+  var image = '<div class="control-group ">';
+ image += '<label class="control-label"><?php echo $this->translate("portfolioImage") ?>:</label>';
+ image += '<div class="controls">';
+ image += '<input type="file" id="unstyled-file" name="image[]">';
+ image += '</div>';
+ image += '</div>';
+
+ $('#addImage').click(function () {
+   $('#images').append(image);
+ });
+
+ $("#projectDate").datepicker();
+
+ $('.deleteImage').click(function() {
+   var imageId = $(this).attr('number');
+   $.ajax({
+     url: '<?php echo $this->url(array("controller" => "admin", "module" => "portfolio", "action" => "delete-portfolio-image"), "default", true); ?>',
+     type: 'GET',
+     dataType: 'json',
+     data: {
+       imageId: imageId
+     },
+     success: function (response) {
+       if (response.success == 'success') {
+	 var liBlock = '.li' + imageId;
+	 $(liBlock).remove();
+       } else {
+	 alert("Some error occure. Please contact Administrator");
+       }
+     },
+     error: function () {
+       alert("Some error occure. Check your connection");
+     }
+   });
+ });
+</script>
+

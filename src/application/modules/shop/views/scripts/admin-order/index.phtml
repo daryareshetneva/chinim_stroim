@@ -1,0 +1,59 @@
+<?php if (isset($this->orders)) :?>
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-title">
+            <h5><?php echo $this->translate('adminOrders');?></h5>
+        </div>
+    </div>
+    <!-- /page header -->
+
+    <!-- Media datatable Last Orders -->
+    <div class="widget">
+        <div class="table-overflow">
+            <table class="table table-striped table-bordered table-checks">
+                <thead>
+                <tr>
+                    <th><?php echo $this->translate('adminOrderId'); ?></th>
+                    <th><?php echo $this->translate('adminOrderDate'); ?></th>
+                    <th><?php echo $this->translate('adminOrderUser'); ?></th>
+                    <th><?php echo $this->translate('adminOrderComment'); ?></th>
+                    <th class="actions-column"><?php echo $this->translate('feature');?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->paginator as $item) : ?>
+                    <tr>
+                        <td>
+                            <?php echo $item['id']; ?>
+                        </td>
+                        <td>
+                            <?php echo $item['date']; ?>
+                        </td>
+                        <td>
+                            <?php if($item['userId'] > 0) :?>
+                                <a href="<?php echo $this->url(array('action' => 'edit-user', 'controller' => 'admin', 'module' => 'user', 'id' => $item['userId'], 'page' => 1), 'default', true); ?>"><?php echo $item['name']; ?></a>
+                                <br>
+                            <?php else :?>
+                                <?php echo $item['name'] ?>
+                            <?php endif; ?>
+                            <?php echo $this->translate('orderEmail'); ?>: <?php echo $item['email'] ?>
+                            <br>
+                            <?php echo $this->translate('orderPhone'); ?>: <?php echo $item['phone'] ?>
+                        </td>
+                        <td>
+                            <?php echo $item['comment'] ?>
+                        </td>
+                        <td>
+                            <ul class="navbar-icons">
+                                <li><a href="<?php echo $this->url(['id' => $item['id']], 'admin/order', true); ?>" class="tip" title="<?php echo $this->translate('edit');?>"><i class="icon-edit"></i></a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php echo $this->paginationControl($this->paginator, 'Sliding', 'admin-pagination.phtml', array('pattern' => array('action' => 'index', 'controller' => 'admin-order', 'module' => 'shop', 'status' => $this->status))); ?>
+        </div>
+    </div>
+
+<?php endif; ?>

@@ -1,0 +1,71 @@
+.portfolio_item {
+  text-align: left;
+  margin-top: 25px;
+  & .portfolio_photo a {
+    display: block;
+    position: relative;
+    width: 350px;
+    height: 290px;
+    &:hover::after {
+      content: "\f002";
+      font-size: 32px;
+      color: #ffc702;
+      background-color: rgba(0,0,0,.5);
+      display: block;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 38%;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      text-align: center;
+    }
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  & .portfolio_title {
+    height: 55px;
+    background-color: @orange;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding-top: 12px;
+    padding-left: 12px;
+    & a {
+      color: @white;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  & .portfolio_descr {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #686868;
+  }
+  & .portfolio_data_price {
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-bottom: 2px solid @orange;
+    & .data {
+      color: #b9b9b9;
+      font-size: 15px;
+      & i {
+        padding-right: 10px;
+      }
+    }
+    & .price {
+      color: @orange;
+      text-align: right;
+      float: right;
+      font-size: 20px;
+      & i {
+        padding-right: 15px;
+      }
+    }
+  }
+}

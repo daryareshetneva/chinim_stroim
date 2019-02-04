@@ -1,0 +1,74 @@
+<div class="page-header">
+    <div class="page-title">
+        <h5><?php echo $this->translate('loadingPhotoTitle'); ?></h5> 
+        <span><?php echo $this->translate('loadingPhotoTitleSpan'); ?></span>
+    </div>
+</div>
+
+<h5 class="widget-name"></h5>
+
+<div class="widget row-fluid">
+    <div class="well span10">
+        <div class="form-overflow">
+	    <form method="POST" action="" enctype="multipart/form-data" class="form-horizontal">
+		<?php $catId = db_Photo_Relations::_CATEGORY_ID; ?>
+		<?php echo $this->form->$catId; ?>
+		<div class="control-group ">
+		    <label class="control-label"><?php echo $this->translate('portfolioImage') ?>:</label>
+		    <div class="controls">
+			<input type="file" class="unstyled" name="image[]"> 
+		    </div>
+		</div>
+		<span id="images" class="clearme">
+		</span>
+		<div class="control-group " id="buttonAddImage">
+		  <label class="control-label"><?php echo $this->translate('portfolioImageAdd') ?>:</label>
+		  <div class="controls">
+		      <a href="#_addImage">
+			<i class="icon-2x icon-plus" id="addImage">
+			</i>
+		      </a>
+		  </div>
+		</div>
+		<?php echo $this->form->submit; ?>
+		
+	    </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        CKEDITOR.replace('description', {
+            toolbar: [
+               { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
+                { name: 'paragraph', items : [ 'NumberedList','BulletedList' ] },
+                { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+                { name: 'colors', items : [ 'TextColor','BGColor' ] },
+                { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+                    '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+                { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+            ],
+            width: '99%',
+            resize_enabled: false
+        });
+    }
+    
+    var image = '<div class="control-group ">';
+    image += '<label class="control-label"><?php echo $this->translate( "portfolioImage" ) ?>:</label>';
+    image += '<div class="controls">';
+    image += '<input type="file" class="unstyled" name="image[]">';
+    image += '</div>';
+    image += '</div>';
+
+    var imageCounter = 0;
+
+    $('#addImage').click(function() {
+	if (imageCounter < 10) {
+	    imageCounter++;
+	    $('#images').append(image);
+	}
+	if (imageCounter == 9) {
+	    $('#buttonAddImage').remove();
+	}
+    });
+</script>
